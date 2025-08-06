@@ -17,7 +17,8 @@ const HomePage = () => {
     initialData: DUMMY_CONTENTS,
     url: ``,
   });
-  const contents = data;
+  const contents = data?.contents;
+  const promos = data?.promos;
   const render = {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
@@ -25,7 +26,7 @@ const HomePage = () => {
     loaded: (
       <>
         <HomeStats contents={contents} />
-        <HomePromo contents={contents} />
+        <HomePromo promos={promos} />
       </>
     ),
   };

@@ -143,6 +143,7 @@ const CTA = (props: any) => {
           fontSize={"xl"}
           fontWeight={"semibold"}
           pointerEvents={"auto"}
+          lineHeight={1.4}
         >
           {contents[5]?.content}
         </P>
@@ -222,11 +223,12 @@ const Hero = () => {
   return (
     <CContainer
       bg={"#051524"}
+      mt={"-70px"}
       pt={"70px"}
       color={"white"}
       pos={"relative"}
       overflow={"clip"}
-      pb={"30px"}
+      pb={"80px"}
     >
       <Container py={["32px", null, "100px"]} zIndex={2} pointerEvents={"none"}>
         {loading && render.loading}

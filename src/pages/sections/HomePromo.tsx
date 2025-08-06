@@ -2,16 +2,72 @@ import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import Img from "@/components/ui-custom/Img";
 import Container from "@/components/widget/Container";
+import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { HStack, Icon } from "@chakra-ui/react";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useRef } from "react";
+
+const PrevButton = (props: any) => {
+  // Props
+  const { containerRef, ...restProps } = props;
+
+  return (
+    <BButton
+      iconButton
+      unclicky
+      bg={"white"}
+      color={"black"}
+      size={["md", null, "2xl"]}
+      className="ss"
+      onClick={() => {
+        containerRef.current?.scrollBy({
+          left: -containerRef.current.offsetWidth,
+          behavior: "smooth",
+        });
+      }}
+      {...restProps}
+    >
+      <Icon>
+        <IconArrowLeft />
+      </Icon>
+    </BButton>
+  );
+};
+
+const NextButton = (props: any) => {
+  // Props
+  const { containerRef, ...restProps } = props;
+
+  return (
+    <BButton
+      iconButton
+      unclicky
+      bg={"white"}
+      color={"black"}
+      size={["md", null, "2xl"]}
+      className="ss"
+      onClick={() => {
+        containerRef.current?.scrollBy({
+          left: containerRef.current.offsetWidth,
+          behavior: "smooth",
+        });
+      }}
+      {...restProps}
+    >
+      <Icon>
+        <IconArrowRight />
+      </Icon>
+    </BButton>
+  );
+};
 
 const HomePromo = (props: any) => {
   // Props
   const { promos } = props;
 
   // Hooks
+  const iss = useIsSmScreenWidth();
   const { sw } = useScreen();
   const overMax = sw > 1440;
 
@@ -19,60 +75,37 @@ const HomePromo = (props: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <CContainer align={"center"}>
-      <Container align={"center"} pb={"100px"} pos={"relative"}>
-        <BButton
-          iconButton
-          unclicky
-          bg={"white"}
-          color={"black"}
-          size={"2xl"}
-          pos={"absolute"}
-          left={"8px"}
-          top={"50%"}
-          transform={"translateY(-50%)"}
-          className="ss"
-          onClick={() => {
-            containerRef.current?.scrollBy({
-              left: -containerRef.current.offsetWidth,
-              behavior: "smooth",
-            });
-          }}
-        >
-          <Icon>
-            <IconArrowLeft />
-          </Icon>
-        </BButton>
+    <CContainer align={"center"} pb={"100px"}>
+      <Container align={"center"} pos={"relative"}>
+        {!iss && (
+          <>
+            <PrevButton
+              containerRef={containerRef}
+              pos={"absolute"}
+              left={"8px"}
+              top={"50%"}
+              transform={"translateY(-50%)"}
+            />
 
-        <BButton
-          iconButton
-          unclicky
-          bg={"white"}
-          color={"black"}
-          size={"2xl"}
-          pos={"absolute"}
-          right={"8px"}
-          top={"50%"}
-          transform={"translateY(-50%)"}
-          className="ss"
-          onClick={() => {
-            containerRef.current?.scrollBy({
-              left: containerRef.current.offsetWidth,
-              behavior: "smooth",
-            });
-          }}
-        >
-          <Icon>
-            <IconArrowRight />
-          </Icon>
-        </BButton>
+            <NextButton
+              containerRef={containerRef}
+              pos={"absolute"}
+              right={"8px"}
+              top={"50%"}
+              transform={"translateY(-50%)"}
+            />
+          </>
+        )}
 
         <CContainer
           fRef={containerRef}
-          w={overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)"}
+          w={[
+            "calc(100vw)",
+            null,
+            overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)",
+          ]}
           overflowX={"auto"}
-          borderRadius={"50px"}
-          // overflowY={"clip"}
+          borderRadius={[0, null, "30px"]}
           className="noScroll"
           scrollSnapType={"x mandatory"}
           aspectRatio={16 / 9}
@@ -85,12 +118,24 @@ const HomePromo = (props: any) => {
                   src={promo.image?.file_url}
                   aspectRatio={16 / 9}
                   scrollSnapAlign={"center"}
-                  maxW={overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)"}
+                  maxW={[
+                    "calc(100vw)",
+                    null,
+                    overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)",
+                  ]}
                 />
               );
             })}
           </HStack>
         </CContainer>
+
+        {iss && (
+          <HStack mt={4}>
+            <PrevButton containerRef={containerRef} />
+
+            <NextButton containerRef={containerRef} />
+          </HStack>
+        )}
       </Container>
     </CContainer>
   );

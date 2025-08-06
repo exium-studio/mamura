@@ -22,14 +22,14 @@ const HomeStats = (props: any) => {
 
   return (
     <CContainer
-      mt={"-40px"}
-      borderRadius={"50px 50px 0 0 "}
+      mt={"-50px"}
+      borderRadius={"30px 30px 0 0 "}
       bg={"white"}
       zIndex={2}
     >
       <Container py={"60px"} pb={"100px"}>
         <HStack wrap={"wrap"} gap={R_SPACING}>
-          <CContainer flex={1} minW={"600px"} gap={4}>
+          <CContainer flex={"1 1 600px"} gap={4}>
             <Heading2 fontWeight={"bold"}>{contents?.[6]?.content}</Heading2>
 
             <SimpleGrid
@@ -37,6 +37,7 @@ const HomeStats = (props: any) => {
               borderRadius={16}
               bg={"bg.subtle"}
               p={4}
+              gap={4}
             >
               <StatItem
                 value={contents?.[7]?.content}

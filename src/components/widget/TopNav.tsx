@@ -94,7 +94,7 @@ const SmNavs = (props: any) => {
       px={4}
       h={"70px"}
       w={"full"}
-      position={"fixed"}
+      pos={"sticky"}
       top={0}
       left={0}
       zIndex={99}
@@ -118,7 +118,7 @@ const LgNavs = (props: any) => {
       py={2}
       gap={4}
       h={"70px"}
-      position={"fixed"}
+      pos={"sticky"}
       top={0}
       left={0}
       bg={scrolled ? "body" : "transparent"}

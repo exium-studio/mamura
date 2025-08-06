@@ -1,15 +1,28 @@
+import BackButton from "@/components/ui-custom/BackButton";
 import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui-custom/Disclosure";
+import DisclosureHeaderContent from "@/components/ui-custom/DisclosureHeaderContent";
 import FeedbackNoData from "@/components/ui-custom/FeedbackNoData";
 import FeedbackRetry from "@/components/ui-custom/FeedbackRetry";
 import Heading1 from "@/components/ui-custom/Heading1";
 import P from "@/components/ui-custom/P";
+import SearchInput from "@/components/ui-custom/SearchInput";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import { CONTENT_TYPES } from "@/static/selectOptions";
 import empty from "@/utils/empty";
-import { Container, HStack } from "@chakra-ui/react";
+import scrollToView from "@/utils/scrollToView";
+import { Container, HStack, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
 
 const DUMMY = {
   2: {
@@ -35,6 +48,83 @@ const DUMMY = {
   },
 };
 
+const CoverageCheck = () => {
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`coverage-check`, open, onOpen, onClose);
+
+  // States
+  const [search, setSearch] = useState<any>("");
+  const { error, loading, data, makeRequest } = useDataState<any>({
+    url: ``,
+  });
+  const render = {
+    loading: <ComponentSpinner />,
+    error: <FeedbackRetry onRetry={makeRequest} />,
+    empty: <FeedbackNoData />,
+    loaded: (
+      <CContainer>
+        {data?.map((city: any) => {
+          return (
+            <HStack>
+              <P>{city?.name}</P>
+            </HStack>
+          );
+        })}
+      </CContainer>
+    ),
+  };
+
+  return (
+    <>
+      <BButton size={"xl"} bg={"white"} color={"ibody"} onClick={onOpen}>
+        Cek Area
+      </BButton>
+
+      <DisclosureRoot open={open} lazyLoad size={"xs"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent title={`Cek Area`} />
+          </DisclosureHeader>
+
+          <DisclosureBody>
+            <SearchInput
+              onChangeSetter={(inputValue) => {
+                setSearch(inputValue);
+              }}
+              inputProps={{
+                borderTop: "none",
+                borderLeft: "none",
+                borderRight: "none",
+                borderRadius: 0,
+              }}
+              inputValue={search}
+              invalid={false}
+            />
+
+            {loading && render.loading}
+            {!loading && (
+              <>
+                {error && render.error}
+                {!error && (
+                  <>
+                    {data && render.loaded}
+                    {(!data || empty(data)) && render.empty}
+                  </>
+                )}
+              </>
+            )}
+          </DisclosureBody>
+
+          <DisclosureFooter>
+            <BackButton />
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
+
 const CTA = (props: any) => {
   // Props
   const { data, ...restProps } = props;
@@ -46,10 +136,15 @@ const CTA = (props: any) => {
       </P>
 
       <HStack>
-        <BButton size={"xl"} bg={"white"} color={"ibody"}>
-          Cek Area
-        </BButton>
-        <BButton size={"xl"} colorPalette={"p"}>
+        <CoverageCheck />
+
+        <BButton
+          size={"xl"}
+          colorPalette={"p"}
+          onClick={() => {
+            scrollToView(`packages`);
+          }}
+        >
           Lihat Paket
         </BButton>
       </HStack>

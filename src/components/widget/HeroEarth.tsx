@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import "../../assets/css/heroEarth.css";
 
 export default function HeroEarth() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,5 +20,17 @@ export default function HeroEarth() {
     };
   }, []);
 
-  return <canvas id="earth" ref={canvasRef} className="earth-canvas" />;
+  return (
+    <canvas
+      id="earth"
+      ref={canvasRef}
+      className="earth-canvas"
+      style={{
+        // background: "red",
+        width: "100px",
+        height: "100px",
+        touchAction: "manipulation",
+      }}
+    />
+  );
 }

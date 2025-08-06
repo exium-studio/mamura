@@ -98,6 +98,7 @@ const SmNavs = (props: any) => {
       position={"fixed"}
       top={0}
       left={0}
+      zIndex={99}
     >
       <MamuraLogo type={rootPath || !scrolled ? "light" : "color"} />
 

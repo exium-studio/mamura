@@ -133,18 +133,20 @@ const CoverageCheck = () => {
 };
 const CTA = (props: any) => {
   // Props
-  const { data, ...restProps } = props;
+  const { data, setData, ...restProps } = props;
 
   return (
     <CContainer align={"center"} gap={4} {...restProps}>
-      <P
-        textAlign={"center"}
-        fontSize={"xl"}
-        fontWeight={"semibold"}
-        pointerEvents={"auto"}
-      >
-        {data[5]?.content}
-      </P>
+      <EditableContentContainer contentId={5} setData={setData}>
+        <P
+          textAlign={"center"}
+          fontSize={"xl"}
+          fontWeight={"semibold"}
+          pointerEvents={"auto"}
+        >
+          {data[5]?.content}
+        </P>
+      </EditableContentContainer>
 
       <HStack>
         <CoverageCheck />

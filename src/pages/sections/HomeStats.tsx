@@ -56,7 +56,7 @@ const HomeStats = (props: any) => {
             </SimpleGrid>
           </CContainer>
 
-          <CContainer w={"fit"} align={"center"} p={4}>
+          <CContainer w={"fit"} align={"center"} p={4} mx={"auto"}>
             <Img
               key={contents?.[13]?.content}
               w={"360px"}

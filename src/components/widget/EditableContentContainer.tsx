@@ -31,7 +31,7 @@ import ExistingFileItem from "./ExistingFIleItem";
 
 interface Props extends StackProps {
   contentId: number;
-  setData: Dispatch<any>;
+  setData?: Dispatch<any>;
   contentProps?: any;
 }
 
@@ -86,7 +86,7 @@ const ContentEditor = (props: any) => {
               ...data,
               [contentId]: { ...data[contentId], content: values.content },
             };
-            setData(newData);
+            setData?.(newData);
             resetForm();
           },
         },

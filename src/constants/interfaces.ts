@@ -42,7 +42,7 @@ export interface Interface__Content extends Interface__CUD {
 }
 export interface Interface__ContentType extends Interface__CUD {
   id: number;
-  name: string;
+  name: string; // Text, Gambar, Video, Audio, File, Tautan
   description: string;
 }
 

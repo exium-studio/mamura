@@ -18,7 +18,6 @@ import {
   DrawerHeader,
   DrawerRoot,
 } from "../ui/drawer";
-import EditableContentContainer from "./EditableContentContainer";
 import HashLink from "./HashLink";
 import MamuraLogo from "./MamuraLogo";
 
@@ -126,7 +125,7 @@ const LgNavs = (props: any) => {
       transition={"200ms"}
       zIndex={99}
     >
-      <HStack w={"280px"} gap={1}>
+      <HStack w={"240px"} gap={1}>
         {LP_NAVS_1.map((nav) => {
           const active = activePath === nav.path;
 
@@ -145,11 +144,9 @@ const LgNavs = (props: any) => {
         })}
       </HStack>
 
-      <EditableContentContainer contentId={1}>
-        <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
-      </EditableContentContainer>
+      <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
 
-      <HStack w={"280px"} gap={1}>
+      <HStack w={"240px"} gap={1}>
         {LP_NAVS_2.map((nav) => {
           const active = activePath === nav.path;
 

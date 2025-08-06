@@ -23,8 +23,8 @@ export const LP_NAVS_1 = [
     path: "#paket",
   },
   {
-    label: "Tentang Kami",
-    path: "#tentang-kammi",
+    label: "Tentang",
+    path: "#tentang",
   },
 ];
 export const LP_NAVS_2 = [

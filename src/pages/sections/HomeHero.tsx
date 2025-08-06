@@ -91,7 +91,7 @@ const CoverageCheck = () => {
       <DisclosureRoot open={open} lazyLoad size={"xs"}>
         <DisclosureContent>
           <DisclosureHeader>
-            <DisclosureHeaderContent title={`Cek Area`} />
+            <DisclosureHeaderContent title={`Jangkauan Area Mamura`} />
           </DisclosureHeader>
 
           <DisclosureBody>

@@ -1,8 +1,7 @@
 import { Button, ButtonProps } from "@/components/ui/button";
 import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
-import { useThemeConfig } from "@/context/useThemeConfig";
 import { IconButton } from "@chakra-ui/react";
-import { useMemo, forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 
 export interface BButtonProps extends ButtonProps {
   fRef?: React.Ref<HTMLButtonElement>;
@@ -24,9 +23,6 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>(
     },
     ref
   ) => {
-    // Contexts
-    const { themeConfig } = useThemeConfig();
-
     // States, Refs
     const finalClassName = `${unclicky ? "" : "clicky"} ${className}`.trim();
 
@@ -63,7 +59,7 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>(
         ref={ref || fRef}
         className={finalClassName}
         size={size}
-        borderRadius={themeConfig.radii.component}
+        borderRadius={"full"}
         {...props}
       >
         {children}
@@ -74,7 +70,7 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>(
         className={finalClassName}
         fontWeight="semibold"
         size={size || (MAIN_BUTTON_SIZE as any)}
-        borderRadius={themeConfig.radii.component}
+        borderRadius={"full"}
         _active={{ bg: activeBg }}
         {...props}
       >

@@ -5,7 +5,7 @@ import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import { CONTENT_TYPES } from "@/static/selectOptions";
 import empty from "@/utils/empty";
-import { HStack, StackProps, useDisclosure } from "@chakra-ui/react";
+import { SimpleGrid, StackProps, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
@@ -24,6 +24,7 @@ import FeedbackNoData from "../ui-custom/FeedbackNoData";
 import FeedbackRetry from "../ui-custom/FeedbackRetry";
 import FileInput from "../ui-custom/FileInput";
 import P from "../ui-custom/P";
+import StringInput from "../ui-custom/StringInput";
 import Textarea from "../ui-custom/Textarea";
 import { Field } from "../ui/field";
 import ExistingFileItem from "./ExistingFIleItem";
@@ -170,12 +171,6 @@ const ContentEditor = (props: any) => {
               </CContainer>
             )}
           </>
-          // <FileInput
-          //   onChangeSetter={(input) => {
-          //     formik.setFieldValue("content", input);
-          //   }}
-          //   inputValue={formik.values.content}
-          // />
         )}
 
         {!fileInput && (
@@ -200,6 +195,7 @@ const EditableContentContainer = (props: Props) => {
   useBackOnClose(`edit-content-${contentId}`, open, onOpen, onClose);
 
   // States
+  const cmsActive = true;
   const { error, loading, data, makeRequest } =
     useDataState<Interface__Content>({
       initialData: DUMMY,
@@ -212,19 +208,15 @@ const EditableContentContainer = (props: Props) => {
     empty: <FeedbackNoData />,
     loaded: (
       <CContainer gap={2}>
-        <HStack>
-          <P fontWeight={"semibold"} w={"120px"}>
-            ID konten
-          </P>
-          <P>{`${contentId}`}</P>
-        </HStack>
+        <SimpleGrid columns={2} gap={4}>
+          <Field label={"ID Konten"} readOnly>
+            <StringInput inputValue={`${contentId}`} />
+          </Field>
 
-        <HStack>
-          <P fontWeight={"semibold"} w={"120px"}>
-            Tipe konten
-          </P>
-          <P>{`${data?.content_type?.name}`}</P>
-        </HStack>
+          <Field label={"Tipe Konten"} readOnly>
+            <StringInput inputValue={`${data?.content_type?.name}`} />
+          </Field>
+        </SimpleGrid>
 
         <ContentEditor data={data} />
       </CContainer>
@@ -244,20 +236,28 @@ const EditableContentContainer = (props: Props) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         pos={"relative"}
-        cursor={"pointer"}
-        onClick={onOpen}
+        cursor={cmsActive ? "pointer" : "auto"}
+        onClick={() => {
+          if (cmsActive) {
+            onOpen();
+          }
+        }}
         {...restProps}
       >
-        {hover && (
-          <CContainer
-            w={"full"}
-            h={"full"}
-            bg={"p.500"}
-            pos={"absolute"}
-            top={0}
-            left={0}
-            opacity={0.5}
-          />
+        {cmsActive && (
+          <>
+            {hover && (
+              <CContainer
+                w={"full"}
+                h={"full"}
+                bg={"p.500"}
+                pos={"absolute"}
+                top={0}
+                left={0}
+                opacity={0.5}
+              />
+            )}
+          </>
         )}
 
         {children}

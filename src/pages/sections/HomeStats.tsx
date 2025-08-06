@@ -27,7 +27,7 @@ const HomeStats = (props: any) => {
       bg={"white"}
       zIndex={2}
     >
-      <Container py={"60px"} pb={"100px"}>
+      <Container py={"80px"}>
         <HStack wrap={"wrap"} gap={R_SPACING}>
           <CContainer flex={"1 1 600px"} gap={4}>
             <Heading2 fontWeight={"bold"}>{contents?.[6]?.content}</Heading2>
@@ -59,7 +59,7 @@ const HomeStats = (props: any) => {
           <CContainer w={"fit"} align={"center"} p={4} mx={"auto"}>
             <Img
               key={contents?.[13]?.content}
-              w={"360px"}
+              w={"320px"}
               src={contents?.[13]?.content}
             />
           </CContainer>

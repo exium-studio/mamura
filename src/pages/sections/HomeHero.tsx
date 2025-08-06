@@ -78,7 +78,13 @@ const CoverageCheck = () => {
 
   return (
     <>
-      <BButton size={"xl"} bg={"white"} color={"ibody"} onClick={onOpen}>
+      <BButton
+        size={"xl"}
+        bg={"white"}
+        color={"ibody"}
+        onClick={onOpen}
+        pointerEvents={"auto"}
+      >
         Cek Area
       </BButton>
 
@@ -125,14 +131,18 @@ const CoverageCheck = () => {
     </>
   );
 };
-
 const CTA = (props: any) => {
   // Props
   const { data, ...restProps } = props;
 
   return (
     <CContainer align={"center"} gap={4} {...restProps}>
-      <P textAlign={"center"} fontSize={"xl"} fontWeight={"semibold"}>
+      <P
+        textAlign={"center"}
+        fontSize={"xl"}
+        fontWeight={"semibold"}
+        pointerEvents={"auto"}
+      >
         {data[5]?.content}
       </P>
 
@@ -145,6 +155,7 @@ const CTA = (props: any) => {
           onClick={() => {
             scrollToView(`packages`);
           }}
+          pointerEvents={"auto"}
         >
           Lihat Paket
         </BButton>
@@ -165,21 +176,35 @@ const Hero = () => {
     empty: <FeedbackNoData />,
     loaded: (
       <CContainer gap={4} align={"center"}>
-        <HStack>
+        <HStack wrap={"wrap"} gapY={0} justify={"center"}>
           <EditableContentContainer contentId={2}>
-            <Heading1 fontWeight={"bold"} textAlign={"center"}>
+            <Heading1
+              fontWeight={"bold"}
+              textAlign={"center"}
+              pointerEvents={"auto"}
+            >
               {data[2]?.content}
             </Heading1>
           </EditableContentContainer>
 
           <EditableContentContainer contentId={3}>
-            <Heading1 fontWeight={"bold"} textAlign={"center"} color={"s.500"}>
+            <Heading1
+              fontWeight={"bold"}
+              textAlign={"center"}
+              color={"s.500"}
+              pointerEvents={"auto"}
+            >
               {data[3]?.content}
             </Heading1>
           </EditableContentContainer>
         </HStack>
 
-        <P textAlign={"center"} maxW={"600px"} opacity={0.6}>
+        <P
+          textAlign={"center"}
+          maxW={"600px"}
+          opacity={0.6}
+          pointerEvents={"auto"}
+        >
           {data[4]?.content}
         </P>
 
@@ -189,8 +214,14 @@ const Hero = () => {
   };
 
   return (
-    <CContainer bg={"#00041c"} pt={"70px"} color={"white"}>
-      <Container py={"100px"}>
+    <CContainer
+      bg={"#051524"}
+      pt={"70px"}
+      color={"white"}
+      pos={"relative"}
+      overflow={"clip"}
+    >
+      <Container py={["32px", null, "100px"]} zIndex={2} pointerEvents={"none"}>
         {loading && render.loading}
         {!loading && (
           <>
@@ -203,9 +234,11 @@ const Hero = () => {
             )}
           </>
         )}
-
-        <HeroEarth />
       </Container>
+
+      <CContainer zIndex={1} pos={"absolute"}>
+        <HeroEarth />
+      </CContainer>
     </CContainer>
   );
 };

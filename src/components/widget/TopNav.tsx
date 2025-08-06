@@ -121,6 +121,9 @@ const LgNavs = (props: any) => {
       position={"fixed"}
       top={0}
       left={0}
+      bg={scrolled ? "body" : "transparent"}
+      transition={"200ms"}
+      zIndex={99}
     >
       <HStack w={"280px"} gap={1}>
         {LP_NAVS_1.map((nav) => {
@@ -142,7 +145,7 @@ const LgNavs = (props: any) => {
       </HStack>
 
       <EditableContentContainer contentId={1}>
-        <MamuraLogo type={rootPath || !scrolled ? "light" : "color"} />
+        <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
       </EditableContentContainer>
 
       <HStack w={"280px"} gap={1}>
@@ -150,7 +153,7 @@ const LgNavs = (props: any) => {
           const active = activePath === nav.path;
 
           return (
-            <NavLink w={"fit"}>
+            <NavLink key={nav.path} w={"fit"}>
               <BButton
                 unclicky
                 variant={"ghost"}

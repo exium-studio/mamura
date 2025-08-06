@@ -5,13 +5,13 @@ import TransactionPage from "@/pages/_admin/TransactionPage";
 import MasterDataCity from "@/pages/_admin/masterData/MasterDataCity";
 import MasterDataProvince from "@/pages/_admin/masterData/MasterDataProvince";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
-import RootPage from "@/pages/RootPage";
+import HomePage from "@/pages/HomePage";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
     path: "/",
     activePath: "/",
-    element: <RootPage />,
+    element: <HomePage />,
   },
 ];
 

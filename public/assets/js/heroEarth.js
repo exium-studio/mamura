@@ -39,7 +39,8 @@ renderer = new THREE.WebGLRenderer({
   antialias: true,
   canvas: canvas,
 }); //
-renderer.setSize(W, H);
+// renderer.setSize(W, H);
+renderer.setSize(700, 700);
 //renderer.context.getExtension('OES_standard_derivatives');
 camera = new THREE.PerspectiveCamera(18, aspect, 1, 10000);
 scene = new THREE.Scene();
@@ -340,17 +341,20 @@ requestAnimationFrame(function animate() {
       window.innerHeight -
       document.documentElement.getBoundingClientRect().bottom;
   if (pos.bottom <= 0 || pos.top >= window.innerHeight) return;
-  if (
-    dpr != (dpr = window.devicePixelRatio) ||
-    W != (W = window.innerWidth) ||
-    H != (H = window.innerHeight)
-  ) {
-    vMin = Math.min(W, H);
-    // renderer.setSize(W, H);
-    renderer.setSize(700, 700);
-    renderer.setPixelRatio(dpr);
-    camera.aspect = W / H;
-    camera.updateProjectionMatrix();
+  // if (
+  //   dpr != (dpr = window.devicePixelRatio) ||
+  //   W != (W = window.innerWidth) ||
+  //   H != (H = window.innerHeight)
+  // ) {
+  //   vMin = Math.min(W, H);
+  //   // renderer.setSize(W, H);
+  //   renderer.setSize(700, 700);
+  //   renderer.setPixelRatio(dpr);
+  //   camera.aspect = W / H;
+  //   camera.updateProjectionMatrix();
+  // }
+  if (dpr != (dpr = window.devicePixelRatio)) {
+    renderer.set;
   }
   var addPoints = [];
   activePoints.forEach(function (point, i) {

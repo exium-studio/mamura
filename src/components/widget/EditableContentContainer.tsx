@@ -7,7 +7,7 @@ import { CONTENT_TYPES } from "@/static/selectOptions";
 import empty from "@/utils/empty";
 import { SimpleGrid, StackProps, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import * as yup from "yup";
 import BackButton from "../ui-custom/BackButton";
 import BButton from "../ui-custom/BButton";
@@ -31,6 +31,8 @@ import ExistingFileItem from "./ExistingFIleItem";
 
 interface Props extends StackProps {
   contentId: number;
+  setData: Dispatch<any>;
+  contentProps?: any;
 }
 
 const DUMMY = {
@@ -43,7 +45,7 @@ const CONTENT_TYPE_FILE_INPUT_IDS = [2, 3, 4, 5];
 
 const ContentEditor = (props: any) => {
   // Props
-  const { data } = props;
+  const { contentId, data, setData } = props;
 
   // Hooks
   const { req } = useRequest({
@@ -80,7 +82,11 @@ const ContentEditor = (props: any) => {
         config,
         onResolve: {
           onSuccess: () => {
-            // TODO handle edit content on success
+            const newData = {
+              ...data,
+              [contentId]: { ...data[contentId], content: values.content },
+            };
+            setData(newData);
             resetForm();
           },
         },
@@ -105,90 +111,92 @@ const ContentEditor = (props: any) => {
 
   return (
     <CContainer>
-      <Field label={"Konten"}>
-        {fileInput && (
-          <>
-            {!empty(existingFile) && (
-              <CContainer>
-                {existingFile?.map((item: any, i: number) => {
-                  return (
-                    <ExistingFileItem
-                      key={i}
-                      data={item}
-                      onDelete={() => {
-                        setExistingFile((prev) =>
-                          prev.filter((f) => f !== item)
-                        );
-                        formik.setFieldValue("deleted_file", [
-                          ...formik.values.deleted_file,
-                          item,
-                        ]);
-                      }}
-                    />
-                  );
-                })}
-              </CContainer>
-            )}
+      <form id="edit_content_form" onSubmit={formik.handleSubmit}>
+        <Field label={"Konten"}>
+          {fileInput && (
+            <>
+              {!empty(existingFile) && (
+                <CContainer>
+                  {existingFile?.map((item: any, i: number) => {
+                    return (
+                      <ExistingFileItem
+                        key={i}
+                        data={item}
+                        onDelete={() => {
+                          setExistingFile((prev) =>
+                            prev.filter((f) => f !== item)
+                          );
+                          formik.setFieldValue("deleted_file", [
+                            ...formik.values.deleted_file,
+                            item,
+                          ]);
+                        }}
+                      />
+                    );
+                  })}
+                </CContainer>
+              )}
 
-            {empty(existingFile) && (
-              <FileInput
-                dropzone
-                name="file"
-                onChangeSetter={(input) => {
-                  formik.setFieldValue("file", input);
-                }}
-                inputValue={formik.values.file}
-                accept=".png, .jpg, .jpeg,"
-              />
-            )}
+              {empty(existingFile) && (
+                <FileInput
+                  dropzone
+                  name="file"
+                  onChangeSetter={(input) => {
+                    formik.setFieldValue("file", input);
+                  }}
+                  inputValue={formik.values.file}
+                  accept=".png, .jpg, .jpeg,"
+                />
+              )}
 
-            {!empty(formik.values.deleted_file) && (
-              <CContainer gap={2} mt={2}>
-                <P color={"fg.muted"}>File dihapus</P>
+              {!empty(formik.values.deleted_file) && (
+                <CContainer gap={2} mt={2}>
+                  <P color={"fg.muted"}>File dihapus</P>
 
-                {formik.values.deleted_file?.map((item: any, i: number) => {
-                  return (
-                    <ExistingFileItem
-                      key={i}
-                      data={item}
-                      withDeleteButton={false}
-                      withUndobutton
-                      onUndo={() => {
-                        setExistingFile((prev) => [...prev, item]);
+                  {formik.values.deleted_file?.map((item: any, i: number) => {
+                    return (
+                      <ExistingFileItem
+                        key={i}
+                        data={item}
+                        withDeleteButton={false}
+                        withUndobutton
+                        onUndo={() => {
+                          setExistingFile((prev) => [...prev, item]);
 
-                        formik.setFieldValue(
-                          "deleted_file",
-                          formik.values.deleted_file.filter(
-                            (f: any) => f !== item
-                          )
-                        );
+                          formik.setFieldValue(
+                            "deleted_file",
+                            formik.values.deleted_file.filter(
+                              (f: any) => f !== item
+                            )
+                          );
 
-                        formik.setFieldValue("icon", undefined);
-                      }}
-                    />
-                  );
-                })}
-              </CContainer>
-            )}
-          </>
-        )}
+                          formik.setFieldValue("icon", undefined);
+                        }}
+                      />
+                    );
+                  })}
+                </CContainer>
+              )}
+            </>
+          )}
 
-        {!fileInput && (
-          <Textarea
-            onChangeSetter={(input) => {
-              formik.setFieldValue("content", input);
-            }}
-            inputValue={formik.values.content}
-          />
-        )}
-      </Field>
+          {!fileInput && (
+            <Textarea
+              onChangeSetter={(input) => {
+                formik.setFieldValue("content", input);
+              }}
+              inputValue={formik.values.content}
+            />
+          )}
+        </Field>
+      </form>
     </CContainer>
   );
 };
 
 const EditableContentContainer = (props: Props) => {
   // Props
-  const { children, contentId, ...restProps } = props;
+  const { children, contentId, setData, contentProps, ...restProps } = props;
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -218,7 +226,7 @@ const EditableContentContainer = (props: Props) => {
           </Field>
         </SimpleGrid>
 
-        <ContentEditor data={data} />
+        <ContentEditor contentId={contentId} data={data} setData={setData} />
       </CContainer>
     ),
   };
@@ -250,7 +258,7 @@ const EditableContentContainer = (props: Props) => {
               <CContainer
                 w={"full"}
                 h={"full"}
-                bg={"p.500"}
+                bg={"s.500"}
                 pos={"absolute"}
                 top={0}
                 left={0}

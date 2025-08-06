@@ -165,7 +165,7 @@ const CTA = (props: any) => {
 };
 
 const Hero = () => {
-  const { error, loading, data, makeRequest } = useDataState<any>({
+  const { error, loading, data, setData, makeRequest } = useDataState<any>({
     // TODO get hero content
     initialData: DUMMY,
     url: ``,
@@ -177,7 +177,7 @@ const Hero = () => {
     loaded: (
       <CContainer gap={4} align={"center"}>
         <HStack wrap={"wrap"} gapY={0} justify={"center"}>
-          <EditableContentContainer contentId={2}>
+          <EditableContentContainer contentId={2} setData={setData}>
             <Heading1
               fontWeight={"bold"}
               textAlign={"center"}
@@ -187,7 +187,7 @@ const Hero = () => {
             </Heading1>
           </EditableContentContainer>
 
-          <EditableContentContainer contentId={3}>
+          <EditableContentContainer contentId={3} setData={setData}>
             <Heading1
               fontWeight={"bold"}
               textAlign={"center"}
@@ -199,14 +199,16 @@ const Hero = () => {
           </EditableContentContainer>
         </HStack>
 
-        <P
-          textAlign={"center"}
-          maxW={"600px"}
-          opacity={0.6}
-          pointerEvents={"auto"}
-        >
-          {data[4]?.content}
-        </P>
+        <EditableContentContainer contentId={4} setData={setData}>
+          <P
+            textAlign={"center"}
+            maxW={"600px"}
+            opacity={0.6}
+            pointerEvents={"auto"}
+          >
+            {data[4]?.content}
+          </P>
+        </EditableContentContainer>
 
         <CTA data={data} mt={4} />
       </CContainer>
@@ -237,7 +239,7 @@ const Hero = () => {
         )}
       </Container>
 
-      <CContainer zIndex={1} pos={"absolute"}>
+      <CContainer zIndex={1} pos={"absolute"} opacity={0.6} align={"center"}>
         <HeroEarth />
       </CContainer>
     </CContainer>

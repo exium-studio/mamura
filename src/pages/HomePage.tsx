@@ -7,10 +7,10 @@ const HomePage = () => {
   const HomeStats = lazy(() => import("./sections/HomeStats"));
 
   return (
-    <CContainer overflowX={"clip"}>
+    <CContainer overflowX={"clip"} minH={"100vh"}>
       <HomeHero />
 
-      <Suspense fallback={<ComponentSpinner />}>
+      <Suspense fallback={<ComponentSpinner flex={1} />}>
         <HomeStats />
       </Suspense>
     </CContainer>

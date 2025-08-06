@@ -220,6 +220,7 @@ const Hero = () => {
       color={"white"}
       pos={"relative"}
       overflow={"clip"}
+      pb={"30px"}
     >
       <Container py={["32px", null, "100px"]} zIndex={2} pointerEvents={"none"}>
         {loading && render.loading}

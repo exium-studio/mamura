@@ -3,7 +3,9 @@ import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
 import { Container, HStack } from "@chakra-ui/react";
 
-const HomeStats = () => {
+const HomeStats = (props: any) => {
+  const { contents } = props;
+
   return (
     <CContainer mt={"-30px"} borderRadius={"50px 50px 0 0 "} bg={"white"}>
       <Container py={"100px"}>

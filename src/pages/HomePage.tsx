@@ -1,18 +1,15 @@
 import CContainer from "@/components/ui-custom/CContainer";
-import HomeHero from "./sections/HomeHero";
-import { lazy, Suspense } from "react";
 import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
-import useDataState from "@/hooks/useDataState";
+import { lazy, Suspense } from "react";
+import HomeHero from "./sections/HomeHero";
 
 const HomePage = () => {
   const HomeStats = lazy(() => import("./sections/HomeStats"));
 
   // States
-  const { error, loading, data, makeRequest } = useDataState<any>({
-    initialData: undefined,
-    url: ``,
-    dependencies: [],
-  });
+  // const { error, loading, data, makeRequest } = useDataState<any>({
+  //   url: ``,
+  // });
 
   return (
     <CContainer overflowX={"clip"} minH={"100vh"}>

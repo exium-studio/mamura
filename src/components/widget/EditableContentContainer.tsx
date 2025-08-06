@@ -31,7 +31,7 @@ import ExistingFileItem from "./ExistingFIleItem";
 
 interface Props extends StackProps {
   contentId: number;
-  setData?: Dispatch<any>;
+  setContents?: Dispatch<any>;
   contentProps?: any;
 }
 
@@ -45,7 +45,7 @@ const CONTENT_TYPE_FILE_INPUT_IDS = [2, 3, 4, 5];
 
 const ContentEditor = (props: any) => {
   // Props
-  const { contentId, data, setData } = props;
+  const { contentId, data, setContents } = props;
 
   // Hooks
   const { req } = useRequest({
@@ -86,7 +86,7 @@ const ContentEditor = (props: any) => {
               ...data,
               [contentId]: { ...data[contentId], content: values.content },
             };
-            setData?.(newData);
+            setContents?.(newData);
             resetForm();
           },
         },
@@ -196,7 +196,8 @@ const ContentEditor = (props: any) => {
 
 const EditableContentContainer = (props: Props) => {
   // Props
-  const { children, contentId, setData, contentProps, ...restProps } = props;
+  const { children, contentId, setContents, contentProps, ...restProps } =
+    props;
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -226,7 +227,11 @@ const EditableContentContainer = (props: Props) => {
           </Field>
         </SimpleGrid>
 
-        <ContentEditor contentId={contentId} data={data} setData={setData} />
+        <ContentEditor
+          contentId={contentId}
+          data={data}
+          setContents={setContents}
+        />
       </CContainer>
     ),
   };

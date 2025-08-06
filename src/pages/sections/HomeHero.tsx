@@ -133,18 +133,18 @@ const CoverageCheck = () => {
 };
 const CTA = (props: any) => {
   // Props
-  const { data, setData, ...restProps } = props;
+  const { contents, setContents, ...restProps } = props;
 
   return (
     <CContainer align={"center"} gap={4} {...restProps}>
-      <EditableContentContainer contentId={5} setData={setData}>
+      <EditableContentContainer contentId={5} setContents={setContents}>
         <P
           textAlign={"center"}
           fontSize={"xl"}
           fontWeight={"semibold"}
           pointerEvents={"auto"}
         >
-          {data[5]?.content}
+          {contents[5]?.content}
         </P>
       </EditableContentContainer>
 
@@ -179,7 +179,7 @@ const Hero = () => {
     loaded: (
       <CContainer gap={4} align={"center"}>
         <HStack wrap={"wrap"} gapY={0} justify={"center"}>
-          <EditableContentContainer contentId={2} setData={setData}>
+          <EditableContentContainer contentId={2} setContents={setData}>
             <Heading1
               fontWeight={"bold"}
               textAlign={"center"}
@@ -189,7 +189,7 @@ const Hero = () => {
             </Heading1>
           </EditableContentContainer>
 
-          <EditableContentContainer contentId={3} setData={setData}>
+          <EditableContentContainer contentId={3} setContents={setData}>
             <Heading1
               fontWeight={"bold"}
               textAlign={"center"}
@@ -201,7 +201,7 @@ const Hero = () => {
           </EditableContentContainer>
         </HStack>
 
-        <EditableContentContainer contentId={4} setData={setData}>
+        <EditableContentContainer contentId={4} setContents={setData}>
           <P
             textAlign={"center"}
             maxW={"600px"}
@@ -212,7 +212,7 @@ const Hero = () => {
           </P>
         </EditableContentContainer>
 
-        <CTA data={data} mt={4} />
+        <CTA contents={data} setContents={setData} mt={4} />
       </CContainer>
     ),
   };

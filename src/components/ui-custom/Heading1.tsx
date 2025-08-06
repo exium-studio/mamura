@@ -8,7 +8,7 @@ export default function Heading1({ children, ...props }: Props) {
   return (
     <Heading
       as={"h1"}
-      fontSize={[36, null, 48]}
+      fontSize={[38, null, 52]}
       fontWeight={"normal"}
       {...props}
     >

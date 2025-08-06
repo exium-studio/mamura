@@ -16,6 +16,7 @@ import Heading1 from "@/components/ui-custom/Heading1";
 import P from "@/components/ui-custom/P";
 import SearchInput from "@/components/ui-custom/SearchInput";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import HeroEarth from "@/components/widget/HeroEarth";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import { CONTENT_TYPES } from "@/static/selectOptions";
@@ -202,6 +203,8 @@ const Hero = () => {
             )}
           </>
         )}
+
+        <HeroEarth />
       </Container>
     </CContainer>
   );

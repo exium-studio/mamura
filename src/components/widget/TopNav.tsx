@@ -127,7 +127,7 @@ const LgNavs = (props: any) => {
           const active = activePath === nav.path;
 
           return (
-            <HashLink>
+            <HashLink key={nav.path}>
               <BButton
                 unclicky
                 variant={"ghost"}

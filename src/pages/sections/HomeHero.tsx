@@ -167,11 +167,13 @@ const CTA = (props: any) => {
 };
 
 const Hero = () => {
+  // States
   const { error, loading, data, setData, makeRequest } = useDataState<any>({
     // TODO get hero content
     initialData: DUMMY,
     url: ``,
   });
+  const contents = data;
   const render = {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
@@ -185,7 +187,7 @@ const Hero = () => {
               textAlign={"center"}
               pointerEvents={"auto"}
             >
-              {data[2]?.content}
+              {contents[2]?.content}
             </Heading1>
           </EditableContentContainer>
 
@@ -196,7 +198,7 @@ const Hero = () => {
               color={"s.500"}
               pointerEvents={"auto"}
             >
-              {data[3]?.content}
+              {contents[3]?.content}
             </Heading1>
           </EditableContentContainer>
         </HStack>
@@ -208,11 +210,11 @@ const Hero = () => {
             opacity={0.6}
             pointerEvents={"auto"}
           >
-            {data[4]?.content}
+            {contents[4]?.content}
           </P>
         </EditableContentContainer>
 
-        <CTA contents={data} setContents={setData} mt={4} />
+        <CTA contents={contents} setContents={setData} mt={4} />
       </CContainer>
     ),
   };
@@ -241,7 +243,13 @@ const Hero = () => {
         )}
       </Container>
 
-      <CContainer zIndex={1} pos={"absolute"} opacity={0.6} align={"center"}>
+      <CContainer
+        zIndex={1}
+        pos={"absolute"}
+        opacity={0.6}
+        align={"center"}
+        mt={"-50px"}
+      >
         <HeroEarth />
       </CContainer>
     </CContainer>

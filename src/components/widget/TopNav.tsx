@@ -31,7 +31,7 @@ const NavDrawer = (props: any) => {
 
   return (
     <>
-      <BButton iconButton onClick={onOpen}>
+      <BButton iconButton onClick={onOpen} bg={"white"} color={"black"}>
         <Icon>
           <IconMenu />
         </Icon>

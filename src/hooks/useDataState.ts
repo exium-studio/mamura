@@ -57,7 +57,7 @@ const useDataState = <T = any>(props: Props<T>) => {
   };
 
   const baseConfig = {
-    url: `${url}${`?page=${page}`}`,
+    url: url,
     method,
     data: payloadData,
     params: payloadData,
@@ -160,6 +160,16 @@ const useDataState = <T = any>(props: Props<T>) => {
   useEffect(() => {
     setLimit(initialLimit);
   }, [initialLimit]);
+
+  // Handle initial loading when no url
+  useEffect(() => {
+    setInitialLoading(false);
+  }, []);
+
+  // Handle initial loading to tru when limit & page changes
+  useEffect(() => {
+    setInitialLoading(true);
+  }, [limit, page]);
 
   return {
     makeRequest,

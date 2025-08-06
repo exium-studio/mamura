@@ -1,78 +1,36 @@
-import { Interface__Content, Interface__StorageFile } from "./interfaces";
+import { IMAGES_PATH } from "./paths";
 
-export const DUMMY_CONTENTS: Record<number, Interface__Content> = {
-  1: {
-    id: 1,
-    content: "Selamat datang di platform kami!",
-    content_type: {
-      id: 1,
-      name: "Text",
-      description: "Konten berbentuk teks",
-      created_at: "2025-08-01T10:00:00Z",
-      updated_at: "2025-08-01T10:00:00Z",
-    },
-    content_file: {} as Interface__StorageFile,
-    created_at: "2025-08-01T10:00:00Z",
-    updated_at: "2025-08-01T10:00:00Z",
+export const DUMMY_CONTENTS = {
+  6: {
+    id: 6,
+    content: "Pilihan Tepat untuk Wifi Hemat Tanpa Drama",
   },
-  2: {
-    id: 2,
-    content: "https://example.com",
-    content_type: {
-      id: 2,
-      name: "Tautan",
-      description: "Konten berupa tautan",
-      created_at: "2025-08-01T11:00:00Z",
-      updated_at: "2025-08-01T11:00:00Z",
-    },
-    content_file: {} as Interface__StorageFile,
-    created_at: "2025-08-01T11:00:00Z",
-    updated_at: "2025-08-01T11:00:00Z",
+  7: {
+    id: 7,
+    content: "100%",
   },
-  3: {
-    id: 3,
-    content: "",
-    content_type: {
-      id: 3,
-      name: "Gambar",
-      description: "Konten berupa gambar",
-      created_at: "2025-08-01T12:00:00Z",
-      updated_at: "2025-08-01T12:00:00Z",
-    },
-    content_file: {
-      id: 101,
-      file_name: "photo.png",
-      file_path: "/uploads/photo.png",
-      file_url: "https://example.com/uploads/photo.png",
-      file_mime_type: "image/png",
-      file_size: 204800,
-      created_at: "2025-08-01T12:00:00Z",
-      updated_at: "2025-08-01T12:00:00Z",
-    },
-    created_at: "2025-08-01T12:00:00Z",
-    updated_at: "2025-08-01T12:00:00Z",
+  8: {
+    id: 7,
+    content: "Fiber Optic",
   },
-  4: {
-    id: 4,
-    content: "",
-    content_type: {
-      id: 4,
-      name: "Video",
-      description: "Konten berupa video",
-      created_at: "2025-08-01T13:00:00Z",
-      updated_at: "2025-08-01T13:00:00Z",
-    },
-    content_file: {
-      id: 102,
-      file_name: "video.mp4",
-      file_path: "/uploads/video.mp4",
-      file_url: "https://example.com/uploads/video.mp4",
-      file_mime_type: "video/mp4",
-      file_size: 10485760,
-      created_at: "2025-08-01T13:00:00Z",
-      updated_at: "2025-08-01T13:00:00Z",
-    },
-    created_at: "2025-08-01T13:00:00Z",
-    updated_at: "2025-08-01T13:00:00Z",
+  9: {
+    id: 7,
+    content: "1:1",
+  },
+  10: {
+    id: 7,
+    content: "Simetris Download:Upload",
+  },
+  11: {
+    id: 7,
+    content: "100%",
+  },
+  12: {
+    id: 7,
+    content: "Internet UNLIMITED",
+  },
+  13: {
+    id: 6,
+    content: `${IMAGES_PATH}/internet.png`,
   },
 };

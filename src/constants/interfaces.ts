@@ -37,8 +37,8 @@ export interface Interface__StorageFile extends Interface__CUD {
 export interface Interface__Content extends Interface__CUD {
   id: number;
   content: string;
-  content_type: Interface__ContentType;
-  content_file: Interface__StorageFile;
+  content_type?: Interface__ContentType;
+  content_file?: Interface__StorageFile[];
 }
 export interface Interface__ContentType extends Interface__CUD {
   id: number;

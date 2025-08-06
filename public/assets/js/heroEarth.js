@@ -346,7 +346,8 @@ requestAnimationFrame(function animate() {
     H != (H = window.innerHeight)
   ) {
     vMin = Math.min(W, H);
-    renderer.setSize(W, H);
+    // renderer.setSize(W, H);
+    renderer.setSize(700, 700);
     renderer.setPixelRatio(dpr);
     camera.aspect = W / H;
     camera.updateProjectionMatrix();

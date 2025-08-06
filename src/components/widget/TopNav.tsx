@@ -89,16 +89,7 @@ const SmNavs = (props: any) => {
   const { activePath, scrolled, rootPath } = props;
 
   return (
-    <HStack
-      justify={"space-between"}
-      px={4}
-      h={"70px"}
-      w={"full"}
-      pos={"sticky"}
-      top={0}
-      left={0}
-      zIndex={99}
-    >
+    <HStack justify={"space-between"} px={4} h={"70px"} w={"full"}>
       <MamuraLogo type={rootPath || !scrolled ? "light" : "color"} />
 
       <NavDrawer activePath={activePath} />
@@ -118,12 +109,8 @@ const LgNavs = (props: any) => {
       py={2}
       gap={4}
       h={"70px"}
-      pos={"sticky"}
-      top={0}
-      left={0}
       bg={scrolled ? "body" : "transparent"}
       transition={"200ms"}
-      zIndex={99}
     >
       <HStack w={"240px"} gap={1}>
         {LP_NAVS_1.map((nav) => {
@@ -192,6 +179,10 @@ const TopNav = (props: any) => {
 
   return (
     <CContainer
+      pos={"sticky"}
+      top={0}
+      left={0}
+      zIndex={99}
       bg={top > 0 ? "body" : "transparent"}
       // color={top > 0 ? "ibody" : "body"}
     >

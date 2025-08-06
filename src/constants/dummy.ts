@@ -34,6 +34,14 @@ export const DUMMY_CONTENTS = {
       id: 6,
       content: `${IMAGES_PATH}/internet.png`,
     },
+    14: {
+      id: 6,
+      content: `Internetan Unlimited & Hemat? Pilihan Tepat: Mamura`,
+    },
+    15: {
+      id: 6,
+      content: `Super lancar, super hemat, tanpa drama. #WifiMurah terbaik untuk segala kebutuhan Anda.`,
+    },
   },
   promos: [
     {

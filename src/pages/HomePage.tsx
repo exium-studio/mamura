@@ -10,6 +10,7 @@ import empty from "@/utils/empty";
 
 const HomePage = () => {
   const HomeStats = lazy(() => import("./sections/HomeStats"));
+  const HomePromo = lazy(() => import("./sections/HomePromo"));
 
   // States
   const { error, loading, data, makeRequest } = useDataState<any>({
@@ -21,7 +22,12 @@ const HomePage = () => {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
-    loaded: <HomeStats contents={contents} />,
+    loaded: (
+      <>
+        <HomeStats contents={contents} />
+        <HomePromo contents={contents} />
+      </>
+    ),
   };
 
   return (

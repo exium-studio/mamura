@@ -9,7 +9,7 @@ const Container = (props: Props) => {
   const { children, ...restProps } = props;
 
   return (
-    <CContainer px={R_SPACING} maxW={"1440px"} {...restProps}>
+    <CContainer px={R_SPACING} maxW={"1440px"} mx={"auto"} {...restProps}>
       {children}
     </CContainer>
   );

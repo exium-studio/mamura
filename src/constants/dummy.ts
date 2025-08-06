@@ -38,11 +38,13 @@ export const DUMMY_CONTENTS = {
   promos: [
     {
       image: {
+        id: 1,
         file_url: `${IMAGES_PATH}/promo.png`,
       },
     },
     {
       image: {
+        id: 2,
         file_url: `${IMAGES_PATH}/promo.png`,
       },
     },

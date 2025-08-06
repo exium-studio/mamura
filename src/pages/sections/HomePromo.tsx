@@ -114,7 +114,7 @@ const HomePromo = (props: any) => {
             {promos?.map((promo: any) => {
               return (
                 <Img
-                  key={promo.image}
+                  key={`${promo.image?.id}${promo.image?.file_url}`}
                   src={promo.image?.file_url}
                   aspectRatio={16 / 9}
                   scrollSnapAlign={"center"}

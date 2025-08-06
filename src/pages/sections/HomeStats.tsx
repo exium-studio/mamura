@@ -2,8 +2,9 @@ import CContainer from "@/components/ui-custom/CContainer";
 import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
 import P from "@/components/ui-custom/P";
+import Container from "@/components/widget/Container";
 import { R_SPACING } from "@/constants/sizes";
-import { Container, HStack, SimpleGrid } from "@chakra-ui/react";
+import { HStack, SimpleGrid } from "@chakra-ui/react";
 
 const StatItem = (props: any) => {
   // Props

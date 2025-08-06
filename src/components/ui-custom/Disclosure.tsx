@@ -43,18 +43,19 @@ import {
   DrawerTrigger,
 } from "../ui/drawer";
 import CContainer from "./CContainer";
+import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
   const { sw } = useScreen(0);
-  const iss = sw < 768;
+  const iss = sw < SM_SCREEN_W_NUMBER;
 
   return iss ? (
     <DrawerRoot placement={"bottom"} {...props}>
       {children}
     </DrawerRoot>
   ) : (
-    <DialogRoot placement={"center"} {...props}>
+    <DialogRoot placement={"center"} scrollBehavior={"inside"} {...props}>
       {children}
     </DialogRoot>
   );
@@ -120,7 +121,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerHeader px={5} pt={3} {...(props as DrawerHeaderProps)}>
+    <DrawerHeader px={5} pt={3} bg={"body"} {...(props as DrawerHeaderProps)}>
       {children}
     </DrawerHeader>
   ) : (
@@ -147,21 +148,19 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
       px={4}
       py={0}
       className={finalClassName}
-      overflowY={"scroll"}
-      mr={"-6px"}
       overflowX={"clip"}
+      bg={"body"}
       {...(props as DrawerHeaderProps)}
     >
       {children}
     </DrawerBody>
   ) : (
     <DialogBody
-      px={4}
-      // pt={"0 !important"}
-      py={`${props.pb ?? 4} !important`}
+      pl={4}
+      pr={4}
+      py={4}
+      pb={"4 !important"}
       className={finalClassName}
-      overflowY={"scroll"}
-      mr={"-6px"}
       overflowX={"clip"}
       {...(props as DialogBodyProps)}
     >
@@ -177,7 +176,13 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerFooter px={4} pt={5} pb={6} {...(props as DrawerHeaderProps)}>
+    <DrawerFooter
+      px={4}
+      pt={5}
+      pb={6}
+      bg={"body"}
+      {...(props as DrawerHeaderProps)}
+    >
       <CContainer align={"stretch"} gap={2}>
         {children}
       </CContainer>
@@ -236,7 +241,6 @@ const DisclosureCloseTrigger = ({
   return iss ? (
     <DrawerCloseTrigger
       mt={"2px"}
-      mr={"-6px"}
       onClick={back}
       {...(props as DrawerCloseTriggerProps)}
     >

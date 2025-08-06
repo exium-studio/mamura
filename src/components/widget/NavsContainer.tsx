@@ -263,7 +263,6 @@ const NavContainer = (props: any) => {
           pb={4}
           overflowX={"clip"}
           overflowY={"scroll"}
-          mr={"-6px"}
           className="scrollY"
           bg={"body"}
           borderRight={"1px solid"}

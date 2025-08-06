@@ -1,4 +1,3 @@
-import useBackOnDefaultPage from "@/hooks/useBackOnDefaultPage";
 import back from "@/utils/back";
 import {
   Drawer as ChakraDrawer,
@@ -33,7 +32,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     const [visible, setVisible] = useState(open);
 
     // Utils
-    const handleBackOnDefaultPage = useBackOnDefaultPage();
+    // const handleBackOnDefaultPage = useBackOnDefaultPage();
 
     useEffect(() => {
       if (open) {
@@ -53,7 +52,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
             pointerEvents={"auto"}
             onClick={() => {
               back();
-              handleBackOnDefaultPage();
+              // handleBackOnDefaultPage();
             }}
           >
             <ChakraDrawer.Content

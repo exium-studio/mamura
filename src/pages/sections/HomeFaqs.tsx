@@ -29,7 +29,9 @@ const FaqItem = (props: any) => {
     >
       <AccordionItemTrigger>
         <HStack>
-          <P fontWeight={"bold"}>{faq?.question}</P>
+          <P fontWeight={"bold"} fontSize={16}>
+            {faq?.question}
+          </P>
         </HStack>
       </AccordionItemTrigger>
 

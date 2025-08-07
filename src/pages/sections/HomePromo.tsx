@@ -116,6 +116,7 @@ const HomePromo = (props: any) => {
                 <Img
                   key={`${p.image?.id}${p.image?.file_url}`}
                   src={p.image?.file_url}
+                  alt={p.image?.file_name}
                   aspectRatio={16 / 9}
                   scrollSnapAlign={"center"}
                   maxW={[

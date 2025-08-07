@@ -3,8 +3,7 @@ import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
 import P from "@/components/ui-custom/P";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
-import { R_SPACING } from "@/constants/sizes";
-import { Container, HStack, Icon } from "@chakra-ui/react";
+import { Container, HStack, Icon, Stack } from "@chakra-ui/react";
 import { IconSparkles } from "@tabler/icons-react";
 
 const VisionItem = (props: any) => {
@@ -31,14 +30,18 @@ const HomeAbout = (props: any) => {
   return (
     <CContainer py={"80px"}>
       <Container>
-        <HStack gap={R_SPACING}>
+        <Stack flexDir={["column", null, "row"]} gap={8}>
           <CContainer w={["full", null, "40%"]}>
             <EditableContentContainer
               contentId={24}
               content={contents?.[24]}
               fileInput
             >
-              <Img key={contents?.[24]} src={contents?.[24]} />
+              <Img
+                key={contents?.[24]}
+                src={contents?.[24]}
+                alt={contents?.[24]}
+              />
             </EditableContentContainer>
           </CContainer>
 
@@ -65,7 +68,7 @@ const HomeAbout = (props: any) => {
               <P>{contents?.[30]}</P>
             </EditableContentContainer>
           </CContainer>
-        </HStack>
+        </Stack>
       </Container>
     </CContainer>
   );

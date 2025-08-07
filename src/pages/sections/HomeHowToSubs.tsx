@@ -32,7 +32,7 @@ const HomeHowToSubs = (props: any) => {
         <CContainer
           borderRadius={"0 30px 0 30px"}
           bg={"p.500"}
-          p={10}
+          p={[4, null, 10]}
           color={"white"}
           gap={8}
         >

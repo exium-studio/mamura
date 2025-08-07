@@ -86,7 +86,12 @@ const HomeStats = (props: any) => {
               content={contents?.[13]}
               fileInput
             >
-              <Img key={contents?.[13]} w={"320px"} src={contents?.[13]} />
+              <Img
+                key={contents?.[13]}
+                src={contents?.[13]}
+                alt={contents?.[13]}
+                w={"320px"}
+              />
             </EditableContentContainer>
           </CContainer>
         </Stack>

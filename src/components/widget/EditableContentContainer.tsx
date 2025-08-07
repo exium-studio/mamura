@@ -270,6 +270,7 @@ const EditableContentContainer = (props: Props) => {
                 top={0}
                 left={0}
                 opacity={0.5}
+                zIndex={2}
               />
             )}
           </>

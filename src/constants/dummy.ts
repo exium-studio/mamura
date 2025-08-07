@@ -27,6 +27,13 @@ export const DUMMY_CONTENTS = {
     28: "Tim teknisi profesional dan responsif",
     29: "Layanan personal yang ramah dan cepat",
     30: "Kami hadir untuk menjawab kebutuhan internet Anda, mulai dari keluarga kecil hingga perusahaan besar.",
+    31: "Siap Terkoneksi dengan Kami?",
+    32: "Kami siap bantu Anda memilih layanan terbaik sesuai kebutuhan dan anggaran.",
+    33: "🎯 Konsultasi gratis",
+    34: "📍 Layanan area Jabodetabek & seluruh Indonesia",
+    35: "📞 Fast response by phone & WhatsApp",
+    36: "wa.me/+62 895-6221-89054",
+    37: `${IMAGES_PATH}/discuss_bnw.png`,
   },
   promo: [
     {
@@ -45,6 +52,7 @@ export const DUMMY_CONTENTS = {
   pricing: {
     home: [
       {
+        id: 1,
         name: "Home Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 25,
@@ -52,6 +60,7 @@ export const DUMMY_CONTENTS = {
         is_recommended: true,
       },
       {
+        id: 2,
         name: "Home Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 45,
@@ -59,6 +68,7 @@ export const DUMMY_CONTENTS = {
         is_recommended: false,
       },
       {
+        id: 3,
         name: "Home Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 65,
@@ -66,6 +76,7 @@ export const DUMMY_CONTENTS = {
         is_recommended: false,
       },
       {
+        id: 4,
         name: "Home Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 100,
@@ -75,6 +86,7 @@ export const DUMMY_CONTENTS = {
     ],
     bussiness: [
       {
+        id: 5,
         name: "Bisnis Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 100,
@@ -82,6 +94,7 @@ export const DUMMY_CONTENTS = {
         is_recommended: true,
       },
       {
+        id: 6,
         name: "Bisnis Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 200,
@@ -89,6 +102,7 @@ export const DUMMY_CONTENTS = {
         is_recommended: false,
       },
       {
+        id: 7,
         name: "Bisnis Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 300,
@@ -96,6 +110,7 @@ export const DUMMY_CONTENTS = {
         is_recommended: false,
       },
       {
+        id: 8,
         name: "Bisnis Fiber Access 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         speed: 400,

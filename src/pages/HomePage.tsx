@@ -19,7 +19,7 @@ const HomePage = () => {
     url: ``,
   });
   const contents = data?.contents;
-  const promos = data?.promos;
+  const promo = data?.promo;
   const pricing = data?.pricing;
   const render = {
     loading: <ComponentSpinner />,
@@ -28,7 +28,7 @@ const HomePage = () => {
     loaded: (
       <>
         <HomeStats contents={contents} />
-        <HomePromo promos={promos} />
+        <HomePromo promo={promo} />
         <HomePricing contents={contents} pricing={pricing} />
       </>
     ),

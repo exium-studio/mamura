@@ -43,7 +43,7 @@ const NavDrawer = (props: any) => {
             <HStack justify={"space-between"} w={"full"}>
               <MamuraLogo />
 
-              <CloseButton onClick={back} />
+              <CloseButton onClick={back} borderRadius={"full"} />
             </HStack>
           </DrawerHeader>
 
@@ -51,11 +51,20 @@ const NavDrawer = (props: any) => {
             <CContainer gap={1}>
               {LP_NAVS_1.map((nav) => {
                 return (
-                  <BButton unclicky variant={"ghost"} textAlign={"left"}>
-                    <P textAlign={"left"} w={"full"}>
-                      {nav.label}
-                    </P>
-                  </BButton>
+                  <HashLink
+                    key={nav.id}
+                    id={nav.id}
+                    path={nav.path}
+                    w={"full"}
+                    onBeforeScroll={back}
+                    delay={220}
+                  >
+                    <BButton unclicky variant={"ghost"} textAlign={"left"}>
+                      <P textAlign={"left"} w={"full"}>
+                        {nav.label}
+                      </P>
+                    </BButton>
+                  </HashLink>
                 );
               })}
 
@@ -63,15 +72,17 @@ const NavDrawer = (props: any) => {
                 const active = activePath === nav.path;
 
                 return (
-                  <BButton unclicky variant={"ghost"} textAlign={"left"}>
-                    <P
-                      textAlign={"left"}
-                      w={"full"}
-                      color={active ? "p.500" : ""}
-                    >
-                      {nav.label}
-                    </P>
-                  </BButton>
+                  <NavLink key={nav.path} to={nav.path}>
+                    <BButton unclicky variant={"ghost"} textAlign={"left"}>
+                      <P
+                        textAlign={"left"}
+                        w={"full"}
+                        color={active ? "p.500" : ""}
+                      >
+                        {nav.label}
+                      </P>
+                    </BButton>
+                  </NavLink>
                 );
               })}
             </CContainer>
@@ -83,20 +94,18 @@ const NavDrawer = (props: any) => {
     </>
   );
 };
-
 const SmNavs = (props: any) => {
   // Props
   const { activePath, scrolled, rootPath } = props;
 
   return (
     <HStack justify={"space-between"} px={4} h={"70px"} w={"full"}>
-      <MamuraLogo type={rootPath || !scrolled ? "light" : "color"} />
+      <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
 
       <NavDrawer activePath={activePath} />
     </HStack>
   );
 };
-
 const LgNavs = (props: any) => {
   // Props
   const { activePath, scrolled, rootPath } = props;
@@ -114,14 +123,12 @@ const LgNavs = (props: any) => {
     >
       <HStack w={"240px"} gap={1}>
         {LP_NAVS_1.map((nav) => {
-          const active = activePath === nav.path;
-
           return (
-            <HashLink key={nav.path}>
+            <HashLink key={nav.id} id={nav.id} path={nav.path}>
               <BButton
                 unclicky
                 variant={"ghost"}
-                color={active ? "p.500" : scrolled ? "" : "body"}
+                color={scrolled ? "" : "body"}
                 className="btn"
               >
                 {nav.label}
@@ -138,7 +145,7 @@ const LgNavs = (props: any) => {
           const active = activePath === nav.path;
 
           return (
-            <NavLink key={nav.path} w={"fit"}>
+            <NavLink key={nav.path} to={nav.path} w={"fit"}>
               <BButton
                 unclicky
                 variant={"ghost"}

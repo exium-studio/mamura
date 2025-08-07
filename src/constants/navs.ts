@@ -16,15 +16,18 @@ import {
 export const LP_NAVS_1 = [
   {
     label: "Promo",
-    path: "#promo",
+    path: "/",
+    id: "promo",
   },
   {
     label: "Paket",
-    path: "#paket",
+    path: "/",
+    id: "pricing",
   },
   {
     label: "Tentang",
-    path: "#tentang",
+    path: "/",
+    id: "about",
   },
 ];
 export const LP_NAVS_2 = [

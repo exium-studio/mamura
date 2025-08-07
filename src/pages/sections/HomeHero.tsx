@@ -19,34 +19,16 @@ import EditableContentContainer from "@/components/widget/EditableContentContain
 import HeroEarth from "@/components/widget/HeroEarth";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
-import { CONTENT_TYPES } from "@/static/selectOptions";
 import empty from "@/utils/empty";
 import scrollToView from "@/utils/scrollToView";
 import { Container, HStack, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 
 const DUMMY = {
-  2: {
-    id: 2,
-    content: "Pilihan Tepat, ",
-    content_type: CONTENT_TYPES[0],
-  },
-  3: {
-    id: 3,
-    content: "Wifi Tepat",
-    content_type: CONTENT_TYPES[0],
-  },
-  4: {
-    id: 4,
-    content:
-      "Nikmati internet fiber cepat, stabil, dan hemat untuk rumah & usaha Anda. Mamura - Solusi Wifi Murah, Cepat, dan Handal.",
-    content_type: CONTENT_TYPES[0],
-  },
-  5: {
-    id: 5,
-    content: "Cek Jangkauan Area Anda Sekarang!",
-    content_type: CONTENT_TYPES[0],
-  },
+  2: "Pilihan Tepat, ",
+  3: "Wifi Tepat",
+  4: "Nikmati internet fiber cepat, stabil, dan hemat untuk rumah & usaha Anda. Mamura - Solusi Wifi Murah, Cepat, dan Handal.",
+  5: "Cek Jangkauan Area Anda Sekarang!",
 };
 
 const CoverageCheck = () => {
@@ -57,6 +39,7 @@ const CoverageCheck = () => {
   // States
   const [search, setSearch] = useState<any>("");
   const { error, loading, data, makeRequest } = useDataState<any>({
+    // TODO url coverage check
     url: ``,
   });
   const render = {
@@ -137,7 +120,7 @@ const CTA = (props: any) => {
 
   return (
     <CContainer align={"center"} gap={4} {...restProps}>
-      <EditableContentContainer contentId={5} setContents={setContents}>
+      <EditableContentContainer contentId={5} content={contents?.[5]}>
         <P
           textAlign={"center"}
           fontSize={"xl"}
@@ -145,7 +128,7 @@ const CTA = (props: any) => {
           pointerEvents={"auto"}
           lineHeight={1.4}
         >
-          {contents[5]?.content}
+          {contents?.[5]}
         </P>
       </EditableContentContainer>
 
@@ -169,7 +152,7 @@ const CTA = (props: any) => {
 
 const Hero = () => {
   // States
-  const { error, loading, data, setData, makeRequest } = useDataState<any>({
+  const { error, loading, data, makeRequest } = useDataState<any>({
     // TODO get hero content
     initialData: DUMMY,
     url: ``,
@@ -182,40 +165,40 @@ const Hero = () => {
     loaded: (
       <CContainer gap={4} align={"center"}>
         <HStack wrap={"wrap"} gapY={0} justify={"center"}>
-          <EditableContentContainer contentId={2} setContents={setData}>
+          <EditableContentContainer contentId={2} content={contents?.[2]}>
             <Heading1
               fontWeight={"bold"}
               textAlign={"center"}
               pointerEvents={"auto"}
             >
-              {contents[2]?.content}
+              {contents?.[2]}
             </Heading1>
           </EditableContentContainer>
 
-          <EditableContentContainer contentId={3} setContents={setData}>
+          <EditableContentContainer contentId={3} content={contents?.[3]}>
             <Heading1
               fontWeight={"bold"}
               textAlign={"center"}
               color={"s.500"}
               pointerEvents={"auto"}
             >
-              {contents[3]?.content}
+              {contents?.[3]}
             </Heading1>
           </EditableContentContainer>
         </HStack>
 
-        <EditableContentContainer contentId={4} setContents={setData}>
+        <EditableContentContainer contentId={4} content={contents?.[4]}>
           <P
             textAlign={"center"}
             maxW={"600px"}
             opacity={0.6}
             pointerEvents={"auto"}
           >
-            {contents[4]?.content}
+            {`${contents?.[4]}`}
           </P>
         </EditableContentContainer>
 
-        <CTA contents={contents} setContents={setData} mt={4} />
+        <CTA contents={contents} mt={4} />
       </CContainer>
     ),
   };

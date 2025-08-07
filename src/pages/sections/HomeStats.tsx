@@ -3,17 +3,27 @@ import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
 import P from "@/components/ui-custom/P";
 import Container from "@/components/widget/Container";
-import { R_SPACING } from "@/constants/sizes";
-import { HStack, SimpleGrid } from "@chakra-ui/react";
+import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import { SimpleGrid, Stack } from "@chakra-ui/react";
 
 const StatItem = (props: any) => {
   // Props
-  const { value, label, ...restProps } = props;
+  const { valueContentId, labelContentId, value, label, ...restProps } = props;
 
   return (
     <CContainer align={"center"} {...restProps}>
-      <P fontSize={"2xl"} fontWeight={"bold"} color={"s.500"}>{`${value}`}</P>
-      <P>{`${label}`}</P>
+      <EditableContentContainer contentId={valueContentId} content={value}>
+        <P
+          fontSize={"2xl"}
+          fontWeight={"bold"}
+          color={"s.500"}
+          textAlign={"center"}
+        >{`${value}`}</P>
+      </EditableContentContainer>
+
+      <EditableContentContainer contentId={labelContentId} content={label}>
+        <P textAlign={"center"}>{`${label}`}</P>
+      </EditableContentContainer>
     </CContainer>
   );
 };
@@ -29,9 +39,21 @@ const HomeStats = (props: any) => {
       zIndex={2}
     >
       <Container py={"80px"}>
-        <HStack wrap={"wrap"} gap={R_SPACING}>
-          <CContainer flex={"1 1 600px"} gap={4}>
-            <Heading2 fontWeight={"bold"}>{contents?.[6]?.content}</Heading2>
+        <Stack flexDir={["column", null, "row"]} gap={4} align={"center"}>
+          <CContainer gap={4}>
+            <EditableContentContainer
+              contentId={6}
+              content={contents?.[6]}
+              mx={["auto", null, 0]}
+            >
+              <Heading2
+                fontWeight={"bold"}
+                fontSize={"3xl"}
+                textAlign={["center", null, "left"]}
+              >
+                {contents?.[6]}
+              </Heading2>
+            </EditableContentContainer>
 
             <SimpleGrid
               columns={[1, null, 3]}
@@ -41,30 +63,38 @@ const HomeStats = (props: any) => {
               gap={4}
             >
               <StatItem
-                value={contents?.[7]?.content}
-                label={contents[8]?.content}
+                valueContentId={7}
+                labelContentId={8}
+                value={contents?.[7]}
+                label={contents?.[8]}
               />
 
               <StatItem
-                value={contents?.[9]?.content}
-                label={contents[10]?.content}
+                valueContentId={9}
+                labelContentId={10}
+                value={contents?.[9]}
+                label={contents?.[10]}
               />
 
               <StatItem
-                value={contents?.[11]?.content}
-                label={contents[12]?.content}
+                valueContentId={11}
+                labelContentId={12}
+                value={contents?.[11]}
+                label={contents?.[12]}
               />
             </SimpleGrid>
           </CContainer>
 
           <CContainer w={"fit"} align={"center"} p={4} mx={"auto"}>
-            <Img
-              key={contents?.[13]?.content}
-              w={"320px"}
-              src={contents?.[13]?.content}
-            />
+            <EditableContentContainer
+              contentId={13}
+              content={contents?.[13]}
+              fileInput
+            >
+              <Img key={contents?.[13]} w={"320px"} src={contents?.[13]} />
+            </EditableContentContainer>
           </CContainer>
-        </HStack>
+        </Stack>
       </Container>
     </CContainer>
   );

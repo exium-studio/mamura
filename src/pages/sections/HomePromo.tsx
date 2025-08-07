@@ -18,7 +18,7 @@ const PrevButton = (props: any) => {
       unclicky
       bg={"white"}
       color={"black"}
-      size={["md", null, "2xl"]}
+      size={["md", null, "xl"]}
       className="ss"
       onClick={() => {
         containerRef.current?.scrollBy({
@@ -45,7 +45,7 @@ const NextButton = (props: any) => {
       unclicky
       bg={"white"}
       color={"black"}
-      size={["md", null, "2xl"]}
+      size={["md", null, "xl"]}
       className="ss"
       onClick={() => {
         containerRef.current?.scrollBy({
@@ -64,7 +64,7 @@ const NextButton = (props: any) => {
 
 const HomePromo = (props: any) => {
   // Props
-  const { promos } = props;
+  const { promo } = props;
 
   // Hooks
   const iss = useIsSmScreenWidth();
@@ -74,8 +74,10 @@ const HomePromo = (props: any) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
+  console.log(promo);
+
   return (
-    <CContainer align={"center"} py={"80px"}>
+    <CContainer id="promo" align={"center"} py={"80px"}>
       <Container align={"center"} pos={"relative"}>
         {!iss && (
           <>
@@ -111,11 +113,11 @@ const HomePromo = (props: any) => {
           aspectRatio={16 / 9}
         >
           <HStack w={"max"}>
-            {promos?.map((promo: any) => {
+            {promo?.map((p: any) => {
               return (
                 <Img
-                  key={`${promo.image?.id}${promo.image?.file_url}`}
-                  src={promo.image?.file_url}
+                  key={`${p.image?.id}${p.image?.file_url}`}
+                  src={p.image?.file_url}
                   aspectRatio={16 / 9}
                   scrollSnapAlign={"center"}
                   maxW={[

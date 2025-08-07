@@ -1,5 +1,6 @@
 import CContainer from "@/components/ui-custom/CContainer";
 import { Interface__Content } from "@/constants/interfaces";
+import useRenderTrigger from "@/context/useRenderTrigger";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
@@ -7,7 +8,7 @@ import { CONTENT_TYPES } from "@/static/selectOptions";
 import empty from "@/utils/empty";
 import { SimpleGrid, StackProps, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { Dispatch, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 import BackButton from "../ui-custom/BackButton";
 import BButton from "../ui-custom/BButton";
@@ -29,33 +30,25 @@ import Textarea from "../ui-custom/Textarea";
 import { Field } from "../ui/field";
 import ExistingFileItem from "./ExistingFIleItem";
 
-interface Props extends StackProps {
+interface Props extends Omit<StackProps, "content"> {
   contentId: number;
-  setContents?: Dispatch<any>;
-  contentProps?: any;
+  content: string;
+  fileInput?: boolean;
 }
-
-const DUMMY = {
-  id: 0,
-  content: "Mamura",
-  content_type: CONTENT_TYPES[0],
-  content_file: [] as any,
-};
-const CONTENT_TYPE_FILE_INPUT_IDS = [2, 3, 4, 5];
 
 const ContentEditor = (props: any) => {
   // Props
-  const { contentId, data, setContents } = props;
+  const { contentId, content, fileInput } = props;
 
   // Hooks
   const { req } = useRequest({
     id: "crud_content",
   });
 
+  // Contexts
+  const setRt = useRenderTrigger((s) => s.setRt);
+
   // States
-  const fileInput = data
-    ? CONTENT_TYPE_FILE_INPUT_IDS.includes(data.content_type.id as number)
-    : false;
   const [existingFile, setExistingFile] = useState<any[]>([]);
   const formik = useFormik({
     validateOnChange: false,
@@ -73,7 +66,7 @@ const ContentEditor = (props: any) => {
       payload.append("content", values.content as string);
 
       const config = {
-        url: ``,
+        url: `/api/mamura/admin/content/${contentId}`,
         method: "POST",
         data: payload,
       };
@@ -82,11 +75,7 @@ const ContentEditor = (props: any) => {
         config,
         onResolve: {
           onSuccess: () => {
-            const newData = {
-              ...data,
-              [contentId]: { ...data[contentId], content: values.content },
-            };
-            setContents?.(newData);
+            setRt((ps) => !ps);
             resetForm();
           },
         },
@@ -96,18 +85,18 @@ const ContentEditor = (props: any) => {
 
   // Handle initial values
   useEffect(() => {
-    if (data) {
+    if (content) {
       if (fileInput) {
-        setExistingFile(data.content_file);
+        setExistingFile(content.content_file);
       } else {
         formik.setValues({
-          content: data.content,
+          content: content,
           file: [],
           deleted_file: [],
         });
       }
     }
-  }, [data]);
+  }, [content]);
 
   return (
     <CContainer>
@@ -196,8 +185,21 @@ const ContentEditor = (props: any) => {
 
 const EditableContentContainer = (props: Props) => {
   // Props
-  const { children, contentId, setContents, contentProps, ...restProps } =
-    props;
+  const {
+    children,
+    contentId,
+    content,
+    fileInput = false,
+    ...restProps
+  } = props;
+
+  //! DEBUG
+  const DUMMY = {
+    id: 0,
+    content: content,
+    content_type: CONTENT_TYPES[0],
+    content_file: [] as any,
+  };
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -229,8 +231,8 @@ const EditableContentContainer = (props: Props) => {
 
         <ContentEditor
           contentId={contentId}
-          data={data}
-          setContents={setContents}
+          content={content}
+          fileInput={fileInput}
         />
       </CContainer>
     ),

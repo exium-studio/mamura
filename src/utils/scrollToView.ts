@@ -3,6 +3,8 @@ export default function scrollToView(
   options?: {
     offsetY?: number;
     offsetX?: number;
+    onAfterScroll?: () => void;
+    threshold?: number; // optional: how much of the element must be visible
   }
 ) {
   const element = document.getElementById(id);
@@ -18,6 +20,25 @@ export default function scrollToView(
   const top = rect.top + scrollTop + (options?.offsetY ?? 0);
   const left = rect.left + scrollLeft + (options?.offsetX ?? 0);
 
+  // Start observing before scroll
+  if (options?.onAfterScroll) {
+    const observer = new IntersectionObserver(
+      (entries, observerInstance) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          observerInstance.disconnect();
+          options.onAfterScroll?.();
+        }
+      },
+      {
+        root: null,
+        threshold: options.threshold ?? 0.8, // default 80% visible
+      }
+    );
+    observer.observe(element);
+  }
+
+  // Perform smooth scroll
   window.scrollTo({
     top,
     left,

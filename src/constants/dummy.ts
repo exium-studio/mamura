@@ -302,4 +302,5 @@ export const DUMMY_CONTENTS = {
       updated_at: "2025-08-01T10:00:00Z",
     },
   ],
+  career: [],
 };

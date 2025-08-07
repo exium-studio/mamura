@@ -41,7 +41,9 @@ const NavDrawer = (props: any) => {
         <DrawerContent>
           <DrawerHeader pr={4} pt={4}>
             <HStack justify={"space-between"} w={"full"}>
-              <MamuraLogo />
+              <NavLink to="/" w={"fit"}>
+                <MamuraLogo />
+              </NavLink>
 
               <CloseButton onClick={back} borderRadius={"full"} />
             </HStack>
@@ -138,7 +140,9 @@ const LgNavs = (props: any) => {
         })}
       </HStack>
 
-      <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
+      <NavLink to="/" w={"fit"}>
+        <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
+      </NavLink>
 
       <HStack w={"240px"} gap={1}>
         {LP_NAVS_2.map((nav) => {

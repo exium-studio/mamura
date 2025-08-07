@@ -4,12 +4,18 @@ import MasterDataPage from "@/pages/_admin/MasterDataPage";
 import TransactionPage from "@/pages/_admin/TransactionPage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import HomePage from "@/pages/HomePage";
+import BlogPage from "@/pages/BlogPage";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
     path: "/",
     activePath: "/",
     element: <HomePage />,
+  },
+  {
+    path: "/blog",
+    activePath: "/blog",
+    element: <BlogPage />,
   },
 ];
 

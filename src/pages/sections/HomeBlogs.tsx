@@ -67,6 +67,7 @@ const HomeBlogs = (props: any) => {
       <Container align={"center"}>
         <CarouselControl
           carouselContainerRef={carouselContainerRef}
+          dataLength={blogs?.length}
           showIndicator={false}
           buttonProps={{
             className: "ss",

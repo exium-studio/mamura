@@ -33,7 +33,13 @@ const HomeAbout = (props: any) => {
       <Container>
         <HStack gap={R_SPACING}>
           <CContainer w={["full", null, "40%"]}>
-            <Img key={contents?.[24]} src={contents?.[24]} />
+            <EditableContentContainer
+              contentId={24}
+              content={contents?.[24]}
+              fileInput
+            >
+              <Img key={contents?.[24]} src={contents?.[24]} />
+            </EditableContentContainer>
           </CContainer>
 
           <CContainer gap={4} w={["full", null, "60%"]}>

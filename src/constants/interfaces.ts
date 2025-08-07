@@ -40,6 +40,22 @@ export interface Interface__Faq extends Interface__CUD {
   answer: string;
 }
 
+// Blog
+export interface Interface__BlogCategory extends Interface__CUD {
+  id: number;
+  name: string;
+  description: string;
+}
+export interface Interface__Blog extends Interface__CUD {
+  id: number;
+  thumbnail: Interface__StorageFile;
+  slug: string;
+  title: string;
+  description: string;
+  blog_category: Interface__BlogCategory;
+  views: number;
+}
+
 // Pricing
 export interface Interface__Pricing extends Interface__CUD {
   id: number;

@@ -1,4 +1,6 @@
-const formatCount = (number: number): string => {
+const formatCount = (number?: number): string => {
+  if (typeof number !== "number" || isNaN(number)) return "0";
+
   const units = ["", "K", "Jt", "Ml", "Tr", "P", "E"];
   let index = 0;
 

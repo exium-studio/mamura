@@ -2,8 +2,6 @@ import AdminRootPage from "@/pages/_admin/AdminRootPage";
 import DashboardPage from "@/pages/_admin/DashboardPage";
 import MasterDataPage from "@/pages/_admin/MasterDataPage";
 import TransactionPage from "@/pages/_admin/TransactionPage";
-import MasterDataCity from "@/pages/_admin/masterData/MasterDataCity";
-import MasterDataProvince from "@/pages/_admin/masterData/MasterDataProvince";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import HomePage from "@/pages/HomePage";
 
@@ -46,19 +44,4 @@ export const ADMIN_PRIVATE_ROUTES: Interface__PrivateRoute[] = [
   },
 ];
 
-export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [
-  {
-    path: "/admin/master-data/city",
-    activePath: "/master-data",
-    backPath: "/master-data",
-    titleKey: "master_data_navs.city",
-    element: <MasterDataCity />,
-  },
-  {
-    path: "/admin/master-data/province",
-    activePath: "/master-data",
-    backPath: "/master-data",
-    titleKey: "master_data_navs.province",
-    element: <MasterDataProvince />,
-  },
-];
+export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [];

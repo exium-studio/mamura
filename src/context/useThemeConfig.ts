@@ -18,10 +18,10 @@ const DEFAULT: ThemeConfigProps = {
   colorPalette: "p",
   primaryColor: "p.500",
   primaryColorHex: "#1b78ca",
-  logo: `${IMAGES_PATH}/logo_graphic.png`,
+  logo: `logo_color.png`,
   radii: {
-    component: "xl",
-    container: "2xl",
+    component: "6px",
+    container: "8px",
   },
 };
 

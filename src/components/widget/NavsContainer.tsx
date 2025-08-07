@@ -1,5 +1,4 @@
 import { NAVS } from "@/constants/navs";
-import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
@@ -28,7 +27,6 @@ import { Avatar } from "../ui/avatar";
 import { ColorModeButton } from "../ui/color-mode";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu";
 import { Tooltip } from "../ui/tooltip";
-import CurrentUserTimeZone from "./CurrentUserTimeZone";
 
 const ActiveNavIndicator = ({ ...props }: CircleProps) => {
   // Contexts
@@ -241,7 +239,6 @@ const NavContainer = (props: any) => {
 
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { ADM } = useADM();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -316,9 +313,7 @@ const NavContainer = (props: any) => {
 
           {/* Quick Settings */}
           <HStack flexShrink={0} gap={0}>
-            <ColorModeButton fontSize={"1.1rem"} disabled={ADM === "true"} />
-
-            <CurrentUserTimeZone />
+            <ColorModeButton fontSize={"1.1rem"} />
 
             {/* <MerchantInbox /> */}
           </HStack>

@@ -38,6 +38,15 @@ export const DUMMY_CONTENTS = {
     39: "Layanan Internet Mamura",
     40: "https://wa.me/62895622189054",
     41: "Artikel Terbaru",
+    42: "Mamura Inter Media berdiri sejak tahun 2020 telah melalui proses yang panjang dalam perjalanannya dengan fokus pada tujuan meningkatkan kualitas layanan jasa internet di Indonesia, sejalan dengan kemajuan teknologi yang terus berkembang pesat di era modern saat ini, dimana “Internet”telah menjadi bagian dari kebutuhan masyarakat umum.",
+    43: "Jl. Raya Purwantoro - Pakis Baru KM. 08 Miri, Rt01 Rw01 Miri, Kismantoro, Wonogiri Kode Pos 57696",
+    44: "Email info@mamura.net.id",
+    45: "Whatsapp 0811-2539-694",
+    46: "https://facebook.com",
+    47: "https://instagram.com",
+    48: "https://twitter.com",
+    49: "https://linkedin.com",
+    50: "Mamura Inter Media",
   },
   promo: [
     {

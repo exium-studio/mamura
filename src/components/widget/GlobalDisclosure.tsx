@@ -1,5 +1,4 @@
 import ChangePasswordDisclosure from "./ChangePasswordDisclosure";
-import LocationDisclosure from "./LocationDisclosure";
 import OfflineDisclosure from "./OfflineDisclosure";
 // import ToasterDetailDisclosure from "./ToasterDetailDisclosure";
 
@@ -9,8 +8,6 @@ const GlobalDisclosure = () => {
       <OfflineDisclosure />
 
       <ChangePasswordDisclosure />
-
-      <LocationDisclosure />
 
       {/* <ToasterDetailDisclosure /> */}
     </>

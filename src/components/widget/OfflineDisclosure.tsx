@@ -1,7 +1,7 @@
+import useLang from "@/context/useLang";
 import useOffline from "@/context/useOffilne";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
-import useLang from "@/context/useLang";
 import back from "@/utils/back";
 import { Icon, useDisclosure } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";

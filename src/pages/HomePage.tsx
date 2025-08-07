@@ -2,13 +2,12 @@ import CContainer from "@/components/ui-custom/CContainer";
 import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
 import { lazy, Suspense } from "react";
 import HomeHero from "./sections/HomeHero";
-import useDataState from "@/hooks/useDataState";
-import { DUMMY_CONTENTS } from "@/constants/dummy";
-import FeedbackRetry from "@/components/ui-custom/FeedbackRetry";
-import FeedbackNoData from "@/components/ui-custom/FeedbackNoData";
-import empty from "@/utils/empty";
+import useContents from "@/context/useContents";
 
 const HomePage = () => {
+  // Props
+  const data = useContents((s) => s.data);
+
   const HomeStats = lazy(() => import("./sections/HomeStats"));
   const HomePromo = lazy(() => import("./sections/HomePromo"));
   const HomePricing = lazy(() => import("./sections/HomePricing"));
@@ -17,52 +16,31 @@ const HomePage = () => {
   const HomeContact = lazy(() => import("./sections/HomeContact"));
   const HomeFaqs = lazy(() => import("./sections/HomeFaqs"));
   const HomeBlogs = lazy(() => import("./sections/HomeBlogs"));
+  const Footer = lazy(() => import("./sections/Footer"));
 
   // States
-  const { error, loading, data, makeRequest } = useDataState<any>({
-    initialData: DUMMY_CONTENTS,
-    url: ``,
-  });
   const contents = data?.contents;
   const promo = data?.promo;
   const pricing = data?.pricing;
   const faqs = data?.faqs;
   const blogs = data?.blogs;
-  const render = {
-    loading: <ComponentSpinner />,
-    error: <FeedbackRetry onRetry={makeRequest} />,
-    empty: <FeedbackNoData />,
-    loaded: (
-      <>
-        <HomeStats contents={contents} />
-        <HomePromo promo={promo} />
-        <HomePricing contents={contents} pricing={pricing} />
-        <HomeHowToSubs contents={contents} />
-        <HomeAbout contents={contents} />
-        <HomeContact contents={contents} />
-        <HomeFaqs contents={contents} faqs={faqs} />
-        <HomeBlogs contents={contents} blogs={blogs} />
-      </>
-    ),
-  };
 
   return (
     <CContainer overflowX={"clip"} minH={"100vh"}>
       <HomeHero />
 
       <Suspense fallback={<ComponentSpinner flex={1} />}>
-        {loading && render.loading}
-        {!loading && (
-          <>
-            {error && render.error}
-            {!error && (
-              <>
-                {data && render.loaded}
-                {(!data || empty(data)) && render.empty}
-              </>
-            )}
-          </>
-        )}
+        <>
+          <HomeStats contents={contents} />
+          <HomePromo promo={promo} />
+          <HomePricing contents={contents} pricing={pricing} />
+          <HomeHowToSubs contents={contents} />
+          <HomeAbout contents={contents} />
+          <HomeContact contents={contents} />
+          <HomeFaqs contents={contents} faqs={faqs} />
+          <HomeBlogs contents={contents} blogs={blogs} />
+          <Footer contents={contents} />
+        </>
       </Suspense>
     </CContainer>
   );

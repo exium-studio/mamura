@@ -1,6 +1,5 @@
 "use client";
 
-import { useThemeConfig } from "@/context/useThemeConfig";
 import {
   Toaster as ChakraToaster,
   Portal,
@@ -16,8 +15,6 @@ export const toaster = createToaster({
 });
 
 export const Toaster = () => {
-  const { themeConfig } = useThemeConfig();
-
   return (
     <Portal>
       <ChakraToaster toaster={toaster} insetInline={{ mdDown: "4" }}>
@@ -32,11 +29,7 @@ export const Toaster = () => {
               bg={toast.type === "success" ? "green.600 !important" : ""}
             >
               {toast.type === "loading" ? (
-                <Spinner
-                  size="xs"
-                  color={themeConfig.primaryColor}
-                  mt={"4px"}
-                />
+                <Spinner size="xs" color={"p"} mt={"4px"} />
               ) : (
                 <Toast.Indicator />
               )}

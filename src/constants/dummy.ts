@@ -20,6 +20,13 @@ export const DUMMY_CONTENTS = {
     21: "Lacak proses instalasi kemudian nikmati layanan MamuraNet!",
     22: "3. Bayar",
     23: "Bayar tagihan dan nikmati kecepatan layanan  MamuraNet.",
+    24: `${IMAGES_PATH}/about.png`,
+    25: "Komitmen Kami untuk Koneksi Tanpa Batas!!",
+    26: "PT Mamura Inter Media adalah penyedia layanan internet lokal yang telah melayani ribuan pelanggan sejak tahun [Tahun Berdiri]. Kami percaya bahwa internet cepat tidak harus mahal. Visi kami adalah menjadi pilihan utama WiFi hemat di Indonesia dengan:",
+    27: "Infrastruktur jaringan yang modern",
+    28: "Tim teknisi profesional dan responsif",
+    29: "Layanan personal yang ramah dan cepat",
+    30: "Kami hadir untuk menjawab kebutuhan internet Anda, mulai dari keluarga kecil hingga perusahaan besar.",
   },
   promo: [
     {

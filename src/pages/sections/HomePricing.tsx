@@ -102,22 +102,24 @@ const HomePricing = (props: any) => {
             borderRadius={"full"}
             pos={"relative"}
             bg={"p.50"}
-            w={"368px"}
+            w={["308px", null, "368px"]}
             h={"48px"}
           >
             <Box
-              w={"180px"}
+              w={["150px", null, "180px"]}
               h={"40px"}
               bg={"p.500"}
               borderRadius={"full"}
               pos={"absolute"}
-              left={pricingCategory === "home" ? "4px" : "184px"}
+              left={
+                pricingCategory === "home" ? "4px" : ["154px", null, "184px"]
+              }
               transition={"200ms"}
               zIndex={1}
             />
 
             <Center
-              w={"180px"}
+              w={["150px", null, "180px"]}
               cursor={"pointer"}
               onClick={() => {
                 setPricingCategory("home");
@@ -133,7 +135,7 @@ const HomePricing = (props: any) => {
             </Center>
 
             <Center
-              w={"180px"}
+              w={["150px", null, "180px"]}
               cursor={"pointer"}
               onClick={() => {
                 setPricingCategory("bussiness");

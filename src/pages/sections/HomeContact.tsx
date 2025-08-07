@@ -2,11 +2,13 @@ import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
+import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
+import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
 import { IMAGES_PATH } from "@/constants/paths";
 import { R_SPACING } from "@/constants/sizes";
-import { Container, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
+import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconBrandWhatsappFilled } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
@@ -54,9 +56,11 @@ const HomeContact = (props: any) => {
             </CContainer>
 
             <HStack wrap={"wrap"} mt={4}>
-              <BButton bg={"white"} color={"dark"}>
-                Dapatkan Penawaran Sekarang
-              </BButton>
+              <NavLink to="/contact" w={"fit"}>
+                <BButton bg={"white"} color={"dark"}>
+                  Dapatkan Penawaran Sekarang
+                </BButton>
+              </NavLink>
 
               <EditableContentContainer contentId={36} content={contents?.[36]}>
                 <Link to={contents?.[36]} target="_blank">

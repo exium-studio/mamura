@@ -32,8 +32,11 @@ export const DUMMY_CONTENTS = {
     33: "🎯 Konsultasi gratis",
     34: "📍 Layanan area Jabodetabek & seluruh Indonesia",
     35: "📞 Fast response by phone & WhatsApp",
-    36: "wa.me/+62 895-6221-89054",
+    36: "https://wa.me/62895622189054",
     37: `${IMAGES_PATH}/discuss_bnw.png`,
+    38: "Frequently Ask Questions",
+    39: "Layanan Internet Mamura",
+    40: "https://wa.me/62895622189054",
   },
   promo: [
     {
@@ -119,4 +122,42 @@ export const DUMMY_CONTENTS = {
       },
     ],
   },
+  faqs: [
+    {
+      id: 1,
+      question: "Apa itu layanan internet dari Mamura?",
+      answer:
+        "Mamura adalah penyedia layanan internet berbasis fiber optik dengan koneksi cepat, stabil, dan harga terjangkau.",
+    },
+    {
+      id: 2,
+      question: "Apakah ada batasan kuota untuk internet Mamura?",
+      answer:
+        "Tidak. Semua paket internet Mamura bersifat UNLIMITED tanpa batasan kuota harian atau bulanan.",
+    },
+    {
+      id: 3,
+      question: "Berapa kecepatan internet yang ditawarkan?",
+      answer:
+        "Mamura menawarkan berbagai pilihan kecepatan mulai dari 20 Mbps hingga 100 Mbps, tergantung paket yang Anda pilih.",
+    },
+    {
+      id: 4,
+      question: "Apakah bisa pasang internet di area saya?",
+      answer:
+        "Silakan gunakan fitur 'Cek Jangkauan' di website kami atau hubungi tim kami melalui WhatsApp untuk informasi ketersediaan.",
+    },
+    {
+      id: 5,
+      question: "Berapa biaya pemasangan awal?",
+      answer:
+        "Biaya pemasangan awal mulai dari Rp150.000, tergantung lokasi dan jenis instalasi. Promo gratis pasang tersedia di area tertentu.",
+    },
+    {
+      id: 6,
+      question: "Bagaimana jika koneksi saya bermasalah?",
+      answer:
+        "Tim support Mamura siap membantu 24/7. Anda bisa menghubungi kami melalui WhatsApp atau call center untuk penanganan cepat.",
+    },
+  ],
 };

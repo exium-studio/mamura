@@ -53,7 +53,7 @@ const HomeStats = (props: any) => {
             <SimpleGrid
               columns={[1, null, 3]}
               borderRadius={16}
-              bg={"bg.subtle"}
+              bg={"p.50"}
               p={4}
               gap={4}
             >

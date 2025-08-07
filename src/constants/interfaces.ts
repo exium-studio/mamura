@@ -33,6 +33,14 @@ export interface Interface__StorageFile extends Interface__CUD {
   file_size: number;
 }
 
+// FAQs
+export interface Interface__Faq extends Interface__CUD {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+// Pricing
 export interface Interface__Pricing extends Interface__CUD {
   id: number;
   pricing_category: Interface__PricingCategory;

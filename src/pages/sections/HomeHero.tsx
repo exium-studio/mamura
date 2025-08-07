@@ -211,7 +211,6 @@ const Hero = () => {
       color={"white"}
       pos={"relative"}
       overflow={"clip"}
-      pb={"80px"}
     >
       <Container py={["32px", null, "100px"]} zIndex={2} pointerEvents={"none"}>
         {loading && render.loading}
@@ -237,6 +236,13 @@ const Hero = () => {
       >
         <HeroEarth />
       </CContainer>
+
+      <CContainer
+        zIndex={3}
+        h={"80px"}
+        borderRadius={"30px 30px 0 0"}
+        bg={"white"}
+      />
     </CContainer>
   );
 };

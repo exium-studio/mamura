@@ -68,7 +68,7 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>(
       <Button
         ref={ref || fRef}
         className={finalClassName}
-        fontWeight="semibold"
+        fontWeight="medium"
         size={size || (MAIN_BUTTON_SIZE as any)}
         borderRadius={"full"}
         _active={{ bg: activeBg }}

@@ -74,8 +74,6 @@ const HomePromo = (props: any) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
-  console.log(promo);
-
   return (
     <CContainer id="promo" align={"center"} py={"80px"}>
       <Container align={"center"} pos={"relative"}>

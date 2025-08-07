@@ -32,13 +32,8 @@ const HomeStats = (props: any) => {
   const { contents } = props;
 
   return (
-    <CContainer
-      mt={"-50px"}
-      borderRadius={"30px 30px 0 0 "}
-      bg={"white"}
-      zIndex={2}
-    >
-      <Container py={"80px"}>
+    <CContainer bg={"white"} zIndex={2}>
+      <Container pb={"80px"}>
         <Stack flexDir={["column", null, "row"]} gap={4} align={"center"}>
           <CContainer gap={4}>
             <EditableContentContainer

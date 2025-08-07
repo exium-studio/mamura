@@ -27,5 +27,66 @@ export const DUMMY_CONTENTS = {
       },
     },
   ],
-  pricing: [],
+  pricing: {
+    home: [
+      {
+        name: "Home Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 25,
+        price: 185000,
+        is_recommended: true,
+      },
+      {
+        name: "Home Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 45,
+        price: 185000,
+        is_recommended: false,
+      },
+      {
+        name: "Home Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 65,
+        price: 185000,
+        is_recommended: false,
+      },
+      {
+        name: "Home Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 100,
+        price: 185000,
+        is_recommended: false,
+      },
+    ],
+    bussiness: [
+      {
+        name: "Bisnis Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 100,
+        price: 185000,
+        is_recommended: true,
+      },
+      {
+        name: "Bisnis Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 200,
+        price: 185000,
+        is_recommended: false,
+      },
+      {
+        name: "Bisnis Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 300,
+        price: 185000,
+        is_recommended: false,
+      },
+      {
+        name: "Bisnis Fiber Access 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        speed: 400,
+        price: 185000,
+        is_recommended: false,
+      },
+    ],
+  },
 };

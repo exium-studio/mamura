@@ -33,6 +33,21 @@ export interface Interface__StorageFile extends Interface__CUD {
   file_size: number;
 }
 
+export interface Interface__Pricing extends Interface__CUD {
+  id: number;
+  pricing_category: Interface__PricingCategory;
+  name: string;
+  description: string;
+  speed: number;
+  price: number;
+  is_recommended: boolean;
+}
+export interface Interface__PricingCategory extends Interface__CUD {
+  id: number;
+  name: string;
+  description: string;
+}
+
 // Content Realted
 export interface Interface__Content extends Interface__CUD {
   id: number;

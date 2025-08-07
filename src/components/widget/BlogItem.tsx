@@ -20,7 +20,7 @@ const BlogItem = (props: Props) => {
   return (
     <Link to={`/blog/${blog?.slug}`}>
       <CContainer
-        bg={"p.50"}
+        bg={"d1"}
         borderRadius={16}
         overflow={"clip"}
         cursor={"pointer"}

@@ -327,7 +327,7 @@ const customConfig = defineConfig({
         },
         p: {
           solid: { value: { base: "{colors.p.500}", _dark: "{colors.p.500}" } },
-          contrast: { value: "{colors.p.50}" },
+          contrast: { value: "{colors.d1}" },
           fg: { value: { base: "{colors.p.500}", _dark: "{colors.p.300}" } },
           muted: { value: { base: "{colors.p.200}", _dark: "{colors.p.700}" } },
           subtle: {

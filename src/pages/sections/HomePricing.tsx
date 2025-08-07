@@ -101,7 +101,7 @@ const HomePricing = (props: any) => {
             p={1}
             borderRadius={"full"}
             pos={"relative"}
-            bg={"p.50"}
+            bg={"d1"}
             w={["308px", null, "368px"]}
             h={"48px"}
           >

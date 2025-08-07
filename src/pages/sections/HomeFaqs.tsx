@@ -21,7 +21,7 @@ const FaqItem = (props: any) => {
   return (
     <AccordionItem
       value={faq?.question}
-      bg={"p.50"}
+      bg={"d1"}
       px={4}
       borderRadius={8}
       border={"1px solid"}

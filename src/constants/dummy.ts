@@ -12,6 +12,14 @@ export const DUMMY_CONTENTS = {
     13: `${IMAGES_PATH}/internet.png`,
     14: `Internetan Unlimited & Hemat? Pilihan Tepat: Mamura`,
     15: `Super lancar, super hemat, tanpa drama. #WifiMurah terbaik untuk segala kebutuhan Anda.`,
+    16: `Cara Berlangganan Nikmati Wifi Internet Rumah di Mamura`,
+    17: "Tiga langkah mudah untuk menggunakan layanan dari kami",
+    18: "1. Registrasi",
+    19: "Cek area lokasi pemasangan, pilih paket, dan pilih jadwal pemasangan.",
+    20: "2. Instalasi",
+    21: "Lacak proses instalasi kemudian nikmati layanan MamuraNet!",
+    22: "3. Bayar",
+    23: "Bayar tagihan dan nikmati kecepatan layanan  MamuraNet.",
   },
   promo: [
     {

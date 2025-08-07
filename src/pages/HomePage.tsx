@@ -12,6 +12,7 @@ const HomePage = () => {
   const HomeStats = lazy(() => import("./sections/HomeStats"));
   const HomePromo = lazy(() => import("./sections/HomePromo"));
   const HomePricing = lazy(() => import("./sections/HomePricing"));
+  const HomeHowToSubs = lazy(() => import("./sections/HomeHowToSubs"));
 
   // States
   const { error, loading, data, makeRequest } = useDataState<any>({
@@ -30,6 +31,7 @@ const HomePage = () => {
         <HomeStats contents={contents} />
         <HomePromo promo={promo} />
         <HomePricing contents={contents} pricing={pricing} />
+        <HomeHowToSubs contents={contents} />
       </>
     ),
   };

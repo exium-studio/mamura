@@ -30,6 +30,7 @@ const BlogItem = (props: Props) => {
           key={blog?.thumbnail?.file_url}
           src={blog?.thumbnail?.file_url}
           alt={blog?.title}
+          aspectRatio={16 / 10}
           borderRadius={16}
         />
 
@@ -58,7 +59,14 @@ const BlogItem = (props: Props) => {
               <P color={"fg.muted"}>{`${formatCount(blog?.views)} Likes`}</P>
             </HStack>
 
-            <BButton size={"xs"} variant={"ghost"} fontWeight={"normal"}>
+            <BButton
+              size={"xs"}
+              variant={"ghost"}
+              fontWeight={"normal"}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <Icon boxSize={4}>
                 <IconShare stroke={1.5} />
               </Icon>

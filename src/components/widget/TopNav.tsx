@@ -130,7 +130,7 @@ const LgNavs = (props: any) => {
               <BButton
                 unclicky
                 variant={"ghost"}
-                color={scrolled ? "" : "body"}
+                color={!rootPath || scrolled ? "" : "body"}
                 className="btn"
               >
                 {nav.label}
@@ -153,7 +153,7 @@ const LgNavs = (props: any) => {
               <BButton
                 unclicky
                 variant={"ghost"}
-                color={active ? "p.500" : scrolled ? "" : "body"}
+                color={active ? "p.500" : !rootPath || scrolled ? "" : "body"}
                 className="btn"
               >
                 {nav.label}

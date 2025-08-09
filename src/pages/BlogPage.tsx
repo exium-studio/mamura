@@ -1,5 +1,8 @@
 import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
+import ComponentSpinner from "@/components/ui-custom/ComponentSpinner";
+import FeedbackNoData from "@/components/ui-custom/FeedbackNoData";
+import FeedbackRetry from "@/components/ui-custom/FeedbackRetry";
 import Heading2 from "@/components/ui-custom/Heading2";
 import NavLink from "@/components/ui-custom/NavLink";
 import SearchInput from "@/components/ui-custom/SearchInput";
@@ -11,18 +14,47 @@ import { Interface__Blog } from "@/constants/interfaces";
 import { R_SPACING } from "@/constants/sizes";
 import useContents from "@/context/useContents";
 import useDataState from "@/hooks/useDataState";
+import empty from "@/utils/empty";
 import { Breadcrumb, HStack, SimpleGrid } from "@chakra-ui/react";
 
 const BlogList = (props: any) => {
   // Props
-  const { blogs, ...restProps } = props;
+  const { ...restProps } = props;
+
+  const { error, loading, data, makeRequest } = useDataState<any>({
+    initialData: DUMMY_CONTENTS?.blogs,
+    url: ``,
+    dependencies: [],
+  });
+
+  const render = {
+    loading: <ComponentSpinner />,
+    error: <FeedbackRetry onRetry={makeRequest} />,
+    empty: <FeedbackNoData />,
+    loaded: (
+      <SimpleGrid columns={[1, 2, 3]} gap={4} {...restProps}>
+        {data?.map((blog: Interface__Blog) => {
+          return <BlogItem blog={blog} />;
+        })}
+      </SimpleGrid>
+    ),
+  };
 
   return (
-    <SimpleGrid columns={[1, 2, 3]} gap={4} {...restProps}>
-      {blogs?.map((blog: Interface__Blog) => {
-        return <BlogItem blog={blog} />;
-      })}
-    </SimpleGrid>
+    <>
+      {loading && render.loading}
+      {!loading && (
+        <>
+          {error && render.error}
+          {!error && (
+            <>
+              {data && render.loaded}
+              {(!data || empty(data)) && render.empty}
+            </>
+          )}
+        </>
+      )}
+    </>
   );
 };
 
@@ -30,12 +62,6 @@ const BlogPage = () => {
   // Contexts
   const allContents = useContents((s) => s.data);
   const contents = allContents?.contents;
-
-  const { error, loading, data, makeRequest } = useDataState<any>({
-    initialData: DUMMY_CONTENTS?.blogs,
-    url: ``,
-    dependencies: [],
-  });
 
   return (
     <CContainer py={R_SPACING}>
@@ -69,7 +95,7 @@ const BlogPage = () => {
           </HStack>
         </HStack>
 
-        <BlogList blogs={data} mt={4} />
+        <BlogList />
       </Container>
     </CContainer>
   );

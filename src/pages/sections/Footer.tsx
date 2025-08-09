@@ -37,9 +37,10 @@ const Footer = (props: any) => {
                     <HashLink
                       key={nav.id}
                       id={nav.id}
-                      path={nav.path}
+                      to={`${nav.path}?hashlink=${nav.id}`}
                       cursor={"pointer"}
                       opacity={0.8}
+                      color={"white"}
                     >
                       {nav.label}
                     </HashLink>
@@ -55,6 +56,7 @@ const Footer = (props: any) => {
                       to={nav.path}
                       cursor={"pointer"}
                       opacity={0.8}
+                      color={"white"}
                     >
                       {nav.label}
                     </NavLink>

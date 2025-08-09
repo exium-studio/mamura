@@ -76,12 +76,14 @@ const HomeContact = (props: any) => {
           </CContainer>
 
           <CContainer my={"auto"}>
-            <Img
-              key={contents?.[37]}
-              src={contents?.[37]}
-              alt={contents?.[37]}
-              borderRadius={16}
-            />
+            <EditableContentContainer contentId={37} content={contents?.[37]}>
+              <Img
+                key={contents?.[37]}
+                src={contents?.[37]}
+                alt={contents?.[37]}
+                borderRadius={16}
+              />
+            </EditableContentContainer>
           </CContainer>
         </SimpleGrid>
       </Container>

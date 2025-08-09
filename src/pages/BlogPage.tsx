@@ -1,10 +1,11 @@
 import CContainer from "@/components/ui-custom/CContainer";
 import Container from "@/components/widget/Container";
+import { R_SPACING } from "@/constants/sizes";
 import { Breadcrumb } from "@chakra-ui/react";
 
 const BlogPage = () => {
   return (
-    <CContainer py={"80px"}>
+    <CContainer py={R_SPACING}>
       <Container>
         <Breadcrumb.Root>
           <Breadcrumb.List>

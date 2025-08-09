@@ -8,6 +8,7 @@ import ComponentSpinner from "../ui-custom/ComponentSpinner";
 import FeedbackRetry from "../ui-custom/FeedbackRetry";
 import FeedbackNoData from "../ui-custom/FeedbackNoData";
 import empty from "@/utils/empty";
+import Footer from "@/pages/sections/Footer";
 
 const LPContainer = (props: any) => {
   // Props
@@ -25,7 +26,13 @@ const LPContainer = (props: any) => {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
-    loaded: children,
+    loaded: (
+      <>
+        {children}
+
+        <Footer contents={data?.contents} />
+      </>
+    ),
   };
 
   useEffect(() => {

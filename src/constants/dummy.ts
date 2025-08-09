@@ -47,6 +47,9 @@ export const DUMMY_CONTENTS = {
     48: "https://twitter.com",
     49: "https://linkedin.com",
     50: "Mamura Inter Media",
+    51: "Artikel & Blog",
+    52: "",
+    53: "",
   },
   promo: [
     {

@@ -1,7 +1,6 @@
 import CContainer from "@/components/ui-custom/CContainer";
 import useContents from "@/context/useContents";
 import useHashlinkToView from "@/hooks/useHashlinkToView";
-import Footer from "./sections/Footer";
 import HomeAbout from "./sections/HomeAbout";
 import HomeBlogs from "./sections/HomeBlogs";
 import HomeContact from "./sections/HomeContact";
@@ -47,7 +46,6 @@ const HomePage = () => {
       <HomeContact contents={contents} />
       <HomeFaqs contents={contents} faqs={faqs} />
       <HomeBlogs contents={contents} blogs={blogs} />
-      <Footer contents={contents} />
     </CContainer>
   );
 };

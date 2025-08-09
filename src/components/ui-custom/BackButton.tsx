@@ -1,4 +1,3 @@
-import useBackOnDefaultPage from "@/hooks/useBackOnDefaultPage";
 import back from "@/utils/back";
 import { ButtonProps, Icon } from "@chakra-ui/react";
 import { IconChevronLeft } from "@tabler/icons-react";
@@ -20,14 +19,12 @@ const BackButton = ({
   ...props
 }: Props) => {
   const navigate = useNavigate();
-  const handleBackOnDefaultPage = useBackOnDefaultPage();
 
   function handleBack() {
     if (backPath) {
       navigate(backPath);
     } else {
       back();
-      handleBackOnDefaultPage();
     }
     aoc?.();
   }

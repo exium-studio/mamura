@@ -1,60 +1,131 @@
-import scrollToView from "@/utils/scrollToView";
-import { useEffect, useRef } from "react";
+import { MouseEvent, ReactNode, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import CContainer from "../ui-custom/CContainer";
 import NavLink from "../ui-custom/NavLink";
+import CContainer from "../ui-custom/CContainer";
+import { StackProps } from "@chakra-ui/react";
 
-const HashLink = (props: any) => {
-  // Props
-  const { children, id, path, callback, onBeforeScroll, delay, ...restProps } =
-    props;
+interface HashLinkProps extends StackProps {
+  to: string;
+  children: ReactNode;
+  onBeforeScroll?: () => void; // boleh history.back()
+  delay?: number;
+  offsetY?: number;
+  behavior?: ScrollBehavior;
+  paramName?: string; // default 'hashlink' atau pakai #id
+}
 
-  // Hooks
-  const location = useLocation();
-  const currentPath = location.pathname;
+export default function HashLink({
+  to,
+  children,
+  onBeforeScroll,
+  delay = 0,
+  offsetY = 0,
+  behavior = "smooth",
+  paramName = "hashlink",
+  ...restProps
+}: HashLinkProps) {
+  const { pathname } = useLocation();
+  const url = new URL(to, window.location.origin);
+  const targetPath = url.pathname;
 
-  const hasNavigated = useRef(false);
+  const timers = useRef<number[]>([]);
+  useEffect(
+    () => () => {
+      timers.current.forEach(clearTimeout);
+      timers.current = [];
+    },
+    []
+  );
 
-  // scrollToView if just navigated and current path is target
-  useEffect(() => {
-    if (hasNavigated.current && currentPath === path) {
-      stv();
-      hasNavigated.current = false;
-    }
-  }, [currentPath, id, path]);
-
-  // States
-  const active = currentPath === path;
-
-  // Utils
-  function stv() {
-    onBeforeScroll?.();
-    setTimeout(() => {
-      scrollToView(id, {
-        offsetY: -16,
-        // callback,
-      });
-    }, delay);
+  if (pathname !== targetPath) {
+    return (
+      <NavLink to={to} {...restProps}>
+        {children}
+      </NavLink>
+    );
   }
 
-  return (
-    <>
-      {active ? (
-        <CContainer onClick={stv} {...restProps}>
-          {children}
-        </CContainer>
-      ) : (
-        <NavLink
-          onClick={() => {
-            hasNavigated.current = true;
-          }}
-          {...restProps}
-        >
-          {children}
-        </NavLink>
-      )}
-    </>
-  );
-};
+  const getTargetId = () =>
+    url.searchParams.get(paramName) || (url.hash ? url.hash.slice(1) : "");
 
-export default HashLink;
+  const scrollWithRetry = (id: string) => {
+    const run = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior, block: "start" });
+        if (offsetY) {
+          const t = window.setTimeout(
+            () => window.scrollBy({ top: offsetY, behavior: "auto" }),
+            50
+          );
+          timers.current.push(t);
+        }
+      } else {
+        let i = 0;
+        const max = 60,
+          iv = 50;
+        const tick = () => {
+          const node = document.getElementById(id);
+          if (node) {
+            node.scrollIntoView({ behavior, block: "start" });
+            if (offsetY) {
+              const t2 = window.setTimeout(
+                () => window.scrollBy({ top: offsetY, behavior: "auto" }),
+                50
+              );
+              timers.current.push(t2);
+            }
+          } else if (i++ < max) {
+            const t3 = window.setTimeout(tick, iv);
+            timers.current.push(t3);
+          }
+        };
+        tick();
+      }
+    };
+
+    if (delay > 0) {
+      const t = window.setTimeout(() => requestAnimationFrame(run), delay);
+      timers.current.push(t);
+    } else {
+      requestAnimationFrame(run);
+    }
+  };
+
+  const handleSamePathClick = (e: MouseEvent) => {
+    e.preventDefault();
+
+    const id = getTargetId();
+    if (!id) return;
+
+    const prevPath = window.location.pathname;
+
+    try {
+      onBeforeScroll?.();
+    } catch {
+      /* ignore */
+    }
+
+    // beri 1 tick untuk mendeteksi navigasi dari onBeforeScroll (history.back, dsb)
+    const t0 = window.setTimeout(() => {
+      // jika path berubah → abort (biar halaman tujuan yang urus scroll)
+      if (window.location.pathname !== prevPath) return;
+
+      // safety check lagi setelah delay
+      const t1 = window.setTimeout(() => {
+        if (window.location.pathname !== prevPath) return;
+        scrollWithRetry(id);
+      }, Math.max(0, delay ? 0 : 0)); // delay sudah di-handle di scrollWithRetry
+
+      timers.current.push(t1);
+    }, 0);
+
+    timers.current.push(t0);
+  };
+
+  return (
+    <CContainer onClick={handleSamePathClick} {...restProps}>
+      {children}
+    </CContainer>
+  );
+}

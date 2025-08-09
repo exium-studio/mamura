@@ -1,9 +1,8 @@
-import useBackOnDefaultPage from "@/hooks/useBackOnDefaultPage";
 import back from "@/utils/back";
 import { HStack, Text } from "@chakra-ui/react";
-import { DisclosureCloseTrigger } from "./Disclosure";
 import { DialogCloseTrigger } from "../ui/dialog";
 import { DrawerCloseTrigger } from "../ui/drawer";
+import { DisclosureCloseTrigger } from "./Disclosure";
 
 type Props = {
   title?: string;
@@ -17,11 +16,8 @@ const DisclosureHeaderContent = ({
   prefix,
   content,
 }: Props) => {
-  const handleBackOnDefaultPage = useBackOnDefaultPage();
-
   function handleBack() {
     back();
-    handleBackOnDefaultPage();
   }
 
   return (

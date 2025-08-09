@@ -14,7 +14,10 @@ const NavLink = (props: Props) => {
   const navigate = useNavigate();
   function handleOnClick() {
     if (to) {
-      navigate(to);
+      setTimeout(() => {
+        navigate(to);
+        window.scrollTo(0, 0);
+      }, 1);
     }
   }
 
@@ -23,6 +26,7 @@ const NavLink = (props: Props) => {
       fRef={fRef}
       cursor={"pointer"}
       onClick={handleOnClick}
+      color={"text"}
       {...restProps}
     >
       {children}

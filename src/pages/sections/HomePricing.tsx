@@ -151,7 +151,7 @@ const HomePricing = (props: any) => {
             </Center>
           </HStack>
 
-          <SimpleGrid columns={[1, 2, 4]} gap={4} w={"full"}>
+          <SimpleGrid columns={[1, null, 2, 4]} gap={4} w={"full"}>
             {pricing?.[pricingCategory]?.map((pricing: any) => (
               <PricingItem key={pricing?.id} pricing={pricing} />
             ))}

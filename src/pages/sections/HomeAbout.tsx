@@ -28,7 +28,7 @@ const HomeAbout = (props: any) => {
   const { contents } = props;
 
   return (
-    <CContainer py={"80px"}>
+    <CContainer id="about" py={"80px"}>
       <Container>
         <Stack flexDir={["column", null, "row"]} gap={8}>
           <CContainer w={["full", null, "40%"]}>

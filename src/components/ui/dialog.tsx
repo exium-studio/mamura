@@ -1,4 +1,3 @@
-import useBackOnDefaultPage from "@/hooks/useBackOnDefaultPage";
 import useScreen from "@/hooks/useScreen";
 import back from "@/utils/back";
 import { Dialog as ChakraDialog, Portal } from "@chakra-ui/react";
@@ -28,7 +27,6 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     const contentRef = useRef<HTMLDivElement>(null);
 
     // Utils
-    const handleBackOnDefaultPage = useBackOnDefaultPage();
     const { sh } = useScreen();
 
     return (
@@ -48,7 +46,6 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             if (!isMouseDownInsideContent && e.currentTarget === e.target) {
               // Click langsung di area kosong Positioner
               back();
-              handleBackOnDefaultPage();
             }
             setIsMouseDownInsideContent(false);
           }}

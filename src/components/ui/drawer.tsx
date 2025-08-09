@@ -32,7 +32,6 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     const [visible, setVisible] = useState(open);
 
     // Utils
-    // const handleBackOnDefaultPage = useBackOnDefaultPage();
 
     useEffect(() => {
       if (open) {
@@ -52,7 +51,6 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
             pointerEvents={"auto"}
             onClick={() => {
               back();
-              // handleBackOnDefaultPage();
             }}
           >
             <ChakraDrawer.Content

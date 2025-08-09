@@ -242,6 +242,8 @@ const Hero = () => {
         h={"80px"}
         borderRadius={"30px 30px 0 0"}
         bg={"white"}
+        mb={"-1px"}
+        mt={6}
       />
     </CContainer>
   );

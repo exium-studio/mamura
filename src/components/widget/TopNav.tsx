@@ -55,9 +55,7 @@ const NavDrawer = (props: any) => {
                 return (
                   <HashLink
                     key={nav.id}
-                    id={nav.id}
-                    path={nav.path}
-                    w={"full"}
+                    to={`${nav.path}?hashlink=${nav.id}`}
                     onBeforeScroll={back}
                     delay={220}
                   >
@@ -102,7 +100,9 @@ const SmNavs = (props: any) => {
 
   return (
     <HStack justify={"space-between"} px={4} h={"70px"} w={"full"}>
-      <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
+      <NavLink to={"/"} w={"fit"}>
+        <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
+      </NavLink>
 
       <NavDrawer activePath={activePath} />
     </HStack>
@@ -123,10 +123,10 @@ const LgNavs = (props: any) => {
       bg={scrolled ? "body" : "transparent"}
       transition={"200ms"}
     >
-      <HStack w={"240px"} gap={1}>
+      <HStack w={"250px"} gap={1}>
         {LP_NAVS_1.map((nav) => {
           return (
-            <HashLink key={nav.id} id={nav.id} path={nav.path}>
+            <HashLink key={nav.id} to={`${nav.path}?hashlink=${nav.id}`}>
               <BButton
                 unclicky
                 variant={"ghost"}
@@ -144,7 +144,7 @@ const LgNavs = (props: any) => {
         <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
       </NavLink>
 
-      <HStack w={"240px"} gap={1}>
+      <HStack w={"250px"} gap={1}>
         {LP_NAVS_2.map((nav) => {
           const active = activePath === nav.path;
 

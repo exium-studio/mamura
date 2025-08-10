@@ -9,34 +9,46 @@ import SearchInput from "@/components/ui-custom/SearchInput";
 import BlogItem from "@/components/widget/BlogItem";
 import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import PaginationControl from "@/components/widget/PaginationControl";
 import { DUMMY_CONTENTS } from "@/constants/dummy";
 import { Interface__Blog } from "@/constants/interfaces";
 import { R_SPACING } from "@/constants/sizes";
 import useContents from "@/context/useContents";
+import useRenderTrigger from "@/context/useRenderTrigger";
 import useDataState from "@/hooks/useDataState";
 import empty from "@/utils/empty";
 import { Breadcrumb, HStack, SimpleGrid } from "@chakra-ui/react";
+import { useState } from "react";
 
 const BlogList = (props: any) => {
   // Props
   const { ...restProps } = props;
 
-  const { error, loading, data, makeRequest } = useDataState<any>({
-    initialData: DUMMY_CONTENTS?.blogs,
-    url: ``,
-    dependencies: [],
-  });
+  const { error, loading, data, pagination, page, setPage, makeRequest } =
+    useDataState<any>({
+      initialData: DUMMY_CONTENTS?.blogs,
+      url: ``,
+      dependencies: [],
+    });
 
   const render = {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
     loaded: (
-      <SimpleGrid columns={[1, 2, 3]} gap={4} {...restProps}>
-        {data?.map((blog: Interface__Blog) => {
-          return <BlogItem blog={blog} />;
-        })}
-      </SimpleGrid>
+      <>
+        <SimpleGrid columns={[1, 2, 3]} gap={4} {...restProps}>
+          {data?.map((blog: Interface__Blog) => {
+            return <BlogItem key={blog?.id} blog={blog} />;
+          })}
+        </SimpleGrid>
+
+        <PaginationControl
+          pagination={pagination}
+          page={page}
+          setPage={setPage}
+        />
+      </>
     ),
   };
 
@@ -62,6 +74,11 @@ const BlogPage = () => {
   // Contexts
   const allContents = useContents((s) => s.data);
   const contents = allContents?.contents;
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  const [filterConfig, setFilterConfig] = useState<any>({
+    search: "",
+  });
 
   return (
     <CContainer py={R_SPACING}>
@@ -90,12 +107,28 @@ const BlogPage = () => {
           </EditableContentContainer>
 
           <HStack>
-            <SearchInput inputProps={{ borderRadius: "full" }} />
-            <BButton colorPalette={"p"}>Cari</BButton>
+            <SearchInput
+              inputProps={{ borderRadius: "full" }}
+              onChangeSetter={(input) => {
+                setFilterConfig({
+                  ...filterConfig,
+                  search: input,
+                });
+              }}
+              inputValue={filterConfig?.search || ""}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && filterConfig?.search) {
+                  setRt((ps) => !ps);
+                }
+              }}
+            />
+            <BButton colorPalette={"p"} size={"md"}>
+              Cari
+            </BButton>
           </HStack>
         </HStack>
 
-        <BlogList />
+        <BlogList filterConfig={filterConfig} mt={4} />
       </Container>
     </CContainer>
   );

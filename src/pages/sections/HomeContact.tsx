@@ -76,7 +76,11 @@ const HomeContact = (props: any) => {
           </CContainer>
 
           <CContainer my={"auto"}>
-            <EditableContentContainer contentId={37} content={contents?.[37]}>
+            <EditableContentContainer
+              contentId={37}
+              content={contents?.[37]}
+              fileInput
+            >
               <Img
                 key={contents?.[37]}
                 src={contents?.[37]}

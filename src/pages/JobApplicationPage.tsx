@@ -9,6 +9,7 @@ import { Field } from "@/components/ui/field";
 import { R_SPACING } from "@/constants/sizes";
 import useActiveCareer from "@/context/useActiveCareer";
 import useLang from "@/context/useLang";
+import useRequest from "@/hooks/useRequest";
 import {
   Breadcrumb,
   Container,
@@ -25,27 +26,63 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const JobAplicationForm = () => {
+const JobAplicationForm = (props: any) => {
+  // Props
+  const { activeCareer } = props;
+
   // Hooks
   const { l } = useLang();
+  const { req, loading } = useRequest({
+    id: "apply_job",
+  });
 
   // States
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { resume: undefined as any, name: "", email: "", phone: "" },
+    initialValues: {
+      resume: undefined as any,
+      name: "",
+      email: "",
+      phone_number: "",
+    },
     validationSchema: yup.object().shape({
       resume: yup.array().required(l.required_form),
       name: yup.string().required(l.required_form),
-      email: yup.string().required(l.required_form),
-      phone: yup.string().required(l.required_form),
+      email: yup
+        .string()
+        .email("Format email tidak valid")
+        .required(l.required_form),
+      phone_number: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
+
+      const payload = new FormData();
+      payload.append("carrier_id", `${activeCareer.id}`);
+      payload.append("resume_id[]", values.resume[0] as any);
+      payload.append("name", values.name as string);
+      payload.append("email", values.email as string);
+      payload.append("phone_number", values.phone_number as string);
+
+      const config = {
+        url: `/api/mamura/job-application`,
+        method: "POST",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            resetForm();
+          },
+        },
+      });
     },
   });
 
   return (
-    <form id="job_application_form">
+    <form id="job_application_form" onSubmit={formik.handleSubmit}>
       <FieldRoot gap={4}>
         <Field
           label="Resume"
@@ -63,8 +100,8 @@ const JobAplicationForm = () => {
 
         <Field
           label={"Nama Lengkap"}
-          invalid={!!formik.errors.resume}
-          errorText={formik.errors.resume as string}
+          invalid={!!formik.errors.name}
+          errorText={formik.errors.name as string}
         >
           <StringInput
             onChangeSetter={(input) => {
@@ -76,8 +113,8 @@ const JobAplicationForm = () => {
 
         <Field
           label={"Email"}
-          invalid={!!formik.errors.resume}
-          errorText={formik.errors.resume as string}
+          invalid={!!formik.errors.email}
+          errorText={formik.errors.email as string}
         >
           <StringInput
             onChangeSetter={(input) => {
@@ -89,14 +126,14 @@ const JobAplicationForm = () => {
 
         <Field
           label={"Nomor Telepon"}
-          invalid={!!formik.errors.resume}
-          errorText={formik.errors.resume as string}
+          invalid={!!formik.errors.phone_number}
+          errorText={formik.errors.phone_number as string}
         >
           <StringInput
             onChangeSetter={(input) => {
-              formik.setFieldValue("phone", input);
+              formik.setFieldValue("phone_number", input);
             }}
-            inputValue={formik.values.phone}
+            inputValue={formik.values.phone_number}
           />
         </Field>
       </FieldRoot>
@@ -107,6 +144,7 @@ const JobAplicationForm = () => {
         colorPalette={"p"}
         w={"full"}
         mt={6}
+        loading={loading}
       >
         Kirim Lamaran
       </BButton>
@@ -201,7 +239,7 @@ const JobApplicationPage = () => {
               <CContainer w={["full", null, "70%"]} gap={8}>
                 <P>KIRIMKAN LAMARAN ANDA</P>
 
-                <JobAplicationForm />
+                <JobAplicationForm activeCareer={activeCareer} />
               </CContainer>
             </Stack>
           </CContainer>

@@ -138,6 +138,8 @@ const useDataState = <T = any>(props: Props<T>) => {
     if (!conditions || !url) return;
 
     const timeout = setTimeout(() => {
+      setInitialLoading(true);
+
       makeRequest();
     }, 50);
 
@@ -165,11 +167,6 @@ const useDataState = <T = any>(props: Props<T>) => {
   useEffect(() => {
     setInitialLoading(false);
   }, []);
-
-  // Handle initial loading to tru when limit & page changes
-  useEffect(() => {
-    setInitialLoading(true);
-  }, [limit, page]);
 
   return {
     makeRequest,

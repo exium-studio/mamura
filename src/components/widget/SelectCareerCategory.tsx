@@ -39,7 +39,14 @@ const SelectCareerCategory = (props: Props) => {
     });
   }
 
-  return <SelectInput title={"Kategori"} fetch={fetch} {...restProps} />;
+  return (
+    <SelectInput
+      id="select-career-category"
+      title={"Kategori"}
+      fetch={fetch}
+      {...restProps}
+    />
+  );
 };
 
 export default SelectCareerCategory;

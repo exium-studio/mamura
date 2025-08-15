@@ -39,7 +39,14 @@ const SelectEmployeeStatus = (props: Props) => {
     });
   }
 
-  return <SelectInput title={"Status Karyawan"} fetch={fetch} {...restProps} />;
+  return (
+    <SelectInput
+      id="select-employee-status"
+      title={"Status Karyawan"}
+      fetch={fetch}
+      {...restProps}
+    />
+  );
 };
 
 export default SelectEmployeeStatus;

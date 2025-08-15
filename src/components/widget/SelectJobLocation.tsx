@@ -39,7 +39,14 @@ const SelectJobLocation = (props: Props) => {
     });
   }
 
-  return <SelectInput title={"Lokasi Kerja"} fetch={fetch} {...restProps} />;
+  return (
+    <SelectInput
+      id="select_job_location"
+      title={"Lokasi Kerja"}
+      fetch={fetch}
+      {...restProps}
+    />
+  );
 };
 
 export default SelectJobLocation;

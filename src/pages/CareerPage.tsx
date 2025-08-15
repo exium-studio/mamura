@@ -145,7 +145,7 @@ const JobVacancy = (props: any) => {
     employee_status: undefined,
     job_location: undefined,
   });
-  const { error, loading, data, makeRequest } = useDataState<any>({
+  const { error, initialLoading, data, makeRequest } = useDataState<any>({
     url: `/api/mamura/index-carrier`,
     payload: {
       carrier_category: [filterConfig?.carrier_category?.[0]?.id],
@@ -208,12 +208,12 @@ const JobVacancy = (props: any) => {
       <CContainer gap={4}>
         <EditableContentContainer contentId={62} content={contents?.[62]}>
           <P fontSize={"xl"} fontWeight={"bold"}>
-            {contents?.[54]}
+            {contents?.[62]}
           </P>
         </EditableContentContainer>
 
-        {loading && render.loading}
-        {!loading && (
+        {initialLoading && render.loading}
+        {!initialLoading && (
           <>
             {error && render.error}
             {!error && (

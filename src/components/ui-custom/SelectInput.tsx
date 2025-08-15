@@ -145,7 +145,7 @@ const SelectInput = ({
                   isSelected(item) ? "outline" : !multiple ? "ghost" : "outline"
                 }
                 size={"md"}
-                borderRadius={multiple ? "full" : ""}
+                borderRadius={"full"}
                 borderColor={isSelected(item) ? themeConfig.primaryColor : ""}
                 justifyContent={"start"}
                 onClick={() => {

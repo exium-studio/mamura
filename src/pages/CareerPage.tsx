@@ -211,7 +211,7 @@ const JobVacancy = (props: any) => {
       <CContainer gap={4}>
         <EditableContentContainer contentId={62} content={contents?.[62]}>
           <P fontSize={"xl"} fontWeight={"bold"}>
-            {contents?.[62]}
+            {contents?.[54]}
           </P>
         </EditableContentContainer>
 

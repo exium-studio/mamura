@@ -59,6 +59,11 @@ export const DUMMY_CONTENTS = {
     60: "Kami hadir untuk menjawab kebutuhan internet Anda, mulai dari keluarga kecil hingga perusahaan besar.",
     61: "Posisi yang Sedang Dibuka",
     62: "Daftar Karir",
+    63: `${IMAGES_PATH}/contact_us.png`,
+    64: "Hubungi Kami",
+    65: "Punya pertanyaan atau tertarik berlangganan layanan internet dari Mamura? Isi formulir di bawah, dan tim kami akan segera menghubungi Anda!",
+    66: "📌 Kami akan menggunakan data Anda hanya untuk keperluan komunikasi terkait layanan Mamura.",
+    67: "🔒 Data Anda aman dan tidak akan dibagikan ke pihak ketiga.",
   },
   promo: [
     {

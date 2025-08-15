@@ -113,6 +113,7 @@ const FileInput = (props: Props) => {
             borderColor={
               invalid ?? fc?.invalid ? "border.error" : "border.muted"
             }
+            borderRadius={30}
             opacity={disabled ? 0.5 : 1}
             cursor={disabled ? "disabled" : "pointer"}
           />

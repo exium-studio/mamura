@@ -14,7 +14,7 @@ const Footer = (props: any) => {
   const { contents } = props;
 
   return (
-    <CContainer bg={"p.800"} pt={16} pb={8} color={"white"}>
+    <CContainer mt={"auto"} bg={"p.800"} pt={16} pb={8} color={"white"}>
       <Container>
         <HStack wrap={"wrap"} gapX={20} gapY={8} align={"start"}>
           <CContainer gap={8} flex={"1 1 400px"}>

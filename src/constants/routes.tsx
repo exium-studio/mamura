@@ -6,6 +6,7 @@ import CareerPage from "@/pages/CareerPage";
 import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
+import CareerApplicationPage from "@/pages/CareerApplicationPage";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
@@ -27,6 +28,11 @@ export const LP_ROUTES: Interface__Route[] = [
     path: "/karir",
     activePath: "/karir",
     element: <CareerPage />,
+  },
+  {
+    path: "/karir/submit",
+    activePath: "/karir",
+    element: <CareerApplicationPage />,
   },
   {
     path: "/kontak",

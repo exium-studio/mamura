@@ -40,7 +40,7 @@ const LPContainer = (props: any) => {
   }, [data]);
 
   return (
-    <CContainer>
+    <CContainer minH={"100dvh"}>
       <TopNav activePath={activePath} />
 
       {loading && render.loading}

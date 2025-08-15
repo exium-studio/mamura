@@ -23,6 +23,7 @@ import { DUMMY_CAREERS } from "@/constants/dummy";
 import { Interface__Career } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import { R_SPACING } from "@/constants/sizes";
+import useActiveCareer from "@/context/useActiveCareer";
 import useContents from "@/context/useContents";
 import useDataState from "@/hooks/useDataState";
 import empty from "@/utils/empty";
@@ -52,7 +53,11 @@ const WhyItem = (props: any) => {
   );
 };
 const JobList = (props: { jobs: Interface__Career[] }) => {
+  // Props
   const { jobs } = props;
+
+  // Contexts
+  const setActiveCareer = useActiveCareer((s) => s.setActiveCareer);
 
   return (
     <AccordionRoot multiple>
@@ -111,9 +116,18 @@ const JobList = (props: { jobs: Interface__Career[] }) => {
                   })}
                 </CContainer>
 
-                <BButton mt={4} colorPalette={"p"} w={"full"}>
-                  Daftar Sekarang
-                </BButton>
+                <NavLink to={`/karir/submit`}>
+                  <BButton
+                    mt={4}
+                    colorPalette={"p"}
+                    w={"full"}
+                    onClick={() => {
+                      setActiveCareer(job);
+                    }}
+                  >
+                    Daftar Sekarang
+                  </BButton>
+                </NavLink>
               </AccordionItemContent>
             </AccordionItem>
           );

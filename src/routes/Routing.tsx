@@ -21,11 +21,11 @@ const Routing = () => {
 
   return (
     <Routes>
-      {LP_ROUTES.map(({ path, element }) => (
+      {LP_ROUTES.map(({ path, activePath, element }) => (
         <Route
           key={path}
           path={path}
-          element={<LPContainer activePath={path}>{element}</LPContainer>}
+          element={<LPContainer activePath={activePath}>{element}</LPContainer>}
         />
       ))}
 

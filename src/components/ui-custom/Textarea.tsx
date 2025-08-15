@@ -53,7 +53,7 @@ export default function Textarea({
       fontWeight={"medium"}
       outline={"none !important"}
       _focus={{ borderColor: themeConfig.primaryColor }}
-      borderRadius={themeConfig.radii.component}
+      borderRadius={16}
       placeholder={placeholder || "Input text"}
       onChange={(e) => {
         onChangeSetter?.(e.target.value);

@@ -11,96 +11,160 @@ import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
 import { R_SPACING } from "@/constants/sizes";
 import useContents from "@/context/useContents";
+import useLang from "@/context/useLang";
+import useRequest from "@/hooks/useRequest";
 import { Breadcrumb, FieldRoot, Stack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const ContactForm = () => {
+const ContactForm = (props: any) => {
+  // Props
+  const { contents } = props;
+
+  // Hooks
+  const { l } = useLang();
+  const { req, loading } = useRequest({
+    id: "contact",
+  });
+
   // States
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
       name: "",
-      phone: "",
+      phone_number: "",
       email: "",
       address: "",
       message: "",
     },
-    validationSchema: yup.object().shape({}),
+    validationSchema: yup.object().shape({
+      name: yup.string().required(l.required_form),
+      phone_number: yup.string().required(l.required_form),
+      email: yup
+        .string()
+        .email("Format email tidak valid")
+        .required(l.required_form),
+      address: yup.string().required(l.required_form),
+      message: yup.string().required(l.required_form),
+    }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
+
+      const payload = new FormData();
+      payload.append("name", values.name as string);
+      payload.append("phone_number", values.phone_number as string);
+      payload.append("email", values.email as string);
+      payload.append("address", values.address as string);
+      payload.append("message", values.message as string);
+
+      const config = {
+        url: `/api/mamura/create-inquiry`,
+        method: "POST",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            resetForm();
+          },
+        },
+      });
     },
   });
 
   return (
-    <form id="contact_form">
-      <FieldRoot mt={2} gap={4}>
-        <Field
-          label={"Nama Lengkap"}
-          invalid={!!formik.errors.name}
-          errorText={formik.errors.name as string}
-        >
-          <StringInput
-            onChangeSetter={(input) => {
-              formik.setFieldValue("name", input);
-            }}
-            inputValue={formik.values.name}
-          />
-        </Field>
+    <>
+      <form id="contact_form" onSubmit={formik.handleSubmit}>
+        <FieldRoot mt={2} gap={4}>
+          <Field
+            label={"Nama Lengkap"}
+            invalid={!!formik.errors.name}
+            errorText={formik.errors.name as string}
+          >
+            <StringInput
+              onChangeSetter={(input) => {
+                formik.setFieldValue("name", input);
+              }}
+              inputValue={formik.values.name}
+            />
+          </Field>
 
-        <Field
-          label={"Nomor Telepon Aktif"}
-          invalid={!!formik.errors.phone}
-          errorText={formik.errors.phone as string}
-        >
-          <StringInput
-            onChangeSetter={(input) => {
-              formik.setFieldValue("phone", input);
-            }}
-            inputValue={formik.values.phone}
-          />
-        </Field>
+          <Field
+            label={"Nomor Telepon Aktif"}
+            invalid={!!formik.errors.phone_number}
+            errorText={formik.errors.phone_number as string}
+          >
+            <StringInput
+              onChangeSetter={(input) => {
+                formik.setFieldValue("phone_number", input);
+              }}
+              inputValue={formik.values.phone_number}
+            />
+          </Field>
 
-        <Field
-          label={"Email"}
-          invalid={!!formik.errors.email}
-          errorText={formik.errors.email as string}
-        >
-          <StringInput
-            onChangeSetter={(input) => {
-              formik.setFieldValue("email", input);
-            }}
-            inputValue={formik.values.email}
-          />
-        </Field>
+          <Field
+            label={"Email"}
+            invalid={!!formik.errors.email}
+            errorText={formik.errors.email as string}
+          >
+            <StringInput
+              onChangeSetter={(input) => {
+                formik.setFieldValue("email", input);
+              }}
+              inputValue={formik.values.email}
+            />
+          </Field>
 
-        <Field
-          label={"Alamat Lengkap"}
-          invalid={!!formik.errors.address}
-          errorText={formik.errors.address as string}
-        >
-          <Textarea
-            onChangeSetter={(input) => {
-              formik.setFieldValue("address", input);
-            }}
-            inputValue={formik.values.address}
-          />
-        </Field>
+          <Field
+            label={"Alamat Lengkap"}
+            invalid={!!formik.errors.address}
+            errorText={formik.errors.address as string}
+          >
+            <Textarea
+              onChangeSetter={(input) => {
+                formik.setFieldValue("address", input);
+              }}
+              inputValue={formik.values.address}
+            />
+          </Field>
 
-        <Field
-          label={"Pesan"}
-          invalid={!!formik.errors.message}
-          errorText={formik.errors.message as string}
+          <Field
+            label={"Pesan"}
+            invalid={!!formik.errors.message}
+            errorText={formik.errors.message as string}
+          >
+            <Textarea
+              onChangeSetter={(input) => {
+                formik.setFieldValue("message", input);
+              }}
+              inputValue={formik.values.message}
+            />
+          </Field>
+        </FieldRoot>
+      </form>
+
+      <CContainer gap={2}>
+        <EditableContentContainer contentId={66} content={contents?.[66]}>
+          <P>{contents?.[66]}</P>
+        </EditableContentContainer>
+
+        <EditableContentContainer contentId={67} content={contents?.[67]}>
+          <P>{contents?.[67]}</P>
+        </EditableContentContainer>
+
+        <BButton
+          type="submit"
+          form="contact_form"
+          colorPalette={"p"}
+          mt={4}
+          loading={loading}
         >
-          <Textarea
-            onChangeSetter={(input) => {
-              formik.setFieldValue("message", input);
-            }}
-            inputValue={formik.values.message}
-          />
-        </Field>
-      </FieldRoot>
-    </form>
+          Kirim Sekarang
+        </BButton>
+      </CContainer>
+    </>
   );
 };
 
@@ -143,27 +207,7 @@ const ContactPage = () => {
                 <P color={"fg.subtle"}>{contents?.[65]}</P>
               </EditableContentContainer>
 
-              <ContactForm />
-
-              <CContainer gap={2}>
-                <EditableContentContainer
-                  contentId={66}
-                  content={contents?.[66]}
-                >
-                  <P>{contents?.[66]}</P>
-                </EditableContentContainer>
-
-                <EditableContentContainer
-                  contentId={67}
-                  content={contents?.[67]}
-                >
-                  <P>{contents?.[67]}</P>
-                </EditableContentContainer>
-
-                <BButton colorPalette={"p"} mt={4}>
-                  Kirim Sekarang
-                </BButton>
-              </CContainer>
+              <ContactForm contents={contents} />
             </CContainer>
 
             <CContainer w={["full", null, "40%"]}>

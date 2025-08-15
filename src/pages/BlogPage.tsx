@@ -10,7 +10,6 @@ import BlogItem from "@/components/widget/BlogItem";
 import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
 import PaginationControl from "@/components/widget/PaginationControl";
-import { DUMMY_CONTENTS } from "@/constants/dummy";
 import { Interface__Blog } from "@/constants/interfaces";
 import { R_SPACING } from "@/constants/sizes";
 import useContents from "@/context/useContents";
@@ -22,13 +21,15 @@ import { useState } from "react";
 
 const BlogList = (props: any) => {
   // Props
-  const { ...restProps } = props;
+  const { filterConfig, ...restProps } = props;
 
   const { error, loading, data, pagination, page, setPage, makeRequest } =
     useDataState<any>({
-      initialData: DUMMY_CONTENTS?.blogs,
-      url: ``,
-      dependencies: [],
+      url: `/api/mamura/index-blog`,
+      payload: {
+        search: filterConfig?.search,
+      },
+      dependencies: [filterConfig],
     });
 
   const render = {

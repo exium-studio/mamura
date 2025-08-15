@@ -167,9 +167,11 @@ const JobVacancy = (props: any) => {
 
   return (
     <CContainer py={["32px", null, "80px"]} gap={8}>
-      <Heading2 fontSize={"3xl"} fontWeight={"bold"}>
-        {contents?.[61]}
-      </Heading2>
+      <EditableContentContainer contentId={61} content={contents?.[61]}>
+        <Heading2 fontSize={"3xl"} fontWeight={"bold"}>
+          {contents?.[61]}
+        </Heading2>
+      </EditableContentContainer>
 
       <SimpleGrid columns={[1, null, 3]} gap={4}>
         <CContainer gap={2}>

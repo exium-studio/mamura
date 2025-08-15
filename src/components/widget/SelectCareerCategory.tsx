@@ -9,7 +9,7 @@ const SelectCareerCategory = (props: Props) => {
 
   // Hooks
   const { req } = useRequest({
-    id: "select_workspace_category",
+    id: "select_career_category",
     showLoadingToast: false,
     showSuccessToast: false,
   });
@@ -29,9 +29,9 @@ const SelectCareerCategory = (props: Props) => {
       config,
       onResolve: {
         onSuccess: (r) => {
-          const newOptions = r?.data?.data?.data?.map((item: any) => ({
+          const newOptions = r?.data?.data?.map((item: any) => ({
             id: item?.id,
-            label: `${item?.label}`,
+            label: `${item?.name}`,
           }));
           setOptions(newOptions);
         },

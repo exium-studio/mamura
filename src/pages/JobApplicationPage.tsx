@@ -114,7 +114,7 @@ const JobAplicationForm = () => {
   );
 };
 
-const CareerApplicationPage = () => {
+const JobApplicationPage = () => {
   // Contexts
   const activeCareer = useActiveCareer((s) => s.activeCareer);
 
@@ -150,7 +150,7 @@ const CareerApplicationPage = () => {
         {activeCareer && (
           <CContainer mt={6}>
             <Stack flexDir={["column", null, "row"]}>
-              <CContainer w={"30%"} gap={4}>
+              <CContainer w={["full", null, "30%"]} gap={4}>
                 <HStack gap={4}>
                   <Avatar
                     name={activeCareer?.carrier_category?.name}
@@ -198,7 +198,7 @@ const CareerApplicationPage = () => {
                 </CContainer>
               </CContainer>
 
-              <CContainer w={"70%"} gap={8}>
+              <CContainer w={["full", null, "70%"]} gap={8}>
                 <P>KIRIMKAN LAMARAN ANDA</P>
 
                 <JobAplicationForm />
@@ -211,4 +211,4 @@ const CareerApplicationPage = () => {
   );
 };
 
-export default CareerApplicationPage;
+export default JobApplicationPage;

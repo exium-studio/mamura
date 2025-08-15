@@ -9,7 +9,7 @@ const SelectEmployeeStatus = (props: Props) => {
 
   // Hooks
   const { req } = useRequest({
-    id: "select_workspace_category",
+    id: "select_employee_status",
     showLoadingToast: false,
     showSuccessToast: false,
   });
@@ -29,9 +29,9 @@ const SelectEmployeeStatus = (props: Props) => {
       config,
       onResolve: {
         onSuccess: (r) => {
-          const newOptions = r?.data?.data?.data?.map((item: any) => ({
+          const newOptions = r?.data?.data?.map((item: any) => ({
             id: item?.id,
-            label: `${item?.label}`,
+            label: `${item?.name}`,
           }));
           setOptions(newOptions);
         },
@@ -39,7 +39,7 @@ const SelectEmployeeStatus = (props: Props) => {
     });
   }
 
-  return <SelectInput title={"Kategori"} fetch={fetch} {...restProps} />;
+  return <SelectInput title={"Status Karyawan"} fetch={fetch} {...restProps} />;
 };
 
 export default SelectEmployeeStatus;

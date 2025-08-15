@@ -278,7 +278,7 @@ const SelectInput = ({
             mr={"1px"}
           >
             {fl && (
-              <HStack position={"sticky"} top={"0"} bg={"body"} zIndex={2}>
+              <HStack bg={"body"} zIndex={2}>
                 <SearchInput
                   onChangeSetter={(inputValue) => {
                     setSearch(inputValue);

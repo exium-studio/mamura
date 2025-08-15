@@ -26,7 +26,7 @@ const HomeBlogs = (props: any) => {
   const px = sw < 1440 ? R_SPACING : "calc((100vw - 1440px + 64px) / 2)";
 
   return (
-    <CContainer py={"80px"} gap={8}>
+    <CContainer py={["32px", null, "80px"]} gap={8}>
       <Container>
         <HStack justify={"space-between"} wrap={"wrap"} gap={4}>
           <EditableContentContainer contentId={41} content={contents?.[41]}>

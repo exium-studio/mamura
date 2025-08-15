@@ -12,10 +12,18 @@ import HomePromo from "./sections/HomePromo";
 import HomeStats from "./sections/HomeStats";
 
 const HomePage = () => {
-  // Props
-  const data = useContents((s) => s.data);
-
+  // Hooks
   useHashlinkToView({});
+
+  // Context
+  const allContents = useContents((s) => s.data);
+
+  // States
+  const contents = allContents?.contents;
+  const promo = allContents?.promo;
+  const pricing = allContents?.pricing;
+  const faqs = allContents?.faqs;
+  const blogs = allContents?.blogs;
 
   // const HomeStats = lazy(() => import("./sections/HomeStats"));
   // const HomePromo = lazy(() => import("./sections/HomePromo"));
@@ -26,13 +34,6 @@ const HomePage = () => {
   // const HomeFaqs = lazy(() => import("./sections/HomeFaqs"));
   // const HomeBlogs = lazy(() => import("./sections/HomeBlogs"));
   // const Footer = lazy(() => import("./sections/Footer"));
-
-  // States
-  const contents = data?.contents;
-  const promo = data?.promo;
-  const pricing = data?.pricing;
-  const faqs = data?.faqs;
-  const blogs = data?.blogs;
 
   return (
     <CContainer overflowX={"clip"} minH={"100vh"}>

@@ -325,7 +325,7 @@ const NavContainer = (props: any) => {
       {/* Sm screen nav */}
       {iss && (
         <HStack
-          h={"80px"}
+          h={["32px", null, "80px"]}
           justify={"space-around"}
           pt={1}
           pb={6}

@@ -239,7 +239,7 @@ const Hero = () => {
 
       <CContainer
         zIndex={3}
-        h={"80px"}
+        h={["32px", null, "80px"]}
         borderRadius={"30px 30px 0 0"}
         bg={"white"}
         mb={"-1px"}

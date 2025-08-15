@@ -236,7 +236,7 @@ const SelectInput = ({
                     ml={1}
                     w={"full"}
                     fontWeight={"semibold"}
-                    pr={"80px"}
+                    pr={["32px", null, "80px"]}
                     lineClamp={1}
                   >{`${
                     title

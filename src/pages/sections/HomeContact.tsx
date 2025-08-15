@@ -17,7 +17,7 @@ const HomeContact = (props: any) => {
   const { contents } = props;
 
   return (
-    <CContainer py={"80px"}>
+    <CContainer py={["32px", null, "80px"]}>
       <Container>
         <SimpleGrid
           columns={[1, null, 2]}

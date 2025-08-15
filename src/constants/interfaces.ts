@@ -16,6 +16,30 @@ import {
   Type__TimeRange,
 } from "./types";
 
+// Careers
+export interface Interface__Career extends Interface__CUD {
+  id: number;
+  carrier_category: Interface__CareerCategory;
+  employee_status: Interface__EmployeeStatus;
+  job_location: Interface__JobLocation;
+  qualification: string[];
+}
+export interface Interface__CareerCategory extends Interface__CUD {
+  id: number;
+  name: string;
+  description: string;
+}
+export interface Interface__EmployeeStatus extends Interface__CUD {
+  id: number;
+  name: string;
+  description: string;
+}
+export interface Interface__JobLocation extends Interface__CUD {
+  id: number;
+  name: string;
+  description: string;
+}
+
 // CUD
 export interface Interface__CUD {
   created_at?: string;

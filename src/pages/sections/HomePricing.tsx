@@ -82,7 +82,7 @@ const HomePricing = (props: any) => {
   );
 
   return (
-    <CContainer id="pricing" py={"80px"}>
+    <CContainer id="pricing" py={["32px", null, "80px"]}>
       <Container gap={8} align={"center"}>
         <CContainer gap={2} align={"center"}>
           <EditableContentContainer contentId={14} content={contents?.[14]}>

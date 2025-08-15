@@ -72,11 +72,17 @@ const Footer = (props: any) => {
             </P>
 
             <CContainer gap={2}>
-              <P opacity={0.8}>{contents?.[43]}</P>
+              <EditableContentContainer contentId={43} content={contents?.[43]}>
+                <P opacity={0.8}>{contents?.[43]}</P>
+              </EditableContentContainer>
 
-              <P opacity={0.8}>{contents?.[44]}</P>
+              <EditableContentContainer contentId={44} content={contents?.[44]}>
+                <P opacity={0.8}>{contents?.[44]}</P>
+              </EditableContentContainer>
 
-              <P opacity={0.8}>{contents?.[45]}</P>
+              <EditableContentContainer contentId={45} content={contents?.[45]}>
+                <P opacity={0.8}>{contents?.[45]}</P>
+              </EditableContentContainer>
             </CContainer>
           </CContainer>
         </HStack>

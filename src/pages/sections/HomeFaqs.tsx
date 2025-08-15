@@ -47,7 +47,7 @@ const HomeFaqs = (props: any) => {
   const { contents, faqs } = props;
 
   return (
-    <CContainer py={"80px"}>
+    <CContainer py={["32px", null, "80px"]}>
       <Container>
         <Stack flexDir={["column", null, "row"]} gap={8}>
           <CContainer w={["full", null, "40%"]} gap={4}>

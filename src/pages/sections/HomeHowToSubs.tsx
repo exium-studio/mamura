@@ -27,7 +27,7 @@ const HomeHowToSubs = (props: any) => {
   const { contents } = props;
 
   return (
-    <CContainer py={"80px"}>
+    <CContainer py={["32px", null, "80px"]}>
       <Container>
         <CContainer
           borderRadius={"0 30px 0 30px"}

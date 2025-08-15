@@ -3,6 +3,7 @@ import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
 import P from "@/components/ui-custom/P";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import { R_SPACING } from "@/constants/sizes";
 import { Container, HStack, Icon, Stack } from "@chakra-ui/react";
 import { IconSparkles } from "@tabler/icons-react";
 
@@ -28,10 +29,14 @@ const HomeAbout = (props: any) => {
   const { contents } = props;
 
   return (
-    <CContainer id="about" py={"80px"}>
+    <CContainer id="about" py={["32px", null, "80px"]}>
       <Container>
-        <Stack flexDir={["column", null, "row"]} gap={8}>
-          <CContainer w={["full", null, "40%"]}>
+        <Stack
+          flexDir={["column", null, "row"]}
+          gap={R_SPACING}
+          align={"center"}
+        >
+          <CContainer w={["full", null, "30%"]}>
             <EditableContentContainer
               contentId={24}
               content={contents?.[24]}
@@ -45,7 +50,7 @@ const HomeAbout = (props: any) => {
             </EditableContentContainer>
           </CContainer>
 
-          <CContainer gap={4} w={["full", null, "60%"]}>
+          <CContainer gap={4} w={["full", null, "70%"]}>
             <EditableContentContainer contentId={25} content={contents?.[25]}>
               <Heading2 fontSize={"3xl"} fontWeight={"bold"}>
                 {contents?.[25]}

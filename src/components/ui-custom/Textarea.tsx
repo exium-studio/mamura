@@ -47,7 +47,7 @@ export default function Textarea({
   return (
     <ChakraTextarea
       ref={textareaRef}
-      minH={"80px"}
+      minH={["32px", null, "80px"]}
       name={name}
       borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
       fontWeight={"medium"}

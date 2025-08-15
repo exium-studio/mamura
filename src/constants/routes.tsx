@@ -1,10 +1,11 @@
 import AdminRootPage from "@/pages/_admin/AdminRootPage";
 import DashboardPage from "@/pages/_admin/DashboardPage";
 import MasterDataPage from "@/pages/_admin/MasterDataPage";
-import TransactionPage from "@/pages/_admin/TransactionPage";
-import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
-import HomePage from "@/pages/HomePage";
 import BlogPage from "@/pages/BlogPage";
+import CareerPage from "@/pages/CareerPage";
+import ContactPage from "@/pages/ContactPage";
+import HomePage from "@/pages/HomePage";
+import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
@@ -16,6 +17,21 @@ export const LP_ROUTES: Interface__Route[] = [
     path: "/blog",
     activePath: "/blog",
     element: <BlogPage />,
+  },
+  {
+    path: "/blog/:slug",
+    activePath: "/blog",
+    element: <BlogPage />,
+  },
+  {
+    path: "/karir",
+    activePath: "/karir",
+    element: <CareerPage />,
+  },
+  {
+    path: "/kontak",
+    activePath: "/kontak",
+    element: <ContactPage />,
   },
 ];
 
@@ -33,12 +49,6 @@ export const ADMIN_PRIVATE_ROUTES: Interface__PrivateRoute[] = [
     activePath: "/dashboard",
     titleKey: "navs.dashboard",
     element: <DashboardPage />,
-  },
-  {
-    path: "/admin/transaction",
-    activePath: "/transaction",
-    titleKey: "navs.transaction",
-    element: <TransactionPage />,
   },
 
   // Master Data

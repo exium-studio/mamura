@@ -58,6 +58,7 @@ export const DUMMY_CONTENTS = {
     59: "Dampak Nyata - Jadi bagian dari solusi yang berdampak bagi banyak orang.",
     60: "Kami hadir untuk menjawab kebutuhan internet Anda, mulai dari keluarga kecil hingga perusahaan besar.",
     61: "Posisi yang Sedang Dibuka",
+    62: "Daftar Karir",
   },
   promo: [
     {

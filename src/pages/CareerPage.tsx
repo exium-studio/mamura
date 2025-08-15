@@ -209,9 +209,11 @@ const JobVacancy = (props: any) => {
       </SimpleGrid>
 
       <CContainer gap={4}>
-        <P fontSize={"xl"} fontWeight={"bold"}>
-          Daftar Karir
-        </P>
+        <EditableContentContainer contentId={62} content={contents?.[62]}>
+          <P fontSize={"xl"} fontWeight={"bold"}>
+            {contents?.[62]}
+          </P>
+        </EditableContentContainer>
 
         {loading && render.loading}
         {!loading && (

@@ -51,7 +51,6 @@ const WhyItem = (props: any) => {
     </HStack>
   );
 };
-
 const JobList = (props: { jobs: Interface__Career[] }) => {
   const { jobs } = props;
 
@@ -123,7 +122,6 @@ const JobList = (props: { jobs: Interface__Career[] }) => {
     </AccordionRoot>
   );
 };
-
 const JobVacancy = (props: any) => {
   // Props
   const { contents } = props;

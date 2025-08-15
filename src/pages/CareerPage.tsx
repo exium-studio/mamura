@@ -19,7 +19,6 @@ import EditableContentContainer from "@/components/widget/EditableContentContain
 import SelectCareerCategory from "@/components/widget/SelectCareerCategory";
 import SelectEmployeeStatus from "@/components/widget/SelectEmployeeStatus";
 import SelectJobLocation from "@/components/widget/SelectJobLocation";
-import { DUMMY_CAREERS } from "@/constants/dummy";
 import { Interface__Career } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import { R_SPACING } from "@/constants/sizes";
@@ -147,16 +146,14 @@ const JobVacancy = (props: any) => {
     job_location: undefined,
   });
   const { error, loading, data, makeRequest } = useDataState<any>({
-    // TODO
-    initialData: DUMMY_CAREERS?.data?.data,
-    // url: `/api/mamura/index-carrier`,
+    url: `/api/mamura/index-carrier`,
     payload: {
       carrier_category: [filterConfig?.carrier_category?.[0]?.id],
       employee_status: [filterConfig?.employee_status?.[0]?.id],
       job_location: [filterConfig?.job_location?.[0]?.id],
     },
     initialLimit: Infinity,
-    dependencies: [],
+    dependencies: [filterConfig],
   });
   const render = {
     loading: <ComponentSpinner />,

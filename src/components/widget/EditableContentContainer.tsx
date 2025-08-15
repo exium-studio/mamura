@@ -210,7 +210,9 @@ const EditableContentContainer = (props: Props) => {
   const { error, loading, data, makeRequest } =
     useDataState<Interface__Content>({
       initialData: DUMMY,
-      url: ``,
+      url: `/api/mamura/public-request/get-content/${contentId}`,
+      dataResource: false,
+      conditions: open,
     });
   const [hover, setHover] = useState<boolean>(false);
   const render = {

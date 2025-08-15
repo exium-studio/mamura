@@ -40,7 +40,7 @@ const ChangePasswordDisclosure = () => {
       newPassword: yup.string().required(l.required_form),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
 
       const payload = {
         id: 1,

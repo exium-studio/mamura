@@ -48,7 +48,7 @@ const ContactForm = (props: any) => {
       message: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      // console.log(values);
 
       const payload = new FormData();
       payload.append("name", values.name as string);

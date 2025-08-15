@@ -5,21 +5,16 @@ type FileValidationParams = {
   maxSizeMB?: number;
   allowedExtensions?: string[];
   min?: number;
+  checkZip?: boolean; // Menambahkan properti checkZip
 };
 
 export const fileValidation = ({
   maxSizeMB = 10,
   allowedExtensions,
-}: // min = 0,
-FileValidationParams = {}): yup.MixedSchema =>
+  checkZip = false, // Default false jika tidak ditentukan
+}: FileValidationParams = {}): yup.MixedSchema =>
   yup
     .mixed<File[]>()
-    // .test("fileRequired", "required", (value) => {
-    //   if (min > 0) {
-    //     return Array.isArray(value) && value.length >= min;
-    //   }
-    //   return true; // not required if `min = 0`
-    // })
     .test("fileType", "file required", (value) => {
       if (!Array.isArray(value) || value.length === 0) return true;
       return value.every((item) => item instanceof File);
@@ -34,16 +29,21 @@ FileValidationParams = {}): yup.MixedSchema =>
     })
     .test(
       "fileExtension",
-      `Supported extentions: ${allowedExtensions}`,
-      async (value) => {
-        if (!Array.isArray(value) || value.length === 0) return true;
-        if (allowedExtensions) {
-          return value.every((file) => {
-            const fileExtension = file.name.split(".").pop()?.toLowerCase();
-            return allowedExtensions.includes(fileExtension || "");
-          });
-        }
-        return true;
+      `Supported extensions: ${allowedExtensions?.join(", ") || "all"}`,
+      (value) => {
+        if (!value || !Array.isArray(value)) return true;
+
+        if (!allowedExtensions || allowedExtensions.length === 0) return true;
+
+        return value.every((file) => {
+          if (!file?.name) return false;
+
+          const fileExtension = file.name
+            .slice(((file.name.lastIndexOf(".") - 1) >>> 0) + 2)
+            .toLowerCase();
+
+          return allowedExtensions.includes(`${fileExtension}`);
+        });
       }
     )
     .test(
@@ -51,25 +51,33 @@ FileValidationParams = {}): yup.MixedSchema =>
       "ZIP file must contain at least one valid file",
       async (value) => {
         if (!Array.isArray(value) || value.length === 0) return true;
-        for (const file of value) {
-          if (file.name.endsWith(".zip")) {
-            try {
-              const zip = await JSZip.loadAsync(file);
-              const filesInZip = Object.keys(zip.files);
 
-              if (filesInZip.length === 0) return false; // ZIP empty
+        if (checkZip) {
+          // Cek apakah checkZip diaktifkan
+          for (const file of value) {
+            if (file.name.endsWith(".zip")) {
+              try {
+                const zip = await JSZip.loadAsync(file);
+                const filesInZip = Object.keys(zip.files);
 
-              const hasValidFile = filesInZip.some((fileName) => {
-                const fileExtension = fileName.split(".").pop()?.toLowerCase();
-                return allowedExtensions?.includes(fileExtension || "");
-              });
+                if (filesInZip.length === 0) return false; // ZIP empty
 
-              if (!hasValidFile) return false; // no match file in ZIP
-            } catch (error) {
-              return false; // ZIP corrupt
+                const hasValidFile = filesInZip.some((fileName) => {
+                  const fileExtension = fileName
+                    .split(".")
+                    .pop()
+                    ?.toLowerCase();
+                  return allowedExtensions?.includes(fileExtension || "");
+                });
+
+                if (!hasValidFile) return false; // no match file in ZIP
+              } catch (error) {
+                return false; // ZIP corrupt
+              }
             }
           }
         }
+
         return true;
       }
     );

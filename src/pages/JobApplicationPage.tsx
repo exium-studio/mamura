@@ -10,6 +10,7 @@ import { R_SPACING } from "@/constants/sizes";
 import useActiveCareer from "@/context/useActiveCareer";
 import useLang from "@/context/useLang";
 import useRequest from "@/hooks/useRequest";
+import { fileValidation } from "@/utils/validationSchemas";
 import {
   Breadcrumb,
   Container,
@@ -46,7 +47,10 @@ const JobAplicationForm = (props: any) => {
       phone_number: "",
     },
     validationSchema: yup.object().shape({
-      resume: yup.array().required(l.required_form),
+      resume: fileValidation({
+        allowedExtensions: ["pdf"],
+        maxSizeMB: 5,
+      }).required(l.required_form),
       name: yup.string().required(l.required_form),
       email: yup
         .string()
@@ -55,7 +59,7 @@ const JobAplicationForm = (props: any) => {
       phone_number: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      // console.log(values);
 
       const payload = new FormData();
       payload.append("carrier_id", `${activeCareer.id}`);
@@ -65,7 +69,7 @@ const JobAplicationForm = (props: any) => {
       payload.append("phone_number", values.phone_number as string);
 
       const config = {
-        url: `/api/mamura/job-application`,
+        url: `/api/mamura/create-job-application`,
         method: "POST",
         data: payload,
       };
@@ -74,6 +78,7 @@ const JobAplicationForm = (props: any) => {
         config,
         onResolve: {
           onSuccess: () => {
+            formik.setFieldValue("resume", undefined);
             resetForm();
           },
         },
@@ -95,6 +100,8 @@ const JobAplicationForm = (props: any) => {
               formik.setFieldValue("resume", input);
             }}
             inputValue={formik.values.resume}
+            maxFileSize={5}
+            accept=".pdf"
           />
         </Field>
 

@@ -20,7 +20,8 @@ const LPContainer = (props: any) => {
   // States
   const { error, loading, data, makeRequest } = useDataState<any>({
     initialData: DUMMY_CONTENTS,
-    url: ``,
+    url: `/api/mamura/public-request/get-all-content`,
+    dataResource: false,
   });
   const render = {
     loading: <ComponentSpinner />,

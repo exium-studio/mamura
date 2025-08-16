@@ -41,8 +41,10 @@ const HomeAbout = (props: any) => {
               contentId={24}
               content={contents?.[24]}
               fileInput
+              w={"full"}
             >
               <Img
+                w={"full"}
                 key={contents?.[24]}
                 src={contents?.[24]}
                 alt={contents?.[24]}

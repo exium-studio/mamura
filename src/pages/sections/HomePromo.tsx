@@ -110,15 +110,16 @@ const HomePromo = (props: any) => {
           scrollSnapType={"x mandatory"}
           aspectRatio={16 / 9}
         >
-          <HStack w={"max"}>
+          <HStack w={"max"} h={"full"} align={"stretch"}>
             {promo?.map((p: any) => {
               return (
                 <Img
-                  key={`${p.image?.id}${p.image?.file_url}`}
-                  src={p.image?.file_url}
-                  alt={p.image?.file_name}
+                  key={`${p.image?.[0]?.id}${p.image?.[0]?.file_url}`}
+                  src={p.image?.[0]?.file_url}
+                  alt={p.image?.[0]?.file_name}
                   aspectRatio={16 / 9}
                   scrollSnapAlign={"center"}
+                  h={"full"}
                   maxW={[
                     "calc(100vw)",
                     null,

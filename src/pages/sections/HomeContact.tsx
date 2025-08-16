@@ -30,7 +30,7 @@ const HomeContact = (props: any) => {
           bgPos={"center"}
           bgSize={"cover"}
         >
-          <CContainer gap={4} py={8}>
+          <CContainer gap={4} py={8} justify={"center"}>
             <EditableContentContainer contentId={31} content={contents?.[31]}>
               <Heading2 fontSize={"2xl"} fontWeight={"bold"}>
                 {contents?.[31]}
@@ -80,6 +80,7 @@ const HomeContact = (props: any) => {
               contentId={37}
               content={contents?.[37]}
               fileInput
+              w={"full"}
             >
               <Img
                 key={contents?.[37]}

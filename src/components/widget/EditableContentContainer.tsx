@@ -57,7 +57,9 @@ const ContentEditor = (props: any) => {
       file: [] as any,
       deleted_file: [] as any,
     },
-    validationSchema: yup.object().shape({}),
+    validationSchema: yup.object().shape({
+      content: yup.string().required("Konten harus diisi"),
+    }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
 

@@ -5,6 +5,7 @@ import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
 import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import SimplePopover from "@/components/widget/SimplePopover";
 import formatNumber from "@/utils/formatNumber";
 import { Box, Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -24,7 +25,7 @@ const PricingItem = (props: any) => {
         h={"fit"}
         mt={"auto"}
       >
-        {pricing?.is_recommended && (
+        {!!pricing?.is_recommended && (
           <CContainer bg={"s.500"} p={2} borderRadius={16}>
             <P color={"dark"} fontWeight={"bold"}>
               Rekomendasi untuk Anda
@@ -36,21 +37,30 @@ const PricingItem = (props: any) => {
           <P>{`${pricing?.name}`}</P>
 
           <HStack align={"end"}>
-            <P
-              fontSize={"4xl"}
-              fontWeight={"bold"}
-              lineHeight={1}
-            >{`${formatNumber(pricing?.speed)}`}</P>
+            <SimplePopover
+              content={<P>{`${formatNumber(pricing?.internet_speed)}`}</P>}
+            >
+              <P
+                fontSize={"4xl"}
+                fontWeight={"bold"}
+                lineHeight={1}
+                lineClamp={1}
+              >{`${formatNumber(pricing?.internet_speed)}`}</P>
+            </SimplePopover>
 
-            <P>Mbps</P>
+            <P flexShrink={0}>Mbps</P>
           </HStack>
         </CContainer>
 
         <CContainer bg={"p.700"} p={2} borderRadius={16}>
           <HStack align={"end"}>
-            <P fontWeight={"semibold"}>{`Rp ${formatNumber(
-              pricing?.price
-            )}`}</P>
+            <SimplePopover
+              content={<P>{`Rp ${formatNumber(pricing?.price)}`}</P>}
+            >
+              <P fontWeight={"semibold"} lineClamp={1}>{`Rp ${formatNumber(
+                pricing?.price
+              )}`}</P>
+            </SimplePopover>
 
             <P fontSize={"xs"}>/Bulan</P>
           </HStack>
@@ -77,8 +87,8 @@ const HomePricing = (props: any) => {
   const { contents, pricing } = props;
 
   // States
-  const [pricingCategory, setPricingCategory] = useState<"home" | "bussiness">(
-    "home"
+  const [pricingCategory, setPricingCategory] = useState<"Home" | "Business">(
+    "Home"
   );
 
   return (
@@ -112,7 +122,7 @@ const HomePricing = (props: any) => {
               borderRadius={"full"}
               pos={"absolute"}
               left={
-                pricingCategory === "home" ? "4px" : ["154px", null, "184px"]
+                pricingCategory === "Home" ? "4px" : ["154px", null, "184px"]
               }
               transition={"200ms"}
               zIndex={1}
@@ -122,12 +132,12 @@ const HomePricing = (props: any) => {
               w={["150px", null, "180px"]}
               cursor={"pointer"}
               onClick={() => {
-                setPricingCategory("home");
+                setPricingCategory("Home");
               }}
               zIndex={2}
             >
               <P
-                color={pricingCategory === "home" ? "white" : "fg.subtle"}
+                color={pricingCategory === "Home" ? "white" : "fg.subtle"}
                 transition={"200ms"}
               >
                 Kebutuhan Rumah
@@ -138,12 +148,12 @@ const HomePricing = (props: any) => {
               w={["150px", null, "180px"]}
               cursor={"pointer"}
               onClick={() => {
-                setPricingCategory("bussiness");
+                setPricingCategory("Business");
               }}
               zIndex={2}
             >
               <P
-                color={pricingCategory === "bussiness" ? "white" : "fg.subtle"}
+                color={pricingCategory === "Business" ? "white" : "fg.subtle"}
                 transition={"200ms"}
               >
                 Kebutuhan Bisnis

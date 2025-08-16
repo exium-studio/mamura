@@ -4,11 +4,11 @@ import useRenderTrigger from "@/context/useRenderTrigger";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
-import { CONTENT_TYPES } from "@/static/selectOptions";
 import empty from "@/utils/empty";
 import { SimpleGrid, StackProps, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import * as yup from "yup";
 import BackButton from "../ui-custom/BackButton";
 import BButton from "../ui-custom/BButton";
@@ -38,7 +38,7 @@ interface Props extends Omit<StackProps, "content"> {
 
 const ContentEditor = (props: any) => {
   // Props
-  const { contentId, content, fileInput } = props;
+  const { contentId, data, content, fileInput } = props;
 
   // Hooks
   const { req } = useRequest({
@@ -66,6 +66,17 @@ const ContentEditor = (props: any) => {
       const payload = new FormData();
       payload.append("_method", "patch");
       payload.append("content", values.content as string);
+      payload.append("content_type_id", data.content_type.id);
+      if (values.file.length > 0) {
+        values.file.forEach((file: any) => {
+          payload.append(`content_file_id[]`, file);
+        });
+      }
+      if (values.deleted_file.length > 0) {
+        values.deleted_file.forEach((file: any) => {
+          payload.append(`delete_content_file_ids[]`, file.id);
+        });
+      }
 
       const config = {
         url: `/api/mamura/admin/content/${contentId}`,
@@ -195,23 +206,22 @@ const EditableContentContainer = (props: Props) => {
     ...restProps
   } = props;
 
-  //! DEBUG
-  const DUMMY = {
-    id: 0,
-    content: content,
-    content_type: CONTENT_TYPES[0],
-    content_file: [] as any,
-  };
-
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(`edit-content-${contentId}`, open, onOpen, onClose);
+  const [searchParams] = useSearchParams();
+  const cms = searchParams.get("cms");
+
+  useEffect(() => {
+    if (cms) {
+      localStorage.setItem("__authToken", cms);
+    }
+  }, [cms]);
 
   // States
-  const cmsActive = true;
+  const cmsActive = !!cms;
   const { error, loading, data, makeRequest } =
     useDataState<Interface__Content>({
-      initialData: DUMMY,
       url: `/api/mamura/public-request/get-content/${contentId}`,
       dataResource: false,
       conditions: open,
@@ -237,6 +247,7 @@ const EditableContentContainer = (props: Props) => {
           contentId={contentId}
           content={content}
           fileInput={fileInput}
+          data={data}
         />
       </CContainer>
     ),

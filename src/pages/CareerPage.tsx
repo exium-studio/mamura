@@ -302,6 +302,7 @@ const CareerPage = () => {
                 contentId={54}
                 content={contents?.[54]}
                 fileInput
+                w={"full"}
               >
                 <Img
                   key={contents?.[54]}

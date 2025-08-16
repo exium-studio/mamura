@@ -7,7 +7,8 @@ import { IconEye, IconShare } from "@tabler/icons-react";
 import BButton from "../ui-custom/BButton";
 import Img from "../ui-custom/Img";
 import P from "../ui-custom/P";
-import { Link } from "react-router-dom";
+import NavLink from "../ui-custom/NavLink";
+import { handleShareBlog } from "@/utils/handleShare";
 
 interface Props extends StackProps {
   blog: Interface__Blog;
@@ -18,7 +19,7 @@ const BlogItem = (props: Props) => {
   const { blog, ...restProps } = props;
 
   return (
-    <Link to={`/blog/${blog?.slug}`}>
+    <NavLink to={`/blog/${blog?.slug}`}>
       <CContainer
         bg={"d1"}
         borderRadius={16}
@@ -34,10 +35,10 @@ const BlogItem = (props: Props) => {
           borderRadius={16}
         />
 
-        <CContainer p={5} gap={4}>
+        <CContainer p={5} gap={4} flex={1}>
           <HStack justify={"space-between"}>
             <Badge colorPalette={"orange"} p={2} px={4} borderRadius={"full"}>
-              News
+              {blog?.blog_category?.name}
             </Badge>
 
             <P>{`${formatDate(blog?.updated_at)}`}</P>
@@ -51,12 +52,12 @@ const BlogItem = (props: Props) => {
             {blog?.description}
           </P>
 
-          <HStack wrap={"wrap"} gapX={4}>
+          <HStack wrap={"wrap"} gapX={4} mt={"auto"}>
             <HStack>
               <Icon boxSize={"18px"}>
                 <IconEye stroke={1.5} />
               </Icon>
-              <P color={"fg.muted"}>{`${formatCount(blog?.views)} Likes`}</P>
+              <P color={"fg.muted"}>{`${formatCount(blog?.views)} Dilihat`}</P>
             </HStack>
 
             <BButton
@@ -65,6 +66,7 @@ const BlogItem = (props: Props) => {
               fontWeight={"normal"}
               onClick={(e) => {
                 e.stopPropagation();
+                handleShareBlog(blog);
               }}
             >
               <Icon boxSize={4}>
@@ -75,7 +77,7 @@ const BlogItem = (props: Props) => {
           </HStack>
         </CContainer>
       </CContainer>
-    </Link>
+    </NavLink>
   );
 };
 

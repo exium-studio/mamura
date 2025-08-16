@@ -76,6 +76,7 @@ export interface Interface__Blog extends Interface__CUD {
   slug: string;
   title: string;
   description: string;
+  blog_content: string;
   blog_category: Interface__BlogCategory;
   views: number;
 }

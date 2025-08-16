@@ -7,6 +7,7 @@ import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import JobApplicationPage from "@/pages/JobApplicationPage";
+import BlogDetailPage from "@/pages/BlogDetailPage";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
@@ -22,7 +23,7 @@ export const LP_ROUTES: Interface__Route[] = [
   {
     path: "/blog/:slug",
     activePath: "/blog",
-    element: <BlogPage />,
+    element: <BlogDetailPage />,
   },
   {
     path: "/karir",

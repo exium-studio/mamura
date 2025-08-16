@@ -217,7 +217,12 @@ const ContactPage = () => {
                 fileInput
                 w={"full"}
               >
-                <Img src={contents?.[63]} w={"full"} />
+                <Img
+                  key={contents?.[24]}
+                  src={contents?.[63]}
+                  alt={contents?.[63]}
+                  w={"full"}
+                />
               </EditableContentContainer>
             </CContainer>
           </Stack>

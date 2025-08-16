@@ -23,14 +23,21 @@ const BlogList = (props: any) => {
   // Props
   const { filterConfig, ...restProps } = props;
 
-  const { error, loading, data, pagination, page, setPage, makeRequest } =
-    useDataState<any>({
-      url: `/api/mamura/index-blog`,
-      payload: {
-        search: filterConfig?.search,
-      },
-      dependencies: [filterConfig],
-    });
+  const {
+    error,
+    initialLoading,
+    data,
+    pagination,
+    page,
+    setPage,
+    makeRequest,
+  } = useDataState<any>({
+    url: `/api/mamura/index-blog`,
+    payload: {
+      search: filterConfig?.search,
+    },
+    dependencies: [filterConfig],
+  });
 
   const render = {
     loading: <ComponentSpinner />,
@@ -40,7 +47,7 @@ const BlogList = (props: any) => {
       <>
         <SimpleGrid columns={[1, 2, 3]} gap={4} {...restProps}>
           {data?.map((blog: Interface__Blog) => {
-            return <BlogItem key={blog?.id} blog={blog} />;
+            return <BlogItem key={blog?.id} blog={blog} h={"full"} />;
           })}
         </SimpleGrid>
 
@@ -55,8 +62,8 @@ const BlogList = (props: any) => {
 
   return (
     <>
-      {loading && render.loading}
-      {!loading && (
+      {initialLoading && render.loading}
+      {!initialLoading && (
         <>
           {error && render.error}
           {!error && (
@@ -82,8 +89,8 @@ const BlogPage = () => {
   });
 
   return (
-    <CContainer py={R_SPACING}>
-      <Container gap={4}>
+    <CContainer py={R_SPACING} flex={1}>
+      <Container gap={4} flex={1}>
         <Breadcrumb.Root>
           <Breadcrumb.List>
             <Breadcrumb.Item>

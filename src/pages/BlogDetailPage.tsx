@@ -181,7 +181,7 @@ const BlogDetail = (props: BlogDetailProps) => {
             <Breadcrumb.Separator />
 
             <Breadcrumb.Item>
-              <NavLink to="/">
+              <NavLink to="/blog">
                 <Breadcrumb.Link>{contents?.[51]}</Breadcrumb.Link>
               </NavLink>
             </Breadcrumb.Item>

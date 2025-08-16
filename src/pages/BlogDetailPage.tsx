@@ -57,7 +57,7 @@ const OtherBlogs = (props: any) => {
   const { error, initialLoading, data, makeRequest } = useDataState<
     Interface__Blog[]
   >({
-    url: `/api/mamura/public-request/get-blog-random/${currentBlog.id}`,
+    url: `/api/mamura/public-request/get-blog-news/${currentBlog.id}`,
     dependencies: [],
   });
   const render = {

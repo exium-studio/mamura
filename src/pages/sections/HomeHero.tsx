@@ -17,19 +17,13 @@ import P from "@/components/ui-custom/P";
 import SearchInput from "@/components/ui-custom/SearchInput";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
 import HeroEarth from "@/components/widget/HeroEarth";
+import useContents from "@/context/useContents";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import empty from "@/utils/empty";
 import scrollToView from "@/utils/scrollToView";
 import { Container, HStack, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-
-const DUMMY = {
-  2: "Pilihan Tepat, ",
-  3: "Wifi Tepat",
-  4: "Nikmati internet fiber cepat, stabil, dan hemat untuk rumah & usaha Anda. Mamura - Solusi Wifi Murah, Cepat, dan Handal.",
-  5: "Cek Jangkauan Area Anda Sekarang!",
-};
 
 const CoverageCheck = () => {
   // Hooks
@@ -153,57 +147,11 @@ const CTA = (props: any) => {
 };
 
 const Hero = () => {
+  // Contexts
+  const allContents = useContents((s) => s.data);
+
   // States
-  const { error, loading, data, makeRequest } = useDataState<any>({
-    // TODO get hero content
-    initialData: DUMMY,
-    url: ``,
-  });
-  const contents = data;
-  const render = {
-    loading: <ComponentSpinner />,
-    error: <FeedbackRetry onRetry={makeRequest} />,
-    empty: <FeedbackNoData />,
-    loaded: (
-      <CContainer gap={4} align={"center"}>
-        <HStack wrap={"wrap"} gapY={0} justify={"center"}>
-          <EditableContentContainer contentId={2} content={contents?.[2]}>
-            <Heading1
-              fontWeight={"bold"}
-              textAlign={"center"}
-              pointerEvents={"auto"}
-            >
-              {contents?.[2]}
-            </Heading1>
-          </EditableContentContainer>
-
-          <EditableContentContainer contentId={3} content={contents?.[3]}>
-            <Heading1
-              fontWeight={"bold"}
-              textAlign={"center"}
-              color={"s.500"}
-              pointerEvents={"auto"}
-            >
-              {contents?.[3]}
-            </Heading1>
-          </EditableContentContainer>
-        </HStack>
-
-        <EditableContentContainer contentId={4} content={contents?.[4]}>
-          <P
-            textAlign={"center"}
-            maxW={"600px"}
-            opacity={0.6}
-            pointerEvents={"auto"}
-          >
-            {`${contents?.[4]}`}
-          </P>
-        </EditableContentContainer>
-
-        <CTA contents={contents} mt={4} />
-      </CContainer>
-    ),
-  };
+  const contents = allContents?.contents;
 
   return (
     <CContainer
@@ -215,18 +163,43 @@ const Hero = () => {
       overflow={"clip"}
     >
       <Container py={["32px", null, "100px"]} zIndex={2} pointerEvents={"none"}>
-        {loading && render.loading}
-        {!loading && (
-          <>
-            {error && render.error}
-            {!error && (
-              <>
-                {data && render.loaded}
-                {(!data || empty(data)) && render.empty}
-              </>
-            )}
-          </>
-        )}
+        <CContainer gap={4} align={"center"}>
+          <HStack wrap={"wrap"} gapY={0} justify={"center"}>
+            <EditableContentContainer contentId={2} content={contents?.[2]}>
+              <Heading1
+                fontWeight={"bold"}
+                textAlign={"center"}
+                pointerEvents={"auto"}
+              >
+                {contents?.[2]}
+              </Heading1>
+            </EditableContentContainer>
+
+            <EditableContentContainer contentId={3} content={contents?.[3]}>
+              <Heading1
+                fontWeight={"bold"}
+                textAlign={"center"}
+                color={"s.500"}
+                pointerEvents={"auto"}
+              >
+                {contents?.[3]}
+              </Heading1>
+            </EditableContentContainer>
+          </HStack>
+
+          <EditableContentContainer contentId={4} content={contents?.[4]}>
+            <P
+              textAlign={"center"}
+              maxW={"600px"}
+              opacity={0.6}
+              pointerEvents={"auto"}
+            >
+              {`${contents?.[4]}`}
+            </P>
+          </EditableContentContainer>
+
+          <CTA contents={contents} mt={4} />
+        </CContainer>
       </Container>
 
       <CContainer

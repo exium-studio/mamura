@@ -2,6 +2,10 @@ import { IMAGES_PATH } from "./paths";
 
 export const DUMMY_CONTENTS = {
   contents: {
+    2: "Pilihan Tepat, ",
+    3: "Wifi Tepat",
+    4: "Nikmati internet fiber cepat, stabil, dan hemat untuk rumah & usaha Anda. Mamura - Solusi Wifi Murah, Cepat, dan Handal.",
+    5: "Cek Jangkauan Area Anda Sekarang!",
     6: "Pilihan Tepat untuk Wifi Hemat Tanpa Drama",
     7: "100%",
     8: "Fiber Optic",

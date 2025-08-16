@@ -39,18 +39,20 @@ const CoverageCheck = () => {
   // States
   const [search, setSearch] = useState<any>("");
   const { error, loading, data, makeRequest } = useDataState<any>({
-    // TODO url coverage check
-    url: ``,
+    url: `/api/mamura/public-request/get-supported-city`,
   });
+  const filteredData = data?.filter((item: any) =>
+    item?.name?.includes(search)
+  );
   const render = {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
     loaded: (
-      <CContainer>
-        {data?.map((city: any) => {
+      <CContainer mt={2}>
+        {filteredData?.map((city: any) => {
           return (
-            <HStack>
+            <HStack px={4} py={2}>
               <P>{city?.name}</P>
             </HStack>
           );
@@ -98,8 +100,8 @@ const CoverageCheck = () => {
                 {error && render.error}
                 {!error && (
                   <>
-                    {data && render.loaded}
-                    {(!data || empty(data)) && render.empty}
+                    {filteredData && render.loaded}
+                    {(!filteredData || empty(filteredData)) && render.empty}
                   </>
                 )}
               </>

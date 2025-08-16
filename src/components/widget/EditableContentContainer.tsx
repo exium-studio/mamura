@@ -214,7 +214,7 @@ const EditableContentContainer = (props: Props) => {
 
   useEffect(() => {
     if (cms) {
-      localStorage.setItem("__authToken", cms);
+      sessionStorage.setItem("__auth_token", cms);
     }
   }, [cms]);
 

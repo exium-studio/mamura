@@ -1,5 +1,5 @@
 export default function getAuthToken() {
-  const token = localStorage.getItem("__auth_token");
+  const token = sessionStorage.getItem("__auth_token");
   if (!token) {
     return null;
   } else {

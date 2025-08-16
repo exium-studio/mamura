@@ -67,7 +67,7 @@ const PricingItem = (props: any) => {
         </CContainer>
       </CContainer>
 
-      <NavLink to="/contact">
+      <NavLink to="/kontak">
         <BButton
           variant={"ghost"}
           colorPalette={"p"}

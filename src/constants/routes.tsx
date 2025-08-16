@@ -1,13 +1,10 @@
-import AdminRootPage from "@/pages/_admin/AdminRootPage";
-import DashboardPage from "@/pages/_admin/DashboardPage";
-import MasterDataPage from "@/pages/_admin/MasterDataPage";
+import BlogDetailPage from "@/pages/BlogDetailPage";
 import BlogPage from "@/pages/BlogPage";
 import CareerPage from "@/pages/CareerPage";
 import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
-import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 import JobApplicationPage from "@/pages/JobApplicationPage";
-import BlogDetailPage from "@/pages/BlogDetailPage";
+import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
@@ -39,31 +36,6 @@ export const LP_ROUTES: Interface__Route[] = [
     path: "/kontak",
     activePath: "/kontak",
     element: <ContactPage />,
-  },
-];
-
-export const ADMIN_ROUTES: Interface__Route[] = [
-  {
-    path: "/admin",
-    activePath: "/admin",
-    element: <AdminRootPage />,
-  },
-];
-
-export const ADMIN_PRIVATE_ROUTES: Interface__PrivateRoute[] = [
-  {
-    path: "/admin/dashboard",
-    activePath: "/dashboard",
-    titleKey: "navs.dashboard",
-    element: <DashboardPage />,
-  },
-
-  // Master Data
-  {
-    path: "/admin/master-data",
-    activePath: "/master-data",
-    titleKey: "navs.master_data",
-    element: <MasterDataPage />,
   },
 ];
 

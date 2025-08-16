@@ -26,7 +26,7 @@ const HomeBlogs = (props: any) => {
   const px = sw < 1440 ? R_SPACING : "calc((100vw - 1440px + 64px) / 2)";
 
   return (
-    <CContainer py={["32px", null, "80px"]} gap={8}>
+    <CContainer py={["32px", null, "80px"]}>
       <Container>
         <HStack justify={"space-between"} wrap={"wrap"} gap={4}>
           <EditableContentContainer contentId={41} content={contents?.[41]}>
@@ -44,6 +44,7 @@ const HomeBlogs = (props: any) => {
       </Container>
 
       <CContainer
+        mt={8}
         fRef={carouselContainerRef}
         overflowX={"auto"}
         scrollSnapType={"x mandatory"}
@@ -65,7 +66,7 @@ const HomeBlogs = (props: any) => {
         </HStack>
       </CContainer>
 
-      <Container align={"center"}>
+      <Container align={"center"} mt={4}>
         <CarouselControl
           carouselContainerRef={carouselContainerRef}
           dataLength={blogs?.length}

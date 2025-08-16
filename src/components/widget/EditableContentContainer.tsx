@@ -5,6 +5,7 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import empty from "@/utils/empty";
+import getAuthToken from "@/utils/getAuthToken";
 import { SimpleGrid, StackProps, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
@@ -211,6 +212,7 @@ const EditableContentContainer = (props: Props) => {
   useBackOnClose(`edit-content-${contentId}`, open, onOpen, onClose);
   const [searchParams] = useSearchParams();
   const cms = searchParams.get("cms");
+  const authToken = getAuthToken();
 
   useEffect(() => {
     if (cms) {
@@ -219,7 +221,7 @@ const EditableContentContainer = (props: Props) => {
   }, [cms]);
 
   // States
-  const cmsActive = !!cms;
+  const cmsActive = !!authToken;
   const { error, loading, data, makeRequest } =
     useDataState<Interface__Content>({
       url: `/api/mamura/public-request/get-content/${contentId}`,

@@ -58,6 +58,7 @@ const HomeBlogs = (props: any) => {
                 minW={"300px"}
                 maxW={"320px"}
                 scrollSnapAlign={"center"}
+                h={"full"}
               />
             );
           })}

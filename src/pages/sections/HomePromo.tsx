@@ -114,7 +114,7 @@ const HomePromo = (props: any) => {
             {promo?.map((p: any) => {
               return (
                 <Img
-                  key={`${p.image?.[0]?.id}${p.image?.[0]?.file_url}`}
+                  key={`${p.id}`}
                   src={p.image?.[0]?.file_url}
                   alt={p.image?.[0]?.file_name}
                   aspectRatio={16 / 9}

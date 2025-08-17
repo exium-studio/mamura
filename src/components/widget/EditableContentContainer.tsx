@@ -31,6 +31,7 @@ import Textarea from "../ui-custom/Textarea";
 import { Field } from "../ui/field";
 import ExistingFileItem from "./ExistingFIleItem";
 import back from "@/utils/back";
+import { fileValidation } from "@/utils/validationSchemas";
 
 interface Props extends Omit<StackProps, "content"> {
   contentId: number;
@@ -60,7 +61,27 @@ const ContentEditor = (props: any) => {
       deleted_file: [] as any,
     },
     validationSchema: yup.object().shape({
-      content: yup.string(),
+      content: yup.string().when("content_type.name", {
+        is: (val: string) => val === "Text" || val === "Tautan",
+        then: (schema) => schema.required("Konten harus diisi"),
+        otherwise: (schema) => schema.notRequired(),
+      }),
+      file: fileValidation({
+        allowedExtensions: [
+          "png",
+          "jpg",
+          "jpeg",
+          "mp4",
+          "mp3",
+          "wav",
+          "pdf",
+          "docx",
+        ],
+      }).when("content_type.name", {
+        is: (val: string) => ["Gambar", "Video", "Audio", "File"].includes(val),
+        then: (schema) => schema.required("File harus diunggah"),
+        otherwise: (schema) => schema.notRequired(),
+      }),
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);

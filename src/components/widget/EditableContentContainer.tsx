@@ -30,6 +30,7 @@ import StringInput from "../ui-custom/StringInput";
 import Textarea from "../ui-custom/Textarea";
 import { Field } from "../ui/field";
 import ExistingFileItem from "./ExistingFIleItem";
+import back from "@/utils/back";
 
 interface Props extends Omit<StackProps, "content"> {
   contentId: number;
@@ -63,6 +64,7 @@ const ContentEditor = (props: any) => {
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
+      back();
 
       const payload = new FormData();
       payload.append("_method", "patch");

@@ -18,7 +18,7 @@ const LPContainer = (props: any) => {
   const setData = useContents((s) => s.setData);
 
   // States
-  const { error, loading, data, makeRequest } = useDataState<any>({
+  const { error, initialLoading, data, makeRequest } = useDataState<any>({
     url: `/api/mamura/public-request/get-all-content`,
     dataResource: false,
   });
@@ -43,8 +43,8 @@ const LPContainer = (props: any) => {
     <CContainer minH={"100dvh"}>
       <TopNav activePath={activePath} />
 
-      {loading && render.loading}
-      {!loading && (
+      {initialLoading && render.loading}
+      {!initialLoading && (
         <>
           {error && render.error}
           {!error && (

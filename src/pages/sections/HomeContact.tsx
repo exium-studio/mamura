@@ -56,7 +56,7 @@ const HomeContact = (props: any) => {
             </CContainer>
 
             <HStack wrap={"wrap"} mt={4}>
-              <NavLink to="/contact" w={"fit"}>
+              <NavLink to="/kontak" w={"fit"}>
                 <BButton bg={"white"} color={"dark"}>
                   Dapatkan Penawaran Sekarang
                 </BButton>

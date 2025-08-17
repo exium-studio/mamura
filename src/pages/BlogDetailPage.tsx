@@ -83,6 +83,7 @@ const OtherBlogs = (props: any) => {
         </Container>
 
         <CContainer
+          mt={4}
           fRef={carouselContainerRef}
           overflowX={"auto"}
           scrollSnapType={"x mandatory"}
@@ -120,7 +121,7 @@ const OtherBlogs = (props: any) => {
   };
 
   return (
-    <CContainer mb={["32px", null, "80px"]} gap={8}>
+    <CContainer mb={["32px", null, "80px"]} gap={4}>
       {initialLoading && render.loading}
       {!initialLoading && (
         <>

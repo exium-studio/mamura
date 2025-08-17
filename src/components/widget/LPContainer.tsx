@@ -1,14 +1,13 @@
 import CContainer from "@/components/ui-custom/CContainer";
-import TopNav from "./TopNav";
-import useDataState from "@/hooks/useDataState";
-import { DUMMY_CONTENTS } from "@/constants/dummy";
-import { useEffect } from "react";
 import useContents from "@/context/useContents";
-import ComponentSpinner from "../ui-custom/ComponentSpinner";
-import FeedbackRetry from "../ui-custom/FeedbackRetry";
-import FeedbackNoData from "../ui-custom/FeedbackNoData";
-import empty from "@/utils/empty";
+import useDataState from "@/hooks/useDataState";
 import Footer from "@/pages/sections/Footer";
+import empty from "@/utils/empty";
+import { useEffect } from "react";
+import ComponentSpinner from "../ui-custom/ComponentSpinner";
+import FeedbackNoData from "../ui-custom/FeedbackNoData";
+import FeedbackRetry from "../ui-custom/FeedbackRetry";
+import TopNav from "./TopNav";
 
 const LPContainer = (props: any) => {
   // Props

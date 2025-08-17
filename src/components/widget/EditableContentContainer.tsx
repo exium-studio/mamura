@@ -89,7 +89,7 @@ const ContentEditor = (props: any) => {
 
       const payload = new FormData();
       payload.append("_method", "patch");
-      payload.append("content", values.content as string);
+      if (values.content) payload.append("content", values.content as string);
       payload.append("content_type_id", data.content_type.id);
       if (values.file.length > 0) {
         values.file.forEach((file: any) => {

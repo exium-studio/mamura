@@ -202,9 +202,9 @@ const BlogDetail = (props: BlogDetailProps) => {
           <Img
             borderRadius={16}
             aspectRatio={2 / 1}
-            key={blog?.thumbnail?.file_url}
-            src={blog?.thumbnail?.file_url}
-            alt={blog?.thumbnail?.file_url}
+            key={blog?.thumbnail?.[0]?.file_url}
+            src={blog?.thumbnail?.[0]?.file_url}
+            alt={blog?.thumbnail?.[0]?.file_url}
           />
         </CContainer>
 

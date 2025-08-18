@@ -135,7 +135,7 @@ const ContactForm = (props: any) => {
           </Field>
 
           <Field
-            label={"Pesan"}
+            label={"Paket yang diminati"}
             invalid={!!formik.errors.preferred_package}
             errorText={formik.errors.preferred_package as string}
             optional

@@ -35,7 +35,7 @@ const HomeBlogs = (props: any) => {
             </Heading2>
           </EditableContentContainer>
 
-          <NavLink to="/blogs" w={"fit"}>
+          <NavLink to="/blog" w={"fit"}>
             <BButton colorPalette={"p"} size={"md"}>
               Lihat Semua
             </BButton>

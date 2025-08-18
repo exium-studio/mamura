@@ -31,7 +31,7 @@ const SelectPricing = (props: Props) => {
         onSuccess: (r) => {
           const newOptions = r?.data?.data?.map((item: any) => ({
             id: item?.id,
-            label: `${item?.name}`,
+            label: `${item?.name} - ${item?.pricing_category?.name}`,
           }));
           setOptions(newOptions);
         },

@@ -9,6 +9,7 @@ import Textarea from "@/components/ui-custom/Textarea";
 import { Field } from "@/components/ui/field";
 import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
+import SelectPricing from "@/components/widget/SelectPricing";
 import { R_SPACING } from "@/constants/sizes";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
@@ -36,6 +37,7 @@ const ContactForm = (props: any) => {
       email: "",
       address: "",
       message: "",
+      preferred_package: undefined as any,
     },
     validationSchema: yup.object().shape({
       name: yup.string().required(l.required_form),
@@ -45,6 +47,7 @@ const ContactForm = (props: any) => {
         .email("Format email tidak valid")
         .required(l.required_form),
       address: yup.string().required(l.required_form),
+      preferred_package: yup.array(),
       message: yup.string().required(l.required_form),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -55,6 +58,7 @@ const ContactForm = (props: any) => {
       payload.append("phone_number", values.phone_number as string);
       payload.append("email", values.email as string);
       payload.append("address", values.address as string);
+      payload.append("preferred_package_id", values.preferred_package?.[0]?.id);
       payload.append("message", values.message as string);
 
       const config = {
@@ -127,6 +131,20 @@ const ContactForm = (props: any) => {
                 formik.setFieldValue("address", input);
               }}
               inputValue={formik.values.address}
+            />
+          </Field>
+
+          <Field
+            label={"Pesan"}
+            invalid={!!formik.errors.preferred_package}
+            errorText={formik.errors.preferred_package as string}
+            optional
+          >
+            <SelectPricing
+              onConfirm={(input) => {
+                formik.setFieldValue("preferred_package", input);
+              }}
+              inputValue={formik.values.preferred_package}
             />
           </Field>
 

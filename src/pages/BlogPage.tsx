@@ -39,6 +39,8 @@ const BlogList = (props: any) => {
     dependencies: [filterConfig],
   });
 
+  console.log(page);
+
   const render = {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,

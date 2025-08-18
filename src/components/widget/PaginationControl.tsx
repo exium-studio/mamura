@@ -74,7 +74,7 @@ const PaginationControl = (props: Props) => {
             fontSize={"16px !important"}
             borderRadius={"full"}
           >
-            {`${1} of ${pagination?.meta?.last_page || "?"}`}
+            {`${page} of ${pagination?.meta?.last_page || "?"}`}
           </Button>
         </MenuTrigger>
 

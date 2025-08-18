@@ -1,0 +1,12 @@
+# Allow all web crawlers to access all content
+User-agent: *
+Allow: /
+
+# Disallow access to internal static assets (optional, can be removed if needed)
+Disallow: /static/
+
+# ❌ Disallow specific route
+# None
+
+# Specify the location of your sitemap to help crawlers index your site more effectively
+Sitemap: https://mamura.net.id/sitemap.xml

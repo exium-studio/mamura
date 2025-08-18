@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "l": "node src/scripts/generate-translation.js"
+    "l": "node src/scripts/generate-translation.js",
+    "s": "node src/scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.14.2",
@@ -18,6 +19,7 @@
     "@types/three": "^0.179.0",
     "axios": "^1.7.7",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.1",
     "formik": "^2.4.6",
     "html-react-parser": "^5.2.5",
     "jszip": "^3.10.1",

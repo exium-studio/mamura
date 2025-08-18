@@ -1,9 +1,14 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv"; // ✅ load dotenv
 import { ROUTE_PATHS } from "../constants/routePaths.js";
 
-const baseUrl = "https://limitless.exclolab.com";
+// load .env biar process.env keisi
+dotenv.config();
+
+// ambil dari .env
+const baseUrl = process.env.VITE_BASE_URL;
 
 // __dirname versi ESM
 const __filename = fileURLToPath(import.meta.url);

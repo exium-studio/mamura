@@ -72,7 +72,7 @@ export interface Interface__BlogCategory extends Interface__CUD {
 }
 export interface Interface__Blog extends Interface__CUD {
   id: number;
-  thumbnail: Interface__StorageFile;
+  thumbnail: Interface__StorageFile[];
   slug: string;
   title: string;
   description: string;

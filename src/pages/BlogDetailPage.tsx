@@ -32,6 +32,7 @@ import { IconCircleFilled, IconEye, IconShare } from "@tabler/icons-react";
 import parse from "html-react-parser";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 interface BlogDetailProps {
   blog: Interface__Blog | undefined;
@@ -171,6 +172,11 @@ const BlogDetail = (props: BlogDetailProps) => {
 
   return (
     <>
+      <Helmet>
+        <title>{blog?.title}</title>
+        <meta name="description" content={blog?.description} />
+      </Helmet>
+
       <Container>
         <Breadcrumb.Root>
           <Breadcrumb.List>

@@ -135,7 +135,7 @@ const CTA = (props: any) => {
           size={"xl"}
           colorPalette={"p"}
           onClick={() => {
-            scrollToView(`packages`);
+            scrollToView(`pricing`);
           }}
           pointerEvents={"auto"}
         >

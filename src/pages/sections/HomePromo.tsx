@@ -1,12 +1,17 @@
 import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import Img from "@/components/ui-custom/Img";
+import P from "@/components/ui-custom/P";
 import Container from "@/components/widget/Container";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { HStack, Icon } from "@chakra-ui/react";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { useRef } from "react";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconCircleFilled,
+} from "@tabler/icons-react";
+import { useRef, useState } from "react";
 
 const PrevButton = (props: any) => {
   // Props
@@ -26,6 +31,7 @@ const PrevButton = (props: any) => {
           behavior: "smooth",
         });
       }}
+      zIndex={3}
       {...restProps}
     >
       <Icon>
@@ -34,7 +40,6 @@ const PrevButton = (props: any) => {
     </BButton>
   );
 };
-
 const NextButton = (props: any) => {
   // Props
   const { containerRef, ...restProps } = props;
@@ -53,12 +58,81 @@ const NextButton = (props: any) => {
           behavior: "smooth",
         });
       }}
+      zIndex={3}
       {...restProps}
     >
       <Icon>
         <IconArrowRight />
       </Icon>
     </BButton>
+  );
+};
+const PromoItem = (props: any) => {
+  // Props
+  const { promo } = props;
+
+  // Hooks
+  const { sw } = useScreen();
+  const overMax = sw > 1440;
+
+  const [showTerms, setShowTerms] = useState<boolean>(false);
+
+  return (
+    <CContainer
+      pos={"relative"}
+      overflow={"clip"}
+      onClick={() => setShowTerms(!showTerms)}
+    >
+      <Img
+        key={`${promo.id}`}
+        src={promo.image?.[0]?.file_url}
+        alt={promo.image?.[0]?.file_name}
+        aspectRatio={16 / 9}
+        scrollSnapAlign={"center"}
+        h={"full"}
+        maxW={[
+          "calc(100vw)",
+          null,
+          overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)",
+        ]}
+      />
+
+      <CContainer
+        pos={"absolute"}
+        bg={"blackAlpha.700"}
+        w={"full"}
+        maxW={[
+          "calc(100vw)",
+          null,
+          overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)",
+        ]}
+        h={"full"}
+        p={4}
+        justify={"center"}
+        align={"center"}
+        opacity={showTerms ? 1 : 0}
+        transition={"200ms"}
+        color={"white"}
+      >
+        <CContainer w={"fit"} maxW={"500px"} gap={2} className="scrollY">
+          <P fontWeight={"semibold"} opacity={0.6}>
+            Syarat & Ketentuan
+          </P>
+
+          {promo.terms?.map((term: string) => {
+            return (
+              <HStack key={term}>
+                <Icon boxSize={1}>
+                  <IconCircleFilled />
+                </Icon>
+
+                <P>{term}</P>
+              </HStack>
+            );
+          })}
+        </CContainer>
+      </CContainer>
+    </CContainer>
   );
 };
 
@@ -112,21 +186,7 @@ const HomePromo = (props: any) => {
         >
           <HStack w={"max"} h={"full"} align={"stretch"}>
             {promo?.map((p: any) => {
-              return (
-                <Img
-                  key={`${p.id}`}
-                  src={p.image?.[0]?.file_url}
-                  alt={p.image?.[0]?.file_name}
-                  aspectRatio={16 / 9}
-                  scrollSnapAlign={"center"}
-                  h={"full"}
-                  maxW={[
-                    "calc(100vw)",
-                    null,
-                    overMax ? "calc(1440px - 80px)" : "calc(100vw - 80px)",
-                  ]}
-                />
-              );
+              return <PromoItem promo={p} />;
             })}
           </HStack>
         </CContainer>

@@ -28,8 +28,8 @@ const BlogItem = (props: Props) => {
         {...restProps}
       >
         <Img
-          key={blog?.thumbnail?.file_url}
-          src={blog?.thumbnail?.file_url}
+          key={blog?.thumbnail?.[0]?.file_url}
+          src={blog?.thumbnail?.[0]?.file_url}
           alt={blog?.title}
           aspectRatio={16 / 10}
           borderRadius={16}

@@ -3,20 +3,21 @@ import CContainer from "@/components/ui-custom/CContainer";
 import Heading2 from "@/components/ui-custom/Heading2";
 import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
+import CarouselControl from "@/components/widget/CarouselControl";
 import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
 import SimplePopover from "@/components/widget/SimplePopover";
 import formatNumber from "@/utils/formatNumber";
 import { Box, Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconArrowRight } from "@tabler/icons-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const PricingItem = (props: any) => {
   // Props
-  const { pricing } = props;
+  const { pricing, ...restProps } = props;
 
   return (
-    <CContainer gap={1}>
+    <CContainer gap={1} {...restProps}>
       <CContainer
         borderRadius={16}
         overflow={"clip"}
@@ -27,7 +28,7 @@ const PricingItem = (props: any) => {
       >
         {!!pricing?.is_recommended && (
           <CContainer bg={"s.500"} p={2} borderRadius={16}>
-            <P color={"dark"} fontWeight={"bold"}>
+            <P color={"white"} fontWeight={"bold"}>
               Rekomendasi untuk Anda
             </P>
           </CContainer>
@@ -84,7 +85,11 @@ const PricingItem = (props: any) => {
 };
 
 const HomePricing = (props: any) => {
+  // Props
   const { contents, pricing } = props;
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // States
   const [pricingCategory, setPricingCategory] = useState<"Home" | "Business">(
@@ -92,7 +97,7 @@ const HomePricing = (props: any) => {
   );
 
   return (
-    <CContainer id="pricing" py={["32px", null, "80px"]}>
+    <CContainer id="pricing" py={["32px", null, "80px"]} gap={8}>
       <Container gap={8} align={"center"}>
         <CContainer gap={2} align={"center"}>
           <EditableContentContainer contentId={14} content={contents?.[14]}>
@@ -160,14 +165,36 @@ const HomePricing = (props: any) => {
               </P>
             </Center>
           </HStack>
-
-          <SimpleGrid columns={[1, null, 2, 4]} gap={4} w={"full"}>
-            {pricing?.[pricingCategory]?.map((pricing: any) => (
-              <PricingItem key={pricing?.id} pricing={pricing} />
-            ))}
-          </SimpleGrid>
         </CContainer>
       </Container>
+
+      <Container
+        fRef={containerRef}
+        overflowX={"auto"}
+        className="noScroll"
+        scrollSnapType={"x mandatory"}
+      >
+        <SimpleGrid columns={[4, null, 2, 4]} gap={4} w={["max", null, "full"]}>
+          {pricing?.[pricingCategory]?.map((pricing: any) => (
+            <PricingItem
+              key={pricing?.id}
+              pricing={pricing}
+              scrollSnapAlign={"center"}
+            />
+          ))}
+        </SimpleGrid>
+      </Container>
+
+      <Center>
+        <CarouselControl
+          carouselContainerRef={containerRef}
+          dataLength={pricing?.[pricingCategory]?.length}
+          showIndicator={false}
+          buttonProps={{
+            className: "ss",
+          }}
+        />
+      </Center>
     </CContainer>
   );
 };

@@ -2,14 +2,22 @@ import CContainer from "@/components/ui-custom/CContainer";
 import { R_SPACING } from "@/constants/sizes";
 import { StackProps } from "@chakra-ui/react";
 
-interface Props extends StackProps {}
+interface Props extends StackProps {
+  fRef?: any;
+}
 
 const Container = (props: Props) => {
   // Props
-  const { children, ...restProps } = props;
+  const { children, fRef, ...restProps } = props;
 
   return (
-    <CContainer px={R_SPACING} maxW={"1440px"} mx={"auto"} {...restProps}>
+    <CContainer
+      fRef={fRef}
+      px={R_SPACING}
+      maxW={"1440px"}
+      mx={"auto"}
+      {...restProps}
+    >
       {children}
     </CContainer>
   );

@@ -91,7 +91,7 @@ const CarouselControl = (props: Props) => {
   }, [carouselContainerRef, dataLength, sw, activeIndex]);
 
   return (
-    <HStack px={5} gap={4} {...restProps}>
+    <HStack px={5} gap={showIndicator ? 4 : 2} {...restProps}>
       <BButton
         iconButton
         // colorPalette={"p"}

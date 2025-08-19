@@ -7,6 +7,7 @@ import CarouselControl from "@/components/widget/CarouselControl";
 import Container from "@/components/widget/Container";
 import EditableContentContainer from "@/components/widget/EditableContentContainer";
 import SimplePopover from "@/components/widget/SimplePopover";
+import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import formatNumber from "@/utils/formatNumber";
 import { Box, Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -87,6 +88,9 @@ const PricingItem = (props: any) => {
 const HomePricing = (props: any) => {
   // Props
   const { contents, pricing } = props;
+
+  // Hooks
+  const iss = useIsSmScreenWidth();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -185,16 +189,18 @@ const HomePricing = (props: any) => {
         </SimpleGrid>
       </Container>
 
-      <Center>
-        <CarouselControl
-          carouselContainerRef={containerRef}
-          dataLength={pricing?.[pricingCategory]?.length}
-          showIndicator={false}
-          buttonProps={{
-            className: "ss",
-          }}
-        />
-      </Center>
+      {iss && (
+        <Center mt={-4}>
+          <CarouselControl
+            carouselContainerRef={containerRef}
+            dataLength={pricing?.[pricingCategory]?.length}
+            showIndicator={false}
+            buttonProps={{
+              className: "ss",
+            }}
+          />
+        </Center>
+      )}
     </CContainer>
   );
 };

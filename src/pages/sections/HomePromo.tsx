@@ -14,6 +14,8 @@ import {
 } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
+const BANNER_ASPECT_RATIO = 5 / 3;
+
 const PrevButton = (props: any) => {
   // Props
   const { containerRef, ...restProps } = props;
@@ -88,7 +90,7 @@ const PromoItem = (props: any) => {
         key={`${promo.id}`}
         src={promo.image?.[0]?.file_url}
         alt={promo.image?.[0]?.file_name}
-        aspectRatio={16 / 9}
+        aspectRatio={BANNER_ASPECT_RATIO}
         scrollSnapAlign={"center"}
         h={"full"}
         maxW={[
@@ -190,7 +192,7 @@ const HomePromo = (props: any) => {
           borderRadius={[0, null, "30px"]}
           className="noScroll"
           scrollSnapType={"x mandatory"}
-          aspectRatio={16 / 9}
+          aspectRatio={BANNER_ASPECT_RATIO}
         >
           <HStack w={"max"} h={"full"} align={"stretch"}>
             {promo?.map((p: any) => {

@@ -29,6 +29,7 @@ import useDataState from "@/hooks/useDataState";
 import empty from "@/utils/empty";
 import { Breadcrumb, HStack, Icon, SimpleGrid, Stack } from "@chakra-ui/react";
 import {
+  IconBriefcase,
   IconCircleFilled,
   IconHourglassLow,
   IconMapPin,
@@ -72,14 +73,22 @@ const JobList = (props: { jobs: Interface__Career[] }) => {
               borderRadius={16}
             >
               <AccordionItemTrigger p={4}>
-                <SimpleGrid columns={[1, null, 3]} gapX={4} w={"full"} pr={4}>
+                <SimpleGrid columns={[1, 2, 4]} gapX={4} w={"full"} pr={4}>
                   <HStack gap={4} mb={[2, null, 0]}>
                     <Avatar
                       name={job.carrier_category?.name}
                       bg={"s.100"}
                       color={"s.600"}
                     />
-                    <P fontWeight={"semibold"}>{job.carrier_category?.name}</P>
+                    <P fontWeight={"semibold"}>{job.title}</P>
+                  </HStack>
+
+                  <HStack color={"fg.subtle"}>
+                    <Icon boxSize={5}>
+                      <IconBriefcase />
+                    </Icon>
+
+                    <P>{job.carrier_category?.name}</P>
                   </HStack>
 
                   <HStack color={"fg.subtle"}>

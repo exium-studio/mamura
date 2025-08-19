@@ -1,6 +1,7 @@
 import BButton from "@/components/ui-custom/BButton";
 import CContainer from "@/components/ui-custom/CContainer";
 import Img from "@/components/ui-custom/Img";
+import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
 import Container from "@/components/widget/Container";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
@@ -111,6 +112,7 @@ const PromoItem = (props: any) => {
         justify={"center"}
         align={"center"}
         opacity={showTerms ? 1 : 0}
+        visibility={showTerms ? "visible" : "hidden"}
         transition={"200ms"}
         color={"white"}
       >
@@ -130,6 +132,12 @@ const PromoItem = (props: any) => {
               </HStack>
             );
           })}
+
+          <NavLink to="kontak">
+            <BButton mt={2} bg={"white"} color={"p.500"}>
+              Langganan Sekarang
+            </BButton>
+          </NavLink>
         </CContainer>
       </CContainer>
     </CContainer>

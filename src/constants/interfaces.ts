@@ -19,6 +19,7 @@ import {
 // Careers
 export interface Interface__Career extends Interface__CUD {
   id: number;
+  title: string;
   carrier_category: Interface__CareerCategory;
   employee_status: Interface__EmployeeStatus;
   job_location: Interface__JobLocation;

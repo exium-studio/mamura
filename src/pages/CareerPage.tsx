@@ -7,6 +7,7 @@ import Heading2 from "@/components/ui-custom/Heading2";
 import Img from "@/components/ui-custom/Img";
 import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
+import StringInput from "@/components/ui-custom/StringInput";
 import {
   AccordionItem,
   AccordionItemContent,
@@ -141,6 +142,7 @@ const JobVacancy = (props: any) => {
 
   // States
   const [filterConfig, setFilterConfig] = useState<any>({
+    search: "",
     carrier_category: undefined,
     employee_status: undefined,
     job_location: undefined,
@@ -148,6 +150,7 @@ const JobVacancy = (props: any) => {
   const { error, initialLoading, data, makeRequest } = useDataState<any>({
     url: `/api/mamura/index-carrier`,
     payload: {
+      search: filterConfig?.search,
       carrier_category: [filterConfig?.carrier_category?.[0]?.id],
       employee_status: [filterConfig?.employee_status?.[0]?.id],
       job_location: [filterConfig?.job_location?.[0]?.id],
@@ -170,7 +173,19 @@ const JobVacancy = (props: any) => {
         </Heading2>
       </EditableContentContainer>
 
-      <SimpleGrid columns={[1, null, 3]} gap={4}>
+      <SimpleGrid columns={[1, 2, 4]} gap={4}>
+        <CContainer gap={2}>
+          <P>Pencarian</P>
+
+          <StringInput
+            inputValue={filterConfig?.search}
+            onChangeSetter={(input) => {
+              setFilterConfig({ ...filterConfig, search: input });
+            }}
+            placeholder={"Cari nama pekerjaan"}
+          />
+        </CContainer>
+
         <CContainer gap={2}>
           <P>Kategori</P>
 

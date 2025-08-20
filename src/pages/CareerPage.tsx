@@ -80,7 +80,9 @@ const JobList = (props: { jobs: Interface__Career[] }) => {
                       bg={"s.100"}
                       color={"s.600"}
                     />
-                    <P fontWeight={"semibold"}>{job.title}</P>
+                    <P fontWeight={"semibold"} lineHeight={1.4}>
+                      {job.title}
+                    </P>
                   </HStack>
 
                   <HStack color={"fg.subtle"}>

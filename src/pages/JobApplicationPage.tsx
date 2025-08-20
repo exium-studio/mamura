@@ -21,6 +21,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import {
+  IconBriefcase,
   IconCircleFilled,
   IconHourglassLow,
   IconMapPin,
@@ -213,19 +214,27 @@ const JobApplicationPage = () => {
         {activeCareer && (
           <CContainer mt={6}>
             <Stack flexDir={["column", null, "row"]}>
-              <CContainer w={["full", null, "30%"]} gap={4}>
+              <CContainer w={["full", null, "40%"]} gap={4}>
                 <HStack gap={4}>
                   <Avatar
                     name={activeCareer?.carrier_category?.name}
                     bg={"s.100"}
                     color={"p.600"}
                   />
-                  <P fontWeight={"semibold"}>
-                    {activeCareer?.carrier_category?.name}
+                  <P fontWeight={"semibold"} lineHeight={1.4}>
+                    {activeCareer.title}
                   </P>
                 </HStack>
 
                 <HStack gap={4}>
+                  <HStack color={"fg.subtle"}>
+                    <Icon boxSize={5}>
+                      <IconBriefcase />
+                    </Icon>
+
+                    <P>{activeCareer.carrier_category?.name}</P>
+                  </HStack>
+
                   <HStack color={"fg.subtle"}>
                     <Icon boxSize={5}>
                       <IconHourglassLow />
@@ -261,7 +270,7 @@ const JobApplicationPage = () => {
                 </CContainer>
               </CContainer>
 
-              <CContainer w={["full", null, "70%"]} gap={8}>
+              <CContainer w={["full", null, "60%"]} gap={8}>
                 <P>KIRIMKAN LAMARAN ANDA</P>
 
                 <JobAplicationForm activeCareer={activeCareer} />

@@ -226,7 +226,7 @@ const JobApplicationPage = () => {
                   </P>
                 </HStack>
 
-                <HStack gap={4}>
+                <HStack gap={4} wrap={"wrap"}>
                   <HStack color={"fg.subtle"}>
                     <Icon boxSize={5}>
                       <IconBriefcase />

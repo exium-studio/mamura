@@ -256,8 +256,6 @@ const EmbedLink = (props: any) => {
   // Props
   const { contents, width = 400, height = 600 } = props;
 
-  console.log(contents?.[68]);
-
   return (
     <EditableContentContainer
       contentId={68}
@@ -269,7 +267,11 @@ const EmbedLink = (props: any) => {
         width={width}
         height={height}
         allowTransparency={true}
-        style={{ border: "none", overflow: "hidden", maxWidth: "100%" }}
+        style={{
+          border: "none",
+          overflow: "hidden",
+          maxWidth: "100%",
+        }}
       />
     </EditableContentContainer>
   );

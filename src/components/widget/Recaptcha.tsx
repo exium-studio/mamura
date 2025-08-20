@@ -1,27 +1,16 @@
-import React from "react";
-import ReCAPTCHA from "react-google-recaptcha";
-
-const VITE_RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface Props {
   onChange: (value: string | null) => void;
 }
 
-const Recaptcha = (props: Props) => {
-  // Props
-  const { onChange } = props;
-
-  // Refs
-  const recaptchaRef = React.createRef<ReCAPTCHA>();
-
+const Recaptcha = ({ onChange }: Props) => {
   return (
-    <div>
-      <ReCAPTCHA
-        sitekey={VITE_RECAPTCHA_SITE_KEY}
-        onChange={onChange}
-        ref={recaptchaRef}
-      />
-    </div>
+    <GoogleReCaptcha
+      onVerify={(token: string) => {
+        onChange(token);
+      }}
+    />
   );
 };
 

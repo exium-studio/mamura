@@ -6,7 +6,6 @@ import P from "@/components/ui-custom/P";
 import StringInput from "@/components/ui-custom/StringInput";
 import { Avatar } from "@/components/ui/avatar";
 import { Field } from "@/components/ui/field";
-import Recaptcha from "@/components/widget/Recaptcha";
 import { R_SPACING } from "@/constants/sizes";
 import useActiveCareer from "@/context/useActiveCareer";
 import useLang from "@/context/useLang";
@@ -26,7 +25,7 @@ import {
   IconMapPin,
 } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import * as yup from "yup";
 
 const JobAplicationForm = (props: any) => {
@@ -38,10 +37,9 @@ const JobAplicationForm = (props: any) => {
   const { req, loading } = useRequest({
     id: "apply_job",
   });
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   // States
-  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
-  console.log(recaptchaValue);
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -62,15 +60,23 @@ const JobAplicationForm = (props: any) => {
         .required(l.required_form),
       phone_number: yup.string().required(l.required_form),
     }),
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       // console.log(values);
-      if (!recaptchaValue) {
-        alert("Please verify that you are not a robot.");
+
+      if (!executeRecaptcha) {
+        alert("Recaptcha not ready");
+        return;
+      }
+
+      // 🔑 request token saat submit
+      const token = await executeRecaptcha("job_application");
+      if (!token) {
+        alert("Recaptcha failed");
         return;
       }
 
       const payload = new FormData();
-      payload.append("recaptcha_response", ``);
+      payload.append("captcha_token", token);
       payload.append("carrier_id", `${activeCareer.id}`);
       payload.append("resume_id[]", values.resume[0] as any);
       payload.append("name", values.name as string);
@@ -94,11 +100,6 @@ const JobAplicationForm = (props: any) => {
       });
     },
   });
-
-  // Utils
-  function handleRecaptchaChange(value: string | null) {
-    setRecaptchaValue(value);
-  }
 
   return (
     <form id="job_application_form" onSubmit={formik.handleSubmit}>
@@ -158,7 +159,7 @@ const JobAplicationForm = (props: any) => {
           />
         </Field>
 
-        <Recaptcha onChange={handleRecaptchaChange} />
+        {/* <Recaptcha onChange={handleRecaptchaChange} /> */}
       </FieldRoot>
 
       <BButton
@@ -167,7 +168,6 @@ const JobAplicationForm = (props: any) => {
         colorPalette={"p"}
         w={"full"}
         mt={6}
-        disabled={!recaptchaValue}
         loading={loading}
       >
         Kirim Lamaran

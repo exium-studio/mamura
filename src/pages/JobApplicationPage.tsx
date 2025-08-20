@@ -3,6 +3,7 @@ import CContainer from "@/components/ui-custom/CContainer";
 import FileInput from "@/components/ui-custom/FileInput";
 import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
+import PhoneNumberInput from "@/components/ui-custom/PhoneNumberInput";
 import StringInput from "@/components/ui-custom/StringInput";
 import { Avatar } from "@/components/ui/avatar";
 import { Field } from "@/components/ui/field";
@@ -151,7 +152,7 @@ const JobAplicationForm = (props: any) => {
           invalid={!!formik.errors.phone_number}
           errorText={formik.errors.phone_number as string}
         >
-          <StringInput
+          <PhoneNumberInput
             onChangeSetter={(input) => {
               formik.setFieldValue("phone_number", input);
             }}

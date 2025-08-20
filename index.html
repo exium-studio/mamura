@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfTk6wrAAAAAE6kqkJwJX2ibQavd1I2XpSRtb6H"></script>
+
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta
@@ -53,6 +55,18 @@
     <meta name="author" content="Mamura" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+
+    <script>
+      function onClick(e) {
+        e.preventDefault();
+        grecaptcha.enterprise.ready(async () => {
+          const token = await grecaptcha.enterprise.execute(
+            "6LfTk6wrAAAAAE6kqkJwJX2ibQavd1I2XpSRtb6H",
+            { action: "LOGIN" }
+          );
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

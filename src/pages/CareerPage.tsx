@@ -252,6 +252,28 @@ const JobVacancy = (props: any) => {
     </CContainer>
   );
 };
+const EmbedLink = (props: any) => {
+  // Props
+  const { contents, width = 400, height = 600 } = props;
+
+  console.log(contents?.[68]);
+
+  return (
+    <EditableContentContainer
+      contentId={68}
+      content={contents?.[68]}
+      mx={"auto"}
+    >
+      <iframe
+        src={contents?.[68]}
+        width={width}
+        height={height}
+        allowTransparency={true}
+        style={{ border: "none", overflow: "hidden", maxWidth: "100%" }}
+      />
+    </EditableContentContainer>
+  );
+};
 
 const CareerPage = () => {
   // Contexts
@@ -359,6 +381,8 @@ const CareerPage = () => {
             </CContainer>
           </Stack>
         </CContainer>
+
+        <EmbedLink contents={contents} />
 
         <JobVacancy contents={contents} />
       </Container>

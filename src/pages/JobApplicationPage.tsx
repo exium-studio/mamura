@@ -6,6 +6,7 @@ import P from "@/components/ui-custom/P";
 import StringInput from "@/components/ui-custom/StringInput";
 import { Avatar } from "@/components/ui/avatar";
 import { Field } from "@/components/ui/field";
+import Recaptcha from "@/components/widget/Recaptcha";
 import { R_SPACING } from "@/constants/sizes";
 import useActiveCareer from "@/context/useActiveCareer";
 import useLang from "@/context/useLang";
@@ -25,6 +26,7 @@ import {
   IconMapPin,
 } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 
 const JobAplicationForm = (props: any) => {
@@ -38,6 +40,8 @@ const JobAplicationForm = (props: any) => {
   });
 
   // States
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+  console.log(recaptchaValue);
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -60,8 +64,13 @@ const JobAplicationForm = (props: any) => {
     }),
     onSubmit: (values, { resetForm }) => {
       // console.log(values);
+      if (!recaptchaValue) {
+        alert("Please verify that you are not a robot.");
+        return;
+      }
 
       const payload = new FormData();
+      payload.append("recaptcha_response", ``);
       payload.append("carrier_id", `${activeCareer.id}`);
       payload.append("resume_id[]", values.resume[0] as any);
       payload.append("name", values.name as string);
@@ -85,6 +94,11 @@ const JobAplicationForm = (props: any) => {
       });
     },
   });
+
+  // Utils
+  function handleRecaptchaChange(value: string | null) {
+    setRecaptchaValue(value);
+  }
 
   return (
     <form id="job_application_form" onSubmit={formik.handleSubmit}>
@@ -143,6 +157,8 @@ const JobAplicationForm = (props: any) => {
             inputValue={formik.values.phone_number}
           />
         </Field>
+
+        <Recaptcha onChange={handleRecaptchaChange} />
       </FieldRoot>
 
       <BButton
@@ -151,6 +167,7 @@ const JobAplicationForm = (props: any) => {
         colorPalette={"p"}
         w={"full"}
         mt={6}
+        disabled={!recaptchaValue}
         loading={loading}
       >
         Kirim Lamaran

@@ -123,7 +123,11 @@ const LgNavs = (props: any) => {
       bg={scrolled ? "body" : "transparent"}
       transition={"200ms"}
     >
-      <HStack w={"250px"} gap={1}>
+      <NavLink to="/" w={"fit"}>
+        <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
+      </NavLink>
+
+      <HStack gap={1}>
         {LP_NAVS_1.map((nav) => {
           return (
             <HashLink key={nav.id} to={`${nav.path}?hashlink=${nav.id}`}>
@@ -131,20 +135,18 @@ const LgNavs = (props: any) => {
                 unclicky
                 variant={"ghost"}
                 color={!rootPath || scrolled ? "" : "body"}
-                className="btn"
+                colorPalette={"s"}
+                _hover={{
+                  bg: "s.500 !important",
+                  color: "white",
+                }}
               >
                 {nav.label}
               </BButton>
             </HashLink>
           );
         })}
-      </HStack>
 
-      <NavLink to="/" w={"fit"}>
-        <MamuraLogo type={rootPath && !scrolled ? "light" : "color"} />
-      </NavLink>
-
-      <HStack w={"250px"} gap={1}>
         {LP_NAVS_2.map((nav) => {
           const active = activePath === nav.path;
 
@@ -154,7 +156,11 @@ const LgNavs = (props: any) => {
                 unclicky
                 variant={"ghost"}
                 color={active ? "p.500" : !rootPath || scrolled ? "" : "body"}
-                className="btn"
+                colorPalette={"s"}
+                _hover={{
+                  bg: "s.500 !important",
+                  color: "white",
+                }}
               >
                 {nav.label}
               </BButton>

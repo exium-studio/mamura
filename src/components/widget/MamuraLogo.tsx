@@ -13,7 +13,7 @@ const MamuraLogo = (props: Props) => {
       {type === "color" && (
         <Img
           src={`/logo_color.png`}
-          h={"32px"}
+          h={"24px"}
           alt="Mamura Logo"
           {...restProps}
         />
@@ -22,7 +22,7 @@ const MamuraLogo = (props: Props) => {
       {type === "light" && (
         <Img
           src="/logo_light.png"
-          h={"32px"}
+          h={"24px"}
           alt="Mamura Logo"
           {...restProps}
         />

@@ -27,6 +27,8 @@ const LPContainer = (props: any) => {
     empty: <FeedbackNoData />,
     loaded: (
       <>
+        <TopNav activePath={activePath} />
+
         {children}
 
         <Footer contents={data?.contents} />
@@ -40,9 +42,8 @@ const LPContainer = (props: any) => {
 
   return (
     <CContainer minH={"100dvh"}>
-      <TopNav activePath={activePath} />
-
       {initialLoading && render.loading}
+
       {!initialLoading && (
         <>
           {error && render.error}

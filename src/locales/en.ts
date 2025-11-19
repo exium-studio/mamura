@@ -406,6 +406,7 @@ const translations = {
     "sun": "Sunday"
   },
   "weekly": "Weekly",
+  "why": "Why?",
   "year": "Year"
 };
 

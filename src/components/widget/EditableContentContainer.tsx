@@ -33,12 +33,6 @@ import ExistingFileItem from "./ExistingFIleItem";
 import back from "@/utils/back";
 import { fileValidation } from "@/utils/validationSchemas";
 
-interface Props extends Omit<StackProps, "content"> {
-  contentId: number;
-  content: string;
-  fileInput?: boolean;
-}
-
 const ContentEditor = (props: any) => {
   // Props
   const { contentId, data, content, fileInput } = props;
@@ -220,6 +214,11 @@ const ContentEditor = (props: any) => {
   );
 };
 
+interface Props extends Omit<StackProps, "content"> {
+  contentId: number;
+  content: string;
+  fileInput?: boolean;
+}
 const EditableContentContainer = (props: Props) => {
   // Props
   const {

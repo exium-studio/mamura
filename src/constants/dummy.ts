@@ -68,6 +68,41 @@ export const DUMMY_CONTENTS = {
     65: "Punya pertanyaan atau tertarik berlangganan layanan internet dari Mamura? Isi formulir di bawah, dan tim kami akan segera menghubungi Anda!",
     66: "📌 Kami akan menggunakan data Anda hanya untuk keperluan komunikasi terkait layanan Mamura.",
     67: "🔒 Data Anda aman dan tidak akan dibagikan ke pihak ketiga.",
+    68: "embed ig",
+
+    // -------------------
+    // NEW CONTENTS
+    69: " Internet Anda Dihentikan Sementara !",
+    70: "Pelanggan yang kami hormati,",
+    71: " terimakasih atas kepercayaannya menggunakan layanan kami. Kami informasikan bahwa saat ini layanan internet Anda Dihentikan Sementara ( Soft Suspend) otomatis oleh sistem kami.",
+    72: "Kenapa Internet Saya Dihentikan Sementara ?",
+    73: "Layanan internet Dihentikan Sementara terjadi saat sistem kami secara otomatis menonaktifkan layanan untuk sementara, dikarenakan adanya keterlambatan pembayaran. Sesuai dengan Term Of Service kami, pembayaran abonemen bulanan selamabat-lambatnya adalah tanggal 28 disetiap bulannya. Hal ini tertulis pada syarat dan ketentuan berlangganan saat Anda mengisi dan menandatangani Formulir berlangganan. Layanan Dihentikan Sementara karena keterlambatan pembayaran tidak akan menghentikan billing tagihan. Untuk informasi lebih lanjut, silakan menghubungi kami dinomor pusat layanan pelanggan 0811 253 9694 (Telepon/Whatsapp/Telegram",
+    // How to Pay
+    74: "Bagaimana Cara Melakukan Pembayaran ?",
+    75: "Berikut ini adalah beberapa cara untuk melakukan pembayaran tagihan Anda.",
+    // Option 1
+    76: "Transfer Bank",
+    77: "Transfer ke rekening kami menyertakan 3 digit terakhir id pelanggan pada nominal transfer. Misalnya tagihan Rp.300.000, id pelanggan anda 1801-0912123, transfer senilai Rp. 300.123",
+    // Option 2
+    78: "Di Kantor Kami",
+    79: "Anda juga dapat melakukan pembayaran abonemen bulanan dengan datang langsung kekantor kami dan bertemu petugas penerima pembayaran kami dikantor.",
+    // Option 3
+    80: "Via Billing Mamura",
+    81: "Untuk pembayaran via billing mamura, Link pembayaran akan dikirimkan ke nomor whatsapp anda yang terdaftar setiap bulannya.",
+    // Footer
+    82: "Informasi lebih lanjut, silakan menghubungi kami di nomor pusat layanan pelanggan 0811 253 9694 (Telepon/Whatsapp/Telegram)",
+    83: "Head Office : Jalan Raya Purwantoro-Pakis Baru KM.08 Miri RT.01/RW.01 Kismantoro, Wonogiri, Jawa Tengah 57696",
+    84: "Jatisrono Branch Office : Jl. Raya Wonogiri- Ponorogo No.KM.21, RT.02/RW.03, Sempon, Pandeyan, Kec. Jatisrono, Kabupaten Wonogiri, Jawa Tengah 57691 ",
+    85: " Solo Branch : Bacem, RT.06/RW.01, Langenharjo, Sukoharjo Regency, Central Java ",
+    86: `${IMAGES_PATH}/suspend/banner.jpg`, // hero bg
+    87: `${IMAGES_PATH}/suspend/tagline.png`, // pilihat tepat
+    88: `${IMAGES_PATH}/suspend/pic06.png`, // why
+    89: `${IMAGES_PATH}/suspend/pic03.png`, // tf bank
+    90: `${IMAGES_PATH}/suspend/pic05.png`, // kantor
+    91: `${IMAGES_PATH}/suspend/pic04.png`, // billing
+    92: "https://mamuramedia.blogspot.com/2025/08/cara-mudah-membayar-tagihan-internet.html",
+    93: "https://www.google.com/search?kgmid=/g/11csp8fy2s&hl=en-ID&q=PT+Mamura+Inter+Media&shndl=30&shem=lcuae,lsptbl1,sdl1pfh&source=sh/x/loc/osrp/m1/1&kgs=a0debb81e1c97381&utm_source=lcuae,lsptbl1,sdl1pfh,sh/x/loc/osrp/m1/1",
+    94: "https://mamuramedia.blogspot.com/2025/08/cara-bayar-tagihan-internet-mamura.html",
   },
   promo: [
     {

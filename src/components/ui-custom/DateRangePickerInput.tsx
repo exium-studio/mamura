@@ -304,8 +304,8 @@ const DateRangePickerInput = ({
     }
   }
 
-  console.log(selected);
-  console.log("iv", inputValue);
+  // console.log(selected);
+  // console.log("iv", inputValue);
 
   return (
     <>

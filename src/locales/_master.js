@@ -539,6 +539,10 @@ export const location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
   en: "Click get location to get location data.",
 };
+export const why = {
+  id: "Mengapa?",
+  en: "Why?",
+};
 
 // Widget
 export const delete_all_inbox_button = {

@@ -12,7 +12,11 @@ const Routing = () => {
         <Route
           key={path}
           path={path}
-          element={<LPContainer activePath={activePath}>{element}</LPContainer>}
+          element={
+            <LPContainer path={path} activePath={activePath}>
+              {element}
+            </LPContainer>
+          }
         />
       ))}
 

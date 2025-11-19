@@ -406,6 +406,7 @@ const translations = {
     "sun": "Minggu"
   },
   "weekly": "Mingguan",
+  "why": "Mengapa?",
   "year": "Tahun"
 };
 

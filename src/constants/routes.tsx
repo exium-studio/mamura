@@ -5,6 +5,7 @@ import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
 import JobApplicationPage from "@/pages/JobApplicationPage";
 import { Interface__PrivateRoute, Interface__Route } from "./interfaces";
+import InternetSuspendPage from "@/pages/InternetSuspendPage";
 
 export const LP_ROUTES: Interface__Route[] = [
   {
@@ -37,6 +38,13 @@ export const LP_ROUTES: Interface__Route[] = [
     activePath: "/kontak",
     element: <ContactPage />,
   },
+  {
+    path: "/internet-suspend",
+    activePath: "/internet-suspend",
+    element: <InternetSuspendPage />,
+  },
 ];
 
 export const MASTER_DATA_ROUTES: Interface__PrivateRoute[] = [];
+
+export const CLEAN_LAYOUT_ROUTES = ["/internet-suspend"];

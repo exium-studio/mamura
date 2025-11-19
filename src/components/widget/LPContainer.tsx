@@ -8,10 +8,11 @@ import ComponentSpinner from "../ui-custom/ComponentSpinner";
 import FeedbackNoData from "../ui-custom/FeedbackNoData";
 import FeedbackRetry from "../ui-custom/FeedbackRetry";
 import TopNav from "./TopNav";
+import { CLEAN_LAYOUT_ROUTES } from "@/constants/routes";
 
 const LPContainer = (props: any) => {
   // Props
-  const { children, activePath } = props;
+  const { children, path, activePath } = props;
 
   // Contexts
   const setData = useContents((s) => s.setData);
@@ -21,23 +22,25 @@ const LPContainer = (props: any) => {
     url: `/api/mamura/public-request/get-all-content`,
     dataResource: false,
   });
+  const cleanRoute = CLEAN_LAYOUT_ROUTES.includes(path);
   const render = {
     loading: <ComponentSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
     loaded: (
       <>
-        <TopNav activePath={activePath} />
+        {!cleanRoute && <TopNav activePath={activePath} />}
 
         {children}
 
-        <Footer contents={data?.contents} />
+        {!cleanRoute && <Footer contents={data?.contents} />}
       </>
     ),
   };
 
   useEffect(() => {
-    setData(data);
+    // TODO uncomment below
+    // setData(data);
   }, [data]);
 
   return (

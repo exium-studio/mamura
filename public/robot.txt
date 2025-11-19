@@ -6,7 +6,7 @@ Allow: /
 Disallow: /static/
 
 # ❌ Disallow specific route
-# None
+Disallow: /internet-suspend
 
 # Specify the location of your sitemap to help crawlers index your site more effectively
 Sitemap: https://mamura.net.id/sitemap.xml

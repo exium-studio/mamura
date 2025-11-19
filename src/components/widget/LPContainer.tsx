@@ -39,8 +39,7 @@ const LPContainer = (props: any) => {
   };
 
   useEffect(() => {
-    // TODO uncomment below
-    // setData(data);
+    setData(data);
   }, [data]);
 
   return (

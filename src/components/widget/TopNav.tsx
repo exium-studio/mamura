@@ -135,7 +135,6 @@ const LgNavs = (props: any) => {
                 unclicky
                 variant={"ghost"}
                 color={!rootPath || scrolled ? "" : "body"}
-                colorPalette={"s"}
                 _hover={{
                   bg: "s.500 !important",
                   color: "white",
@@ -156,7 +155,6 @@ const LgNavs = (props: any) => {
                 unclicky
                 variant={"ghost"}
                 color={active ? "p.500" : !rootPath || scrolled ? "" : "body"}
-                colorPalette={"s"}
                 _hover={{
                   bg: "s.500 !important",
                   color: "white",

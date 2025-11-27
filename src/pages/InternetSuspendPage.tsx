@@ -220,8 +220,8 @@ const HowToPay = (props: any) => {
       <VStack gap={8} {...restProps}>
         <Circle p={4} border={"1px solid"} borderColor={"d3"}>
           <EditableContentContainer
-            contentId={title?.id}
-            content={title?.content}
+            contentId={img?.id}
+            content={img?.content}
             fileInput
           >
             <Img src={img?.content} />
